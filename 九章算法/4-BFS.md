@@ -1,10 +1,5 @@
 宽度优先搜索 Breadth First Search
-课程版本 v4.2 主讲 令狐冲 扫描二维码关注微信/微博
-获取最新面试题及权威解答
-微信: ninechapter
-微博: http://www.weibo.com/ninechapter 知乎: http://zhuanlan.zhihu.com/jiuzhang 官网: http://www.jiuzhang.com
 
-第1页
 
 大纲 Outline
 • 二叉树上的宽搜 BFS in Binary Tree • 图上的宽搜 BFS in Graph

@@ -1,10 +1,5 @@
 深度优先搜索 Depth First Search
 
-微信: ninechapter
-微博: http://www.weibo.com/ninechapter 知乎: http://zhuanlan.zhihu.com/jiuzhang 官网: http://www.jiuzhang.com
-
-第1页
-
 大纲 Outline
 • Recursion
 • Combination
