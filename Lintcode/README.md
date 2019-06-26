@@ -52,9 +52,23 @@ Note: 变量命名注意单复数!!!
 ## 9.Dynamic Programming 动态规划
 
 
-# 
+# ACM带刷班
 
 ## String
+ Question 54-String to Integer (atoi)
+ Question 1510-Buddy Strings
+ Question 415-Valid Palindrome
+ Question 53-Reverse Words in a String
+ Question 78-Longest Common Prefix
+ Question 1263-Is Subsequence
+ Question 384-Longest Substring Without Repeating Characters
+ Question 213-String Compression
+ Question 1352-Compare Version Numbers
+ Question 1542-Next Time No Repeat
+ Question 92-Wildcard Matching
+
+# 动态规划 Dynamic Programming	
 
 
-# 动态规划Dynamic Programming	28
+
+
