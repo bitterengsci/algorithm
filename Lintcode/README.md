@@ -103,9 +103,6 @@
 * Question 1542-Next Time No Repeat
 * Question 92-Wildcard Matching
 
-# 动态规划 Dynamic Programming	
-
-
 
 # TO DO LIST
 
