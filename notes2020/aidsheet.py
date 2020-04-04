@@ -43,6 +43,6 @@ DFS -> Stack Last In First Out   append, pop()
 Deque -> append (insert element at right end), appendleft (insert element at right end)
          pop (delete element from right end), popleft (delete element from left end)
 
-preorder (node-left-right) 
-inorder (left-node-right) 
+preorder (node-left-right)
+inorder (left-node-right)
 postorder (left-right-node)
