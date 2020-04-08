@@ -322,10 +322,44 @@
 
 ## 2.1. Easy
 ❤❤❤ Required High Frequency ❤❤❤
+- 1350. Excel Sheet Column Title
+- 1032. Letter Case Permutation
+- 423. Valid Parentheses
+- 420. Count and Say
+- 156. Merge Intervals
+- 100. Remove Duplicates from Sorted Array
+- 64. Merge Sorted Array
+- 56. Two Sum
+- 35. Reverse Linked List
 
 ❤❤❤ High Frequency ❤❤❤ 
+- 1398. K Decimal Addition
+- 480. Binary Tree Paths
+- 433. Number of Islands
+- 408. Add Binary
+- 141. Sqrt(x)
+- 101. Remove Duplicates from Sorted Array II
+- 69. Binary Tree Level Order Traversal
+- 13. Implement strStr()
+- 415. Valid Palindrome
+- 30. Insert Interval
 
 ❤❤❤ Others ❤❤❤
+- 1394. Goat Latin
+- 1311. Lowest Common Ancestor of a Binary Search Tree
+- 1254. Sum of Left Leaves
+- 1181. Diameter of Binary Tree
+- 1165. Subtree of Another Tree
+- 1115. Average of Levels in Binary Tree
+- 920. Meeting Rooms
+- 897. Island City
+- 895. Friend Request
+- 837. Palindromic Substrings
+- 835. Hamming Distance
+- 720. Rearrange a String With Integers
+- 539. Move Zeroes
+- 397. Longest Continuous Increasing Subsequence
+- 891. Valid Palindrome II
 
 ## 2.2. Medium
 ❤❤❤ Required High Frequency ❤❤❤
