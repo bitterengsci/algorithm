@@ -96,14 +96,14 @@
 ## 1.2. Medium
 ❤❤❤ Required High Frequency ❤❤❤
 - 1301. Game of Life
-- 1186. Encode and Decode TinyURL
+- 1186. Encode and Decode TinyURL (System Design, 没做)
 - 990. Beautiful Arrangement
 - 902. Kth Smallest Element in a BST
 - 643. Longest Absolute File Path
 - 553. Bomb Enemy
 - 427. Generate Parentheses
 - 428. Pow(x, n)
-- 7. Serialize and Deserialize Binary Tree
+- 7. Serialize and Deserialize Binary Tree (没做)
 
 ❤❤❤ High Frequency ❤❤❤ 
 - 1298. Minimum Height Trees
@@ -239,10 +239,76 @@
 
 ## 1.3. Hard
 ❤❤❤ Required High Frequency ❤❤❤
+- 434. Number of Islands II
+- 1293. Count of Range Sum
+- 874. Maximum Vacation Days
+- 602. Russian Doll Envelopes
+- 600. Smallest Rectangle Enclosing Black Pixels
+- 24. LFU Cache
+- 154. Regular Expression Matching
+- 134. LRU Cache
+- 86. Binary Search Tree Iterator
+- 65. Median of two Sorted Arrays
 
 ❤❤❤ High Frequency ❤❤❤ 
+- 1400. Fermat Point Of Graphs
+- 1370. Race Car
+- 1365. Minimum Cycle Section
+- 1297. Count of Smaller Numbers After Self
+- 1290. Patching Array
+- 168. Burst Balloons
+- 192. Wildcard Matching
+- 132. Word Search II
+- 81. Find Median from Data Stream
 
 ❤❤❤ Others ❤❤❤
+- 1002. Bus Routes
+- 978. Basic Calculator
+- 1289. Number of Atoms
+- 1278. Max Sum of Rectangle No Larger Than K
+- 1264. Perfect Rectangle
+- 1213. Smallest Good Base
+- 1196. Freedom Trail
+- 1177. Student Attendance Record II
+- 1152. Erect the Fence
+- 1097. Kth Smallest Number in Multiplication Table
+- 1087. Redundant Connection II
+- 1083. Maximum Sum of 3 Non-Overlapping Subarrays
+- 1072. Find K-th Smallest Pair Distance
+- 1063. My Calendar III
+- 1050. Cracking the Safe
+- 1043. Couples Holding Hands
+- 1040. Max Chunks To Make Sorted II
+- 1036. Reach Points
+- 1034. Transform to Chessboard
+- 1014. Bricks Falling When Hit
+- 928. Longest Substring with At Most Two Distinct Characters
+- 901. Closest Binary Search Tree Value II
+- 892. Alien Dictionary
+- 890. Minimum Unique Word Abbreviation
+- 885. Encode String with Shortest Length
+- 866. Coin Path
+- 861. K Empty Slots
+- 857. Minimum Window Subsequence
+- 848. Minimize Max Distance to Gas Station
+- 826. Computer Maintenance
+- 825. Bus Station
+- 810. Swim in Rising Water
+- 803. Shortest Distance from All Buildings
+- 775. Palindrome Pairs
+- 746. Design Tic-Tac-Toe
+- 739. 24 Game
+- 725. Boolean Parenthesization
+- 360. Sliding Window Median
+- 364. Trapping Rain Water II
+- 582. Word Break II
+- 653. Expression Add Operators
+- 660. Read N Characters Given Read4 II - Call multiple times
+- 639. Word Abbreviation
+- 634. Word Squares
+- 623. K Edit Distance
+- 573. Build Post Office II
+- 552. Create Maximum Number
 
 ## 1.4. Super
 ❤❤❤ Required High Frequency ❤❤❤
