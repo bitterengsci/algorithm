@@ -530,10 +530,45 @@ More........ TODOs
 
 ## 7.1. Easy
 ❤❤❤ Required High Frequency ❤❤❤
+- 1350. Excel Sheet Column Title
+- 1324. Count Primes
+- 453. Flatten Binary Tree to Linked List
+- 156. Merge Intervals
+- 372. Delete Node in a Linked List
+- 167. Add Two Numbers
+- 67. Binary Tree Inorder Traversal
+- 56. Two Sum
+- 35. Reverse Linked List
 
 ❤❤❤ High Frequency ❤❤❤ 
+- 451. Swap Nodes in Pairs
+- 433. Number of Islands
+- 423. Valid Parentheses
+- 165. Merge Two Sorted Lists
+- 100. Remove Duplicates from Sorted Array
+- 64. Merge Sorted Array
+- 53. Reverse Words in a String
+- 41. Maximum Subarray
+- 13. Implement strStr()
+- 415. Valid Palindrome
 
 ❤❤❤ Others ❤❤❤
+- 1410. Matrix Water Injection
+- 1360. Symmetric Tree
+- 1358. Path Sum
+- 1348. Excel Sheet Column Number
+- 1334. Rotate Array
+- 1332. Number of 1 Bits
+- 1311. Lowest Common Ancestor of a Binary Search Tree
+- 900. Closest Binary Search Tree Value
+- 844. Number Pair Statistics
+- 702. Concatenated String with Uncommon Characters of Two Strings
+- 646. First Position Unique Character
+- 596. Minimum Subtree
+- 569. Add Digits
+- 213. String Compression
+- 209. First Unique Character in a String
+- 69. Binary Tree Level Order Traversal
 
 ## 7.2. Medium
 ❤❤❤ Required High Frequency ❤❤❤
@@ -561,10 +596,46 @@ More........ TODOs
 
 ## 8.1. Easy
 ❤❤❤ Required High Frequency ❤❤❤
+- 1380. Log Sorting
+- 1324. Count Primes
+- 1046. Prime Number of Set Bits in Binary Representation
+- 433. Number of Islands
+- 423. Valid Parentheses
+- 167. Add Two Numbers
+- 165. Merge Two Sorted Lists
+- 69. Binary Tree Level Order Traversal
+- 56. Two Sum
+- 35. Reverse Linked List
 
 ❤❤❤ High Frequency ❤❤❤ 
+- 1369. Most Common Word
+- 1354. Pascal's Triangle II
+- 1334. Rotate Array
+- 1311. Lowest Common Ancestor of a Binary Search Tree
+- 1250. Third Maximum Number
+- 1227. Repeated Substring Pattern
+- 1187. K-diff Pairs in an Array
+- 1137. Construct String from Binary Tree
+- 1126. Merge Two Binary Trees
+- 1112. Set Mismatch
 
 ❤❤❤ Others ❤❤❤
+- 1102. Image Smoother
+- 1054. Min Cost Climbing Stairs
+- 1038. Jewels And Stones
+- 983. Baseball Game
+- 807. Palindrome Number II
+- 627. Longest Palindrome
+- 646. First Position Unique Character
+- 647. Find All Anagrams in a String
+- 661. Convert BST to Greater Tree
+- 628. Maximum Subtree
+- 626. Rectangle Overlap
+- 604. Window Sum
+- 597. Subtree with Maximum Average
+- 209. First Unique Character in a String
+- 158. Valid Anagram
+- 599. Insert into a Cyclic Sorted List
 
 ## 8.2. Medium
 ❤❤❤ Required High Frequency ❤❤❤
