@@ -21,13 +21,34 @@
     - [4.2. Medium](#42-medium)
     - [4.3. Hard](#43-hard)
     - [4.4. Super](#44-super)
+- [5. Google](#5-google)
+    - [5.1. Easy](#51-easy)
+    - [5.2. Medium](#52-medium)
+    - [5.3. Hard](#53-hard)
+    - [5.4. Super](#54-super)
+- [6. Facebook](#6-facebook)
+    - [6.1. Easy](#61-easy)
+    - [6.2. Medium](#62-medium)
+    - [6.3. Hard](#63-hard)
+    - [6.4. Super](#64-super)
+- [7. Microsoft](#7-microsoft)
+    - [7.1. Easy](#71-easy)
+    - [7.2. Medium](#72-medium)
+    - [7.3. Hard](#73-hard)
+    - [7.4. Super](#74-super)
+- [8. Amazon](#8-amazon)
+    - [8.1. Easy](#81-easy)
+    - [8.2. Medium](#82-medium)
+    - [8.3. Hard](#83-hard)
+    - [8.4. Super](#84-super)
 
 <!-- /TOC -->
+
+❤❤❤ Required High Frequency ❤❤❤
 
 # 1. Google
 
 ## 1.1. Easy
-❤❤❤ Required High Frequency ❤❤❤
 - 1212. Max Consecutive Ones
 - 1042. Toeplitz Matrix
 - 1017. Similar RGB Color (不懂..bit operation)
@@ -39,6 +60,80 @@
 - 156. Merge Intervals
 - 407. Plus One
 
+## 1.2. Medium
+- 1301. Game of Life
+- 1186. Encode and Decode TinyURL (System Design, 没做)
+- 990. Beautiful Arrangement
+- 902. Kth Smallest Element in a BST
+- 643. Longest Absolute File Path
+- 553. Bomb Enemy
+- 427. Generate Parentheses
+- 428. Pow(x, n)
+- 7. Serialize and Deserialize Binary Tree (没做)
+
+## 1.3. Hard
+
+## 1.4. Super
+
+# 2. Facebook
+
+## 2.1. Easy
+- 1350. Excel Sheet Column Title (有点晕， REDO!!! REDO)
+- 1032. Letter Case Permutation
+- 423. Valid Parentheses
+- 420. Count and Say （什么诡异的题。。。没做）
+- 156. Merge Intervals
+- 100. Remove Duplicates from Sorted Array （什么诡异的题。。。没做）
+- 64. Merge Sorted Array  (什么诡异的题。。。没做）
+- 56. Two Sum
+- 35. Reverse Linked List
+
+## 2.2. Medium
+- 1186. Encode and Decode TinyURL
+- 945. Task Scheduler
+- 911. Maximum Size Subarray Sum Equals k
+- 640. One Edit Distance
+- 428. Pow(x, n)
+- 123. Word Search
+- 57. 3Sum
+- 18. Subsets II
+- 17. Subsets
+- 7. Serialize and Deserialize Binary Tree
+
+## 2.3. Hard
+
+## 2.4. Super
+
+# 3. Microsoft
+
+## 3.1. Easy
+
+## 3.2. Medium
+
+## 3.3. Hard
+
+## 3.4. Super
+
+
+
+# 4. Amazon
+
+## 4.1. Easy
+
+## 4.2. Medium
+
+## 4.3. Hard
+
+## 4.4. Super
+
+
+
+---
+More........ TODOs
+
+# 5. Google
+
+## 5.1. Easy
 ❤❤❤ High Frequency ❤❤❤ 
 - 1401. Twitch Words
 - 1368. Same Number
@@ -93,18 +188,7 @@
 - 1203. Find Mode in Binary Search Tree
 - 745. Palindromic Ranges
 
-## 1.2. Medium
-❤❤❤ Required High Frequency ❤❤❤
-- 1301. Game of Life
-- 1186. Encode and Decode TinyURL (System Design, 没做)
-- 990. Beautiful Arrangement
-- 902. Kth Smallest Element in a BST
-- 643. Longest Absolute File Path
-- 553. Bomb Enemy
-- 427. Generate Parentheses
-- 428. Pow(x, n)
-- 7. Serialize and Deserialize Binary Tree (没做)
-
+## 5.2. Medium
 ❤❤❤ High Frequency ❤❤❤ 
 - 1298. Minimum Height Trees
 - 1065. My Calendar I
@@ -237,7 +321,7 @@
 - 1271. Critical Connections in a Network 
 - 507. Wiggle Sort II
 
-## 1.3. Hard
+## 5.3. Hard
 ❤❤❤ Required High Frequency ❤❤❤
 - 434. Number of Islands II
 - 1293. Count of Range Sum
@@ -310,7 +394,7 @@
 - 573. Build Post Office II
 - 552. Create Maximum Number
 
-## 1.4. Super
+## 5.4. Super
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
@@ -318,20 +402,9 @@
 ❤❤❤ Others ❤❤❤
 
 
-# 2. Facebook
+# 6. Facebook
 
-## 2.1. Easy
-❤❤❤ Required High Frequency ❤❤❤
-- 1350. Excel Sheet Column Title
-- 1032. Letter Case Permutation
-- 423. Valid Parentheses
-- 420. Count and Say
-- 156. Merge Intervals
-- 100. Remove Duplicates from Sorted Array
-- 64. Merge Sorted Array
-- 56. Two Sum
-- 35. Reverse Linked List
-
+## 6.1. Easy
 ❤❤❤ High Frequency ❤❤❤ 
 - 1398. K Decimal Addition
 - 480. Binary Tree Paths
@@ -361,21 +434,91 @@
 - 397. Longest Continuous Increasing Subsequence
 - 891. Valid Palindrome II
 
-## 2.2. Medium
+## 6.2. Medium
+❤❤❤ High Frequency ❤❤❤ 
+- 994. Contiguous Array
+- 178. Graph Valid Tree
+- 425. Letter Combinations of a Phone Number
+- 419. Roman to Integer
+- 171. Anagrams
+- 149. Best Time to Buy and Sell Stock
+- 107. Word Break
+- 104. Merge K Sorted Lists
+- 62. Search in Rotated Sorted Array
+- 120. Word Ladder
+
+❤❤❤ Others ❤❤❤
+- 1397. Digital Coverage
+- 1396. Set Union
+- 1393. Friends Of Appropriate Ages
+- 1310. Product of Array Except Self
+- 1304. H-Index
+- 1303. H-Index II
+- 1287. Increasing Triplet Subsequence
+- 1217. Total Hamming Distance
+- 1208. Target Sum
+- 1175. Brick Wall
+- 1116. Exclusive Time of Functions
+- 1095. Maximum Swap
+- 1093. Number of Longest Increasing Subsequence
+- 1070. Accounts Merge
+- 1044. Largest Plus Sign
+- 1031. Is Graph Bipartite?
+- 1016. Minimum Swaps To Make Sequences Increasing
+- 1000. Best Time to Buy and Sell Stock with Transaction Fee
+- 919. Meeting Rooms II
+- 915. Inorder Predecessor in BST
+- 898. Leftmost One
+- 896. Prime Product
+- 853. Number Of Corner Rectangles
+- 840. Range Sum Query - Mutable
+- 821. Time Intersection
+- 820. Rectangle
+- 819. Word Sorting
+- 772. Group Anagrams
+- 744. Sum of first K even-length Palindrome numbers
+- 723. Rotate Bits - Left
+- 719. Calculate Maximum Value
+- 691. Recover Binary Search Tree
+- 689. Two Sum IV - Input is a BST
+- 616. Course Schedule II
+- 656. Multiply Strings
+- 657. Insert Delete GetRandom O(1)
+- 663. Walls and Gates
+- 654. Sparse Matrix Multiplication
+- 651. Binary Tree Vertical Order Traversal
+- 645. Find the Celebrity
+- 620. Maximum Subarray IV
+- 586. Sqrt(x) II
+- 578. Lowest Common Ancestor III
+- 564. Combination Sum IV
+- 528. Flatten Nested List Iterator
+- 512. Decode Ways
+- 473. Add and Search Word - Data structure design
+- 223. Palindrome Linked List
+- 448. Inorder Successor in BST
+- 442. Implement Trie (Prefix Tree)
+- 196. Missing Number
+- 436. Maximal Square
+- 402. Continuous Subarray Sum
+- 421. Simplify Path
+- 406. Minimum Size Subarray Sum
+- 148. Sort Colors
+- 137. Clone Graph
+- 124. Longest Consecutive Sequence
+- 95. Validate Binary Search Tree
+- 88. Lowest Common Ancestor of a Binary Tree
+- 74. First Bad Version
+- 32. Minimum Window Substring
+
+## 6.3. Hard
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
 
 ❤❤❤ Others ❤❤❤
 
-## 2.3. Hard
-❤❤❤ Required High Frequency ❤❤❤
-
-❤❤❤ High Frequency ❤❤❤ 
-
-❤❤❤ Others ❤❤❤
-
-## 2.4. Super
+## 6.4. Super
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
@@ -383,30 +526,30 @@
 ❤❤❤ Others ❤❤❤
 
 
-# 3. Microsoft
+# 7. Microsoft
 
-## 3.1. Easy
+## 7.1. Easy
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
 
 ❤❤❤ Others ❤❤❤
 
-## 3.2. Medium
+## 7.2. Medium
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
 
 ❤❤❤ Others ❤❤❤
 
-## 3.3. Hard
+## 7.3. Hard
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
 
 ❤❤❤ Others ❤❤❤
 
-## 3.4. Super
+## 7.4. Super
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
@@ -414,30 +557,30 @@
 ❤❤❤ Others ❤❤❤
 
 
-# 4. Amazon
+# 8. Amazon
 
-## 4.1. Easy
+## 8.1. Easy
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
 
 ❤❤❤ Others ❤❤❤
 
-## 4.2. Medium
+## 8.2. Medium
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
 
 ❤❤❤ Others ❤❤❤
 
-## 4.3. Hard
+## 8.3. Hard
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
 
 ❤❤❤ Others ❤❤❤
 
-## 4.4. Super
+## 8.4. Super
 ❤❤❤ Required High Frequency ❤❤❤
 
 ❤❤❤ High Frequency ❤❤❤ 
