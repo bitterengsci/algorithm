@@ -1,15 +1,8 @@
 <!-- TOC -->
 
-- [1. 算法之美](#1-算法之美)
-- [2. 九章算法班](#2-九章算法班)
+- [1. 算法之美](#1-%E7%AE%97%E6%B3%95%E4%B9%8B%E7%BE%8E)
+- [2. 九章算法班](#2-%E4%B9%9D%E7%AB%A0%E7%AE%97%E6%B3%95%E7%8F%AD)
     - [2.1.](#21)
-- [3. 九章算法提高班](#3-九章算法提高班)
-- [4. Interview Preparation](#4-interview-preparation)
-    - [4.1. several sentences self-introduction](#41-several-sentences-self-introduction)
-    - [4.2. Question for interviewer:](#42-question-for-interviewer)
-    - [4.3. Coding Interview](#43-coding-interview)
-        - [4.3.1. Example: How to: Work at Google — Example Coding/Engineering Interview](#431-example-how-to-work-at-google--example-codingengineering-interview)
-    - [4.4. Research Interview](#44-research-interview)
 
 <!-- /TOC -->
 
@@ -90,69 +83,3 @@ String, Simulation: self-learn, more practice, focus on simplifying one question
 
 
 ## 2.1.  
-
-
-
-
-# 3. 九章算法提高班
-
----
-
-*The above is for Coding (DS & Alg) interview. DS & Alg & performance, complexity, memory consumption.*
-
----
-
-# 4. Interview Preparation
-
-## 4.1. several sentences self-introduction
-
-## 4.2. Question for interviewer:
-
-
-## 4.3. Coding Interview
-- DS & Alg & performance, complexity, memory consumption
-- medium-level, no much time on hard level
-- also machine learning theory (what is SVM, assumption for Naive Baye classifiers)
-
-### 4.3.1. Example: [How to: Work at Google — Example Coding/Engineering Interview](https://www.youtube.com/watch?v=wwIysnVmAUg&feature=youtu.be)
-* rephrase the question, clarify the expected return (type..)
-* how inputs are given? (in memory? array? sorted? empty/null?)
-    - repeating elements?
-    - numbers (integer/float? positive/negative?)
-* Solution 1: Brute Force solution (quadrative solution $n^2$, time-consuming, not efficient)
-* Solution 2: faster one ($nlogn$) binary search in a sorted list
-* Solution 3: unidirectional --> bidirational Two Pointers (linear solution $n$)
-* Write Code
-    - return? (Discuss..)
-    - name the function meaningfully, Python use ... style ()
-    - becare underflow/overflow (when subtraction/addition)
-* Wrench/Follow-Ups: sorted --> unsorted
-    - sort it first ($nlogn$)
-    - hashset/hashtable
-    - becare with repeating elements
-* Test: go through code to test
-    - test edge cases (empty/null/negative/repeating/unsorted/reverse sorted...)
-    - test given examples (if none, make one yourself)
-* Large input
-    - fit in memory? range/type of value limited?
-    - process in chunks
-    - could assume some hashset inside the function can be fit into memory (ask interviewer..)
-* Summary:
-    - Ask for clarification (write down what you discussed)
-    - Think out Loud constantly, before write down solution
-    - Think anything before writing down
-    - Test it with examples or make one yourself
-    - Think about edge cases
-
-## 4.4. Research Interview
-- introduce 1-2 past projects
-- creativiity, problem-solving skills.
-- experience & goal
-- discuss about CV, previous experience
-- For research interview you just need to know YOUR previous research works and your plans/ideas for future
-- similar to research internship
-- personality questions: how to solve conflict
-- google the interviewer first
-
-
----
