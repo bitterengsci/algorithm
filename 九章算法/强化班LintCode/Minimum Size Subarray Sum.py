@@ -14,8 +14,8 @@ def minSubArrayLen(self, s: int, nums: List[int]) -> int:
     j, sums = 0, 0 
     # sums = sum from i(inclusive) to j(inclusive)
     
-    for i in range(len(nums)):
-        while j < len(nums): 
+    for i in range(len(nums)):  # for loop 左指针
+        while j < len(nums):    # while loop 右指针
             sums += nums[j]
             if sums >= s:
                 minlen = min(minlen, j - i + 1)
@@ -29,4 +29,24 @@ def minSubArrayLen(self, s: int, nums: List[int]) -> int:
         return 0
     return minlen
 
+# 九章算法答案
+def minSubArrayLen(self, s, nums):
+    if nums is None or len(nums) == 0:
+        return 0
+
+    minLength = len(nums) + 1
+    sum = 0
+    j = 0
+    for i in range(len(nums)):
+        while j < len(nums) and sum < s:
+            sum += nums[j]
+            j += 1
+        if sum >= s:
+            minLength = min(minLength, j - i)
+
+        sum -= nums[i]
+
+    if minLength == len(nums) + 1:
+        return 0
+    return minLength
 # Approach: TC=O(n logn), How???
