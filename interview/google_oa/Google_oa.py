@@ -14,4 +14,3 @@ def time_to_type_a_string():
 
 
 if __name__ == "__main__":
-    pass
