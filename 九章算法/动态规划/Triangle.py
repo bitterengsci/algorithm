@@ -16,8 +16,6 @@ class Solution:
         
         return min(self.traverse(x + 1, y, pathsum + triangle[x][y], triangle, best), self.traverse(x + 1, y + 1, pathsum + triangle[x][y], triangle, best))
         
-
-
     # Approach 2: DFS-Divide Conquer (TLE)
     def minimumTotal2(self, triangle):
         return self.dc(0, 0, triangle) # 从(0, 0)出发走到最底层
@@ -28,11 +26,8 @@ class Solution:
          
         return triangle[x][y] + min(self.dc(x + 1, y, triangle), self.dc(x + 1, y + 1, triangle)) # 左右两个节点中的最小值
 
-
-
     # Approach 3: DFS-Divide Conquer + Memorization
-    def minimumTotal(self, triangle):
-        
+    def minimumTotal3(self, triangle):
         return self.dc_memo(0, 0, triangle, {})
     
     def dc_memo(self, x, y, triangle, memo): # return minimum path from (x, y) to bottom
@@ -46,5 +41,32 @@ class Solution:
         # set before return
         memo[(x, y)] = triangle[x][y] + min(self.dc_memo(x + 1, y, triangle, memo), self.dc_memo(x + 1, y + 1, triangle, memo))
         return memo[(x, y)]
-
-
+         
+    
+    # Approach 4: Dynamic Programming (Iterative Bottom Up)
+    def minimumTotal4(self, triangle):
+        f = {}  # define the state 定义状态数组
+        for i in range(len(triangle)): # initialization 初始化, 先有值
+            f[(len(triangle) - 1, i)] = triangle[len(triangle) - 1][i]
+        
+        # iteration for solution 循环递推求解
+        for i in reversed(range(len(triangle)-1)):
+            for j in range(0, i+1):
+                f[(i, j)] = triangle[i][j] + min(f[(i + 1, j)], f[(i + 1, j + 1)])
+        return f[(0, 0)]  # result 求结果=起点
+    
+    # Approach 5: Dynamic Programming (Iterative Top Down)
+    def minimumTotal(self, triangle):
+        f = {(0, 0): triangle[0][0]}  # 初始化, 起点
+        
+        # 初始化三角形的左边和右边
+        for i in range(1, len(triangle)):
+            f[(i, 0)] = f[(i - 1, 0)] + triangle[i][0]
+            f[(i, i)] = f[(i - 1, i - 1)] + triangle[i][i]
+            
+        # top Down
+        for i in range(1, len(triangle)):
+            for j in range(1, i):
+                f[(i, j)] = triangle[i][j] + min(f[(i - 1, j)], f[(i - 1, j - 1)])
+                
+        return min([f[(len(triangle) - 1, j)] for j in range(len(triangle))])
