@@ -13,7 +13,7 @@
 
 九章算法基础班+强化班+树状数组线段树+递归+背包+动态规划
 
-# 1. Data Structure
+# 1. [Data Structure](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Data%20Structure.md)
 - 数据结构 Heap (双堆)
 - 数据结构 Stack (单调栈)
 - 数据结构 Array
@@ -24,7 +24,7 @@
 - 数据结构 树状数组 
 - 数据结构 线段树
 
-# 2. Algorithm
+# 2. [Algorithm](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Algorithm.md)
 - Binary Search 二分法 (二分, 二分答案)
 - Search搜索, BFS, DFS
 - 扫描线 Sweep Line
@@ -35,7 +35,7 @@
 
 - Follow Up 问题
 
-# 3. 动态规划 Dynamic Programming
+# 3. [动态规划 Dynamic Programming](https://github.com/bitterengsci/algorithm/blob/master/九章算法/动态规划.md)
     * 背包问题
     * Sliding Array 滚动数组
 
@@ -48,8 +48,6 @@
     - 题目中哪些条件可以看出这是同类题?
     - 同类题目在思维方式上有什么相似之处?
     - 同类题目在代码实现上有什么相似之处?
-
-
 
 
 # 4. [Debug的基本步骤](http://www.jiuzhang.com/qa/3815/)
