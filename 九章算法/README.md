@@ -31,7 +31,7 @@
 - 递归 Recursion
 - 贪心 Greedy
 - 分治 Divide & Conquer
-- 位运算 bit manipulation
+- 位运算 Bit Manipulation
 
 - Follow Up 问题
 
