@@ -57,7 +57,7 @@
 
 
 # 4. Coding Style 代码风格
-1. 变量命名 meaningful (循环变量可以用i, j, k, 参数命名要meaningful)
+1. 变量命名 meaningful (循环变量可以用i, j, k, 参数命名要meaningful) 变量命名注意单复数!!!
 2. 括号问题  
 	C++ for-loop 和 if-clause的statement 哪怕只有一行也要加括号(便于代码之后扩展)
 3. 单元运算符不加空格 (i++; return -1; 此处-1是取反)
