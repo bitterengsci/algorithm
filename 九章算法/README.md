@@ -18,7 +18,7 @@
 - 数据结构 Stack (单调栈)
 - 数据结构 Array
 - 数据结构 Linked List
-- 数据结构 Deque
+- 数据结构 Deque Done
 - 数据结构 并查集Union Find   Done
 - 数据结构 字典树Trie   Done
 - 数据结构 树状数组 
@@ -27,11 +27,14 @@
 # 2. [Algorithm](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Algorithm.md)
 - Binary Search 二分法 (二分, 二分答案)
 - Search搜索, BFS, DFS
-- 扫描线 Sweep Line
+- 扫描线 Sweep Line  (Done)
 - 递归 Recursion
 - 贪心 Greedy
 - 分治 Divide & Conquer
+
+
 - 位运算 Bit Manipulation
+
 
 - Follow Up 问题
 

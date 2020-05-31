@@ -1,9 +1,10 @@
 <!-- TOC -->
 
-- [1. 并查集 Union Find 集合的合并查找操作,并查集](#1-%E5%B9%B6%E6%9F%A5%E9%9B%86-union-find-%E9%9B%86%E5%90%88%E7%9A%84%E5%90%88%E5%B9%B6%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C%E5%B9%B6%E6%9F%A5%E9%9B%86)
-- [2. 字典树Trie, Prefix Tree 前缀树](#2-%E5%AD%97%E5%85%B8%E6%A0%91trie-prefix-tree-%E5%89%8D%E7%BC%80%E6%A0%91)
-    - [2.1. Trie用于剪枝](#21-trie%E7%94%A8%E4%BA%8E%E5%89%AA%E6%9E%9D)
-    - [2.2. Typeahead Trie 在系统设计中的运用 (实际运用)](#22-typeahead-trie-%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8-%E5%AE%9E%E9%99%85%E8%BF%90%E7%94%A8)
+- [1. Deque 双端队列](#1-deque-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97)
+- [2. 并查集 Union Find 集合的合并查找操作,并查集](#2-%E5%B9%B6%E6%9F%A5%E9%9B%86-union-find-%E9%9B%86%E5%90%88%E7%9A%84%E5%90%88%E5%B9%B6%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C%E5%B9%B6%E6%9F%A5%E9%9B%86)
+- [3. 字典树Trie, Prefix Tree 前缀树](#3-%E5%AD%97%E5%85%B8%E6%A0%91trie-prefix-tree-%E5%89%8D%E7%BC%80%E6%A0%91)
+    - [3.1. Trie用于剪枝](#31-trie%E7%94%A8%E4%BA%8E%E5%89%AA%E6%9E%9D)
+    - [3.2. Typeahead Trie 在系统设计中的运用 (实际运用)](#32-typeahead-trie-%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8-%E5%AE%9E%E9%99%85%E8%BF%90%E7%94%A8)
 
 <!-- /TOC -->
 - 数据结构 Heap (双堆)
@@ -19,7 +20,23 @@
 数据结构的适用范围(可以解决什么问题), 没有一个DS/Alg是万能的, 都有使用范围
 
 
-# 1. 并查集 Union Find 集合的合并查找操作,并查集
+
+# 1. Deque 双端队列
+维护一个候选可能(窗口)的最大值集合 (队首pop, 队尾insert)
+类似单调栈, 但两端都有操作 (两端都会有push和pop)
+
+LintCode 362: [Sliding Window Maximum]() 滑动窗口经典题型
+给定一个数组A, 找到其中每个大小为k的窗口中最大值   
+输入: [1, 2, 7, 7, 8], k = 3  输出: [7, 7, 8]
+* Soln 1: O(nk)
+* Soln 2: 堆/优先队列 (通过将新元素加入堆, 将旧元素从堆中删除, 可以使用堆达成nlogk的复杂度的算法, 但由于priority queue无法在O(logk)的时间复杂度内删除一个特定元素, 因此需要自己实现一个堆)
+    - 基本思想: 如果A[i]<=A[j], 且i < j, A[i]永远不会成为之后的窗口最大值
+    - 窗口向右移动, 左端元素移出队首(如果仍在队列中), 右端元素A[j]移进队尾, 并删除所有小于等于A[j]的A[i]
+    TC=O(N), 每个元素只会进一次deque
+
+
+
+# 2. 并查集 Union Find 集合的合并查找操作,并查集
 一种用于支持集合(一堆元素形成的整体)快速合并和查找操作的数据结构
 * Union 合并(两个集合取并)两个集合 O(1)
 * Find 查询元素所属集合 O(1)  给定单个元素, 求所属集合
@@ -197,7 +214,7 @@ LintCode 805: [Maximum Association Set](https://github.com/bitterengsci/algorith
 - 统计当前集合个数
 - 关键操作:快速寻找根节点
 
-# 2. 字典树Trie, Prefix Tree 前缀树
+# 3. 字典树Trie, Prefix Tree 前缀树
 来自单词Retrieval,发音与Tree相同, 用于处理字符串
 Trie的考点: 实现一个Trie; 比较Trie和Hash的优劣 (字符矩阵类问题使用Trie更高效)
 
@@ -217,7 +234,7 @@ search(word): 搜索一个词,其中可能有".", 代表任何单个字符 ("." 
 addWord使用Trie
 searchWord在Trie中DFS,一旦需要”.”字符就遍历所有儿子节点: 走到死胡同or找到了到isword=False, return False
  
-## 2.1. Trie用于剪枝
+## 3.1. Trie用于剪枝
 LintCode 634: [Word Squares](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Word%20Squares.py) 
 给出一系列不重复的单词,找出所有用这些单词能构成的单词平方。单词平方是一个k×k的单词方阵: 第k行的单词和第k列的单词相同
 输入: ["area", "lead", "wall", "lady", "ball"]
@@ -242,7 +259,7 @@ LintCode 132: [Word Search II](https://github.com/bitterengsci/algorithm/blob/ma
 在矩阵中DFS时,在Trie里对应节点向下走
 Trie可以帮助剪枝
   
-## 2.2. Typeahead Trie 在系统设计中的运用 (实际运用)
+## 3.2. Typeahead Trie 在系统设计中的运用 (实际运用)
 字典树Trie
 - 合并所有公共的前缀
 - 动态插入与查询单词
