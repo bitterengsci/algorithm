@@ -1,10 +1,22 @@
 <!-- TOC -->
 
-- [1. Deque 双端队列](#1-deque-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97)
-- [2. 并查集 Union Find 集合的合并查找操作,并查集](#2-%E5%B9%B6%E6%9F%A5%E9%9B%86-union-find-%E9%9B%86%E5%90%88%E7%9A%84%E5%90%88%E5%B9%B6%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C%E5%B9%B6%E6%9F%A5%E9%9B%86)
-- [3. 字典树Trie, Prefix Tree 前缀树](#3-%E5%AD%97%E5%85%B8%E6%A0%91trie-prefix-tree-%E5%89%8D%E7%BC%80%E6%A0%91)
-    - [3.1. Trie用于剪枝](#31-trie%E7%94%A8%E4%BA%8E%E5%89%AA%E6%9E%9D)
-    - [3.2. Typeahead Trie 在系统设计中的运用 (实际运用)](#32-typeahead-trie-%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8-%E5%AE%9E%E9%99%85%E8%BF%90%E7%94%A8)
+- [1. 二叉树与分治法 Binary Tree & Divide Conquer](#1-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8E%E5%88%86%E6%B2%BB%E6%B3%95-binary-tree--divide-conquer)
+- [2. 二叉树的遍历算法 Traverse in Binary Tree: Preorder / Inorder / Postorder](#2-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86%E7%AE%97%E6%B3%95-traverse-in-binary-tree-preorder--inorder--postorder)
+- [3. 二叉树的深度优先搜索 DFS in Binary Tree](#3-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-dfs-in-binary-tree)
+- [4. 链表 Linked List](#4-%E9%93%BE%E8%A1%A8-linked-list)
+    - [4.1. Dummy Node](#41-dummy-node)
+- [5. 数组 Array](#5-%E6%95%B0%E7%BB%84-array)
+    - [5.1. High Frequency   Array](#51-high-frequency---array)
+    - [5.2. Sorted Array 排序数组](#52-sorted-array-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84)
+    - [5.3. 子数组 Subarray](#53-%E5%AD%90%E6%95%B0%E7%BB%84-subarray)
+- [6. 哈希表 Hash  (原理 应用)](#6-%E5%93%88%E5%B8%8C%E8%A1%A8-hash--%E5%8E%9F%E7%90%86-%E5%BA%94%E7%94%A8)
+- [7. Heap 堆](#7-heap-%E5%A0%86)
+- [8. stack 栈](#8-stack-%E6%A0%88)
+- [9. Deque 双端队列](#9-deque-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97)
+- [10. 并查集 Union Find 集合的合并查找操作,并查集](#10-%E5%B9%B6%E6%9F%A5%E9%9B%86-union-find-%E9%9B%86%E5%90%88%E7%9A%84%E5%90%88%E5%B9%B6%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C%E5%B9%B6%E6%9F%A5%E9%9B%86)
+- [11. 字典树Trie, Prefix Tree 前缀树](#11-%E5%AD%97%E5%85%B8%E6%A0%91trie-prefix-tree-%E5%89%8D%E7%BC%80%E6%A0%91)
+    - [11.1. Trie用于剪枝](#111-trie%E7%94%A8%E4%BA%8E%E5%89%AA%E6%9E%9D)
+    - [11.2. Typeahead Trie 在系统设计中的运用 (实际运用)](#112-typeahead-trie-%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8-%E5%AE%9E%E9%99%85%E8%BF%90%E7%94%A8)
 
 <!-- /TOC -->
 - 数据结构 Heap (双堆)
@@ -21,7 +33,321 @@
 
 
 
-# 1. Deque 双端队列
+# 1. 二叉树与分治法 Binary Tree & Divide Conquer
+Outline
+  时间复杂度训练 II
+
+
+Note: BT非递归不太好写时, 可以考虑用递归
+二叉树节点个数 node n, 二叉树高度 h, 搜索的时间复杂度是O(h), 不是O(logn)!  递归太深 stackoverflow (run out of memory)				stack=进程独享的空间
+最好的情况 balanced tree 搜索 O(logn) 最坏的情况O(n)
+
+Time Complexity Training II
+通过O(n)的时间, 把n的问题, 变为了两个n/2的问题, 复杂度是多少? 
+方法一:
+T(n)=2T(n/2) +O(n) = 2(2T(n/4) +O(n/2))+O(n) = 4T(n/4) + 2O(n) = 8T(n/8) + 3O(n) = .. 
+	= nT(1)+lognO(n) = nO(1)+O(nlogn) = O(nlogn)
+例如MergeSort, 劈一半, 通过O(n)合并
+方法二: 树形分析法计算时间复杂度
+
+通过O(1)的时间, 把n的问题, 变成了两个n/2的问题, 复杂度是多少?
+T(n)=2T(n/2) +O(1) = 2(2T(n/4) +O(1))+O(1) = 8T(n/8) + O(1+2+4) = .. 
+	= nT(n/n)+O(1+2+..+n) = nO(1) +O(2n) = nO(1) +O(n)=O(n)
+
+# 2. 二叉树的遍历算法 Traverse in Binary Tree: Preorder / Inorder / Postorder 
+*** Lintcode 66-Binary Tree Preorder Traversal 前序遍历		12453根左右
+*** Lintcode 67-Binary Tree Inorder Traversal 中序遍历		42513左根右
+*** Lintcode 68-Binary Tree Postorder Traversal 后序遍历   	45231左右根
+
+Note: 必背程序 非递归版本的Pre-Order, In-Order Traversal
+
+# 3. 二叉树的深度优先搜索 DFS in Binary Tree        
+搜索→搜出答案无重复
+- 遍历问题 Preorder / Inorder / Postorder
+- 分治算法 Introduce Divide Conquer Algorithm
+- 非递归 遍历法 分治法 Non-recursion vs Traverse vs Divide Conquer   
+- 二叉搜索树 Binary Search Tree: Insert / Remove / Find / Validate
+
+递归三要素: 定义+拆解+出口 (以及递归的调用)
+
+Divide Conquer Algorithm 分治法
+Traverse vs Divide Conquer
+  They are both Recursion Algorithm
+  Result in parameter(有一个全局变量) vs Result in return value   
+  Top down vs Bottom up
+
+递归是深度优先搜索算法(DFS)的一种实现形式   
+但DFS可以使用非递归的方式实现
+
+!!! MergeSort和QuickSort必考
+90% Binary Tree Problems!  (可以用D&C)
+二叉树上的递归 Recursion in Binary Tree (遍历法 Traverse  / 分治法 Divide Conquer)
+
+独孤九剑——破枪式 
+碰到二叉树的问题, 就想想整棵树在该问题上的结果和左右儿子在该问题上的结果之间的联系是什么
+
+*** Lintcode 97-Maximum Depth of Binary Tree
+
+Note: 变量命名注意单复数!!!
+
+*** Lintcode 480-Binary Tree Paths
+DFS→return 所有路径 → D &C / Traverse
+二叉树→拆成左右子树 divide, 然后conquer (merge)
+出口通常只用处理 root==null
+所有二叉树一定要验证, 当root只有一个点时, 答案是否正确
+叶子节点, 单独处理 root.left==null && root.right==null
+
+*** Lintcode 596-Minimum Subtree 
+方法一 Traverse + Divide Conquer  (遍历需要全局变量)   DS和T并不互补, 可以结合使用
+	计算sum of subtree (左右子树之和+root), 可以把每个点扫一遍加起来
+方法二 只用Divide Conquer 来实现
+
+Result Type 当return一个值不够时, 新建一个类当做结果类型, 打包~
+	class ResultType { int var1, var2; }
+
+*** Lintcode 93-Balanced Binary Tree
+BBT为logn, 因为平衡 任意节点左右子树高度之差 <1		
+When we need ResultType? 若不用ReturnType, 会出现二义性, 不好(e.g 有时return int, 有时return None)
+	return -1 代表不平衡, 编程习惯不好! (-1 不明确究竟是什么, 不好的命名风格)
+ 
+*** Lintcode 597-Subtree with Maximum Average 
+	(防止溢出 int→long float→double)
+*** Lintcode 88-Lowest Common Ancestor(最近公共祖先) of a Binary Tree
+	TreeNode存parent, 若没有parent呢? 若无root呢? 没法做啊
+	with parent pointer vs no parent pointer follow up: LCA II & III
+
+Binary Search Tree(BST) 二叉查找树/二叉搜索树/排序二叉树
+BST 基本性质
+从定义出发: 左子树都比根节点小, 右子树都不小于根节点
+从效果出发: 中序遍历 in-order traversal 是“不下降”序列   	如图, 中序遍历为 1 2 3 4 5
+性质: 如果一棵二叉树的中序遍历不是“不下降”序列, 则一定不是BST   
+	 如果一棵二叉树的中序遍历是不下降, 也未必是BST
+	 比如下面这棵树就不是BST, 但是它的中序遍历是不下降序列
+功能: O(h)的时间查找, 删除, 插入
+
+BST高度O(n), 只有BBT为O(logn) & 最优二叉树Huffman Tree为O(logn) → 堆用最优二叉树
+
+*** Lintcode 95-Validate Binary Search Tree
+https://www.lintcode.com/problem/validate-binary-search-tree
+	traverse vs divide conquer
+	return 左边最大的, 右边最小的
+
+*** Lintcode 1534-Convert Binary Search Tree to Doubly Linked List
+	inorder 中序遍历          分治 or traverse      D&C通用性更强     BST的traverse简单
+
+*** Lintcode 453-Flatten Binary Tree to Linked List 
+
+*** Lintcode 86-Binary Search Tree Iterator
+https://www.lintcode.com/problem/binary-search-tree-iterator
+
+*** Lintcode 448-Inorder Successor in BST
+
+*** Lintcode 11-Search Range in Binary Search Tree
+*** Lintcode 85-Insert Node in a Binary Search Tree  (不用recursion怎么写???)
+*** Lintcode 87-Remove Node in Binary Search Tree
+Hibbard deletion algorithm  http://www.mathcs.emory.edu/~cheung/Courses/171/Syllabus/9-BinTree/BST-delete.html
+
+
+# 4. 链表 Linked List 
+*** Lintcode 35-Reverse Linked List
+*** Lintcode 450-Reverse Nodes in k-Group
+http://www.jiuzhang.com/solutions/reverse-nodes-in-k-group/
+
+## 4.1. Dummy Node
+独孤九剑 —— 破索式 链表结构发生变化时, 就需要 Dummy Node
+如何使用 Dummy Node
+什么时候使用 Dummy Node?
+Dummy Node 是否需要删除?
+使用 Dummy Node 算面试官会说我耗费了额外空间么? 
+Dummy Node 非用不可么?
+Dummy Node 初始化的值重要么? 
+链表的问题都需要用到 Dummy Node 么?
+
+用到了 Dummy Node 的值得一做的题目
+http://www.lintcode.com/en/problem/partition-list/
+http://www.lintcode.com/en/problem/merge-two-sorted-lists/ 
+http://www.lintcode.com/en/problem/reverse-linked-list-ii/ 
+http://www.lintcode.com/en/problem/swap-two-nodes-in-linked-list/ 
+http://www.lintcode.com/en/problem/reorder-list/ 
+http://www.lintcode.com/en/problem/rotate-list/
+
+Copy List with Random Pointer
+http://www.lintcode.com/problem/copy-list-with-random-pointer/
+http://www.jiuzhang.com/solutions/copy-list-with-random-pointer/
+
+Linked List Cycle
+http://www.lintcode.com/en/problem/linked-list-cycle/
+http://www.jiuzhang.com/solutions/linked-list-cycle/
+follow up:
+http://www.lintcode.com/en/problem/linked-list-cycle-ii/ 
+http://www.jiuzhang.com/solutions/intersection-of-two-linked-lists/
+
+Sort List
+http://www.lintcode.com/en/problem/sort-list/
+http://www.jiuzhang.com/solutions/sort-list/
+哪些排序算法时间复杂度是 O(nlogn) 的? MergeSort, HeapSort, QuickSort
+哪些排序算法空间复杂度是 O(1) 的? QuickSort
+
+Related  Lintcodes
+  http://www.lintcode.com/problem/convert-sorted-list-to-balanced-bst/
+  http://www.lintcode.com/problem/delete-node-in-the-middle-of-singly-linked-list/
+  http://www.lintcode.com/problem/convert-binary-search-tree-to-doubly-linked-list/
+
+# 5. 数组 Array
+
+## 5.1. High Frequency   Array
+
+## 5.2. Sorted Array 排序数组
+
+Merge Two Sorted Arrays
+http://www.lintcode.com/problem/merge-two-sorted-arrays
+http://www.jiuzhang.com/solutions/merge-two-sorted-arrays/
+
+Related  Lintcodes
+  将小数组归并到大数组里
+  http://www.lintcode.com/problem/merge-sorted-array/   http://www.jiuzhang.com/solutions/merge-sorted-array/
+  两个数组的交
+  http://www.lintcode.com/problem/intersection-of-two-arrays/
+  数组内积(点乘)
+  Example [1,3] · [2,4] = 1*2 + 3*4 = 14
+  Follow up: 两个数组都非常大, 但是其中都包含很多0
+  Example [1,0,0,0,0 ..., 0, 2, 0,..., 0, 3] · [0,..., 0, 4, 0,..., 0, 5]
+
+Median of Two Sorted Arrays
+http://www.lintcode.com/problem/median-of-two-sorted-arrays/
+http://www.jiuzhang.com/solutions/median-of-two-sorted-arrays/
+
+## 5.3. 子数组 Subarray
+令 PrefixSum[i] = A[0] + A[1] + ... A[i - 1], PrefixSum[0] = 0 易知构造 PrefixSum 耗费 O(n) 时间和 O(n) 空间 如需计算子数组从下标i到下标j之间的所有数之和 则有 Sum(i~j) = PrefixSum[j + 1] - PrefixSum[i]
+
+Maximum Subarray
+http://www.lintcode.com/en/problem/maximum-subarray/
+http://www.jiuzhang.com/solutions/maximum-subarray/
+
+Subarray Sum
+http://www.lintcode.com/en/problem/subarray-sum/
+http://www.jiuzhang.com/solutions/subarray-sum/
+
+Subarray Sum Closest
+http://www.lintcode.com/en/problem/subarray-sum-closest/
+http://www.jiuzhang.com/solutions/subarray-sum-closest/
+
+
+---
+
+
+
+What is Data Structure? 可以认为是一个集合, 并且提供集合上的若干操作
+ 
+队列 Queue 
+支持操作:O(1) Push / O(1) Pop / O(1) Top
+BFS的主要数据结构 多做做BFS的题就可以了
+ 
+栈 Stack 
+支持操作:O(1) Push / O(1) Pop / O(1) Top 
+非递归实现DFS的主要数据结构
+ 
+
+独孤九剑 —— 破箭式 BFS 的主要数据结构是 Queue, DFS 的主要数据结构是 Stack 千万不要搞反了! 很体现基础知识的扎实度!
+
+
+# 6. 哈希表 Hash  (原理 应用)
+支持操作:O(1) Insert / O(1) Find / O(1) Delete Hash Table / Hash Map / Hash Set 的区别是什么?
+
+Hash Function 使命:对于任意的key 得到一个固定且无规律的介于0\~capacity-1的整数
+
+Hash Function
+  一些著名的Hash算法   MD5   SHA-1   SHA-2
+  以 String 为例子
+
+Magic Number - 31
+经验值 这个数字选择一个质数会更好(经验) 数太大 --- 影响计算速度 数太小 --- 冲突太多
+像 Apache 的底层库中, 用的是 33
+
+Open Hashing vs Closed Hashing 再好的 hash 函数也会存在冲突(Collision) https://www.cs.usfca.edu/~galles/visualization/ClosedHash.html https://www.cs.usfca.edu/~galles/visualization/OpenHash.html
+ 
+
+Rehashing 当hash不够大时怎么办?
+http://www.lintcode.com/problem/rehashing/ 
+http://www.jiuzhang.com/solutions/rehashing/
+
+
+哈希表的饱和度
+饱和度 = 实际存储元素个数 / 总共开辟的空间大小 size / capacity
+一般来说, 超过 1/10(经验值) 的时候, 说明需要进行 rehash
+ 
+
+LRU Cache
+http://www.lintcode.com/problem/lru-cache/ 
+http://www.jiuzhang.com/solutions/lru-cache/ 
+Example: [2 1 3 2 5 3 6 7]
+ 
+
+LRU Cache
+  LinkedHashMap = DoublyLinkedList + HashMap
+  HashMap<key, DoublyListNode> DoublyListNode {   prev, next, key, value;
+ }
+  Newest node append to tail.
+  Eldest node remove from head.
+问:Singly List 是否可行?
+
+Singly List 是否可行?
+可以, 在 Hash 中存储 Singly List 中的 prev node 即可 如 linked list = dummy->1->2->3->null 时 hash[1] = dummy, hash[2] = node1 ...
+ 
+
+Related  Lintcodes
+  http://www.lintcode.com/problem/subarray-sum/
+  http://www.lintcode.com/problem/copy-list-with-random-pointer/   http://www.lintcode.com/problem/anagrams/
+  http://www.lintcode.com/problem/longest-consecutive-sequence/
+ 
+
+# 7. Heap 堆
+原理:小视频
+应用:优先队列 Priority Queue
+替代品:TreeMap
+
+支持操作:O(log N) Add / O(log N) Remove / O(1) Min or Max Max Heap vs Min Heap
+
+PriorityQueue vs Heap Heap 的基本原理和具体实现
+请见课程小视频 http://www.jiuzhang.com/video/heap
+
+Ugly Number
+http://www.lintcode.com/problem/ugly-number-ii/ 
+http://www.jiuzhang.com/solutions/ugly-number-ii/
+ 
+Top k Largest Number II
+http://www.lintcode.com/problem/top-k-largest-numbers-ii/ 
+http://www.jiuzhang.com/solutions/top-k-largest-number-ii/
+
+
+Merge K Sorted Lists
+http://www.lintcode.com/problem/merge-k-sorted-lists/ 
+http://www.jiuzhang.com/solution/merge-k-sorted-lists/
+ 
+三种方法, 都需要练习
+方法一:使用 PriorityQueue 方法二:类似归并排序的分治算法 方法三:自底向上的两两归并算法
+时间复杂度均为 O(NlogK)
+ 
+Related  Lintcodes
+  http://www.lintcode.com/en/problem/high-five/ (A)
+  http://www.lintcode.com/en/problem/k-closest-points/ (L, A, F)
+  http://www.lintcode.com/problem/merge-k-sorted-arrays/
+  http://www.lintcode.com/problem/data-stream-median/
+  http://www.lintcode.com/problem/top-k-largest-numbers/
+  http://www.lintcode.com/problem/kth-smallest-number-in-sorted-matrix/
+
+TreeMap(optional) 又想知道最小值, 又想支持修改和删除
+https://docs.oracle.com/javase/7/docs/api/java/util/TreeMap.html
+通常来说, 面试中几乎没有必须要用 TreeMap 的题
+ 
+相关习题
+  http://www.lintcode.com/problem/building-outline/
+  http://www.lintcode.com/problem/top-k-frequent-words/
+
+
+# 8. stack 栈
+
+# 9. Deque 双端队列
 维护一个候选可能(窗口)的最大值集合 (队首pop, 队尾insert)
 类似单调栈, 但两端都有操作 (两端都会有push和pop)
 
@@ -36,7 +362,7 @@ LintCode 362: [Sliding Window Maximum]() 滑动窗口经典题型
 
 
 
-# 2. 并查集 Union Find 集合的合并查找操作,并查集
+# 10. 并查集 Union Find 集合的合并查找操作,并查集
 一种用于支持集合(一堆元素形成的整体)快速合并和查找操作的数据结构
 * Union 合并(两个集合取并)两个集合 O(1)
 * Find 查询元素所属集合 O(1)  给定单个元素, 求所属集合
@@ -214,7 +540,7 @@ LintCode 805: [Maximum Association Set](https://github.com/bitterengsci/algorith
 - 统计当前集合个数
 - 关键操作:快速寻找根节点
 
-# 3. 字典树Trie, Prefix Tree 前缀树
+# 11. 字典树Trie, Prefix Tree 前缀树
 来自单词Retrieval,发音与Tree相同, 用于处理字符串
 Trie的考点: 实现一个Trie; 比较Trie和Hash的优劣 (字符矩阵类问题使用Trie更高效)
 
@@ -234,7 +560,7 @@ search(word): 搜索一个词,其中可能有".", 代表任何单个字符 ("." 
 addWord使用Trie
 searchWord在Trie中DFS,一旦需要”.”字符就遍历所有儿子节点: 走到死胡同or找到了到isword=False, return False
  
-## 3.1. Trie用于剪枝
+## 11.1. Trie用于剪枝
 LintCode 634: [Word Squares](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Word%20Squares.py) 
 给出一系列不重复的单词,找出所有用这些单词能构成的单词平方。单词平方是一个k×k的单词方阵: 第k行的单词和第k列的单词相同
 输入: ["area", "lead", "wall", "lady", "ball"]
@@ -259,7 +585,7 @@ LintCode 132: [Word Search II](https://github.com/bitterengsci/algorithm/blob/ma
 在矩阵中DFS时,在Trie里对应节点向下走
 Trie可以帮助剪枝
   
-## 3.2. Typeahead Trie 在系统设计中的运用 (实际运用)
+## 11.2. Typeahead Trie 在系统设计中的运用 (实际运用)
 字典树Trie
 - 合并所有公共的前缀
 - 动态插入与查询单词

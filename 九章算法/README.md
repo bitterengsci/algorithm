@@ -3,11 +3,13 @@
 - [1. Data Structure](#1-data-structure)
 - [2. Algorithm](#2-algorithm)
 - [3. 动态规划 Dynamic Programming](#3-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dynamic-programming)
-- [4. Debug的基本步骤](#4-debug%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4)
-- [5. 面试](#5-%E9%9D%A2%E8%AF%95)
-    - [5.1. 电话面试](#51-%E7%94%B5%E8%AF%9D%E9%9D%A2%E8%AF%95)
-    - [5.2. onsite 现场面授](#52-onsite-%E7%8E%B0%E5%9C%BA%E9%9D%A2%E6%8E%88)
-    - [5.3. onsite 后](#53-onsite-%E5%90%8E)
+- [4. Coding Style 代码风格](#4-coding-style-%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC)
+- [5. 算法, 永远的痛](#5-%E7%AE%97%E6%B3%95-%E6%B0%B8%E8%BF%9C%E7%9A%84%E7%97%9B)
+- [6. Debug的基本步骤](#6-debug%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4)
+- [7. 面试](#7-%E9%9D%A2%E8%AF%95)
+    - [7.1. 电话面试](#71-%E7%94%B5%E8%AF%9D%E9%9D%A2%E8%AF%95)
+    - [7.2. onsite 现场面授](#72-onsite-%E7%8E%B0%E5%9C%BA%E9%9D%A2%E6%8E%88)
+    - [7.3. onsite 后](#73-onsite-%E5%90%8E)
 
 <!-- /TOC -->
 
@@ -53,7 +55,58 @@
     - 同类题目在代码实现上有什么相似之处?
 
 
-# 4. [Debug的基本步骤](http://www.jiuzhang.com/qa/3815/)
+
+# 4. Coding Style 代码风格
+1. 变量命名 meaningful (循环变量可以用i, j, k, 参数命名要meaningful)
+2. 括号问题  
+	C++ for-loop 和 if-clause的statement 哪怕只有一行也要加括号(便于代码之后扩展)
+3. 单元运算符不加空格 (i++; return -1; 此处-1是取反)
+   双元运算符两边加空格 (+ - == = < > || && ; ,)
+
+4. * bug-free * 想清楚在写
+	参数不符合要求,  非法   (Object == None, null ...)
+	数值访问越界, 检查下标
+5. 嵌套很多层(超过3个缩进),  考虑使用子函数    
+
+New Grad一般问两道题, Experience问一道
+
+面试官眼中的求职者
+- 你可能是他未来的同事!!!
+- 你的代码看起来舒服么? TA需要多少时间来Review你的代码?
+	- 程序风格 Coding Style
+	- 变量名命名(注意单复数区别), 缩进, 括号
+- 你的Coding习惯好么? 你会不会动不动就搞挂网站, 􏰀成损失?
+	- Coding习惯, Bug Free
+	- 异常检测, 边界处理
+	- 测试自己代码的意识(提供测试数据)
+- 和你交流舒服么?
+	- 是不是很难和你合作
+	- 闷头就开始写 VS 每写一句话就BB半天(容易时间不够。一般题写不完肯定过不了。)
+	     (要先交流, 到底要求实现到什么程度。“这个题, 暴力的方法是XX” 先问问行不行。不是说暴力算法一定不行)
+	      (先问问想的方法行不行, 可以的话再写, 不要闷头开始写。) -> 和coworker达成共识在开始做
+
+# 5. 算法, 永远的痛
+- 题做了很多, 但就是记不住解法
+- 从来就没有弄明白过动态规划是怎么回事
+- 这题好像见过, 不过还是不知道怎么做
+- lintcode, cc150都刷了, 新题还是跪
+- 网上的解答那么多, 到底哪个是对的?
+- 一定要答出O(n)的方法么? O(nlogn)的可以么? 
+- 到底刷到什么程度去面试才够?   (submission per problem 3以内就还行) 刷题,也需要总结!
+
+面试算法, 其实很简单
+- 某位商学院转行的小伙伴在我们的帮助下, 花了30天从0基础算法搞定常见算法, 最后拿到Google Facebook等一流公司Offer
+- 主要经验: 在刷题时, 总结、归类相似题目 (很多算法都不考, 知识点范围很窄), 找出适合同一类题目的模板程序
+
+Ladder 180题
+
+1.别做难题,不要花时间攻关难题 (把时间花在如何做到 BUG FREE和如何提高编程􏰀度上 多做 LintCode 上 Medium 难度的题
+2.是面试不是考试 和面试官愉快交流, 一起合作解决面试问题 (证明自己牛逼, 但别去证明面试官傻逼)
+3.理解而不是单纯的背诵 (在课程中主要学习的是思维方式和分析技巧而不是某个题的解法)
+4.刀要用在刀刃上 不要把时间浪费在那些基本不会考你又很心虚的内容 (比如KMP, 红黑树, AVL, ACM竞赛题)
+
+
+# 6. [Debug的基本步骤](http://www.jiuzhang.com/qa/3815/)
 为什么Debug一定要靠自己？
 - 如果是别人给你指出你的程序哪儿错了, 你自己不会有任何收获, 你下一次依旧会犯同样的错误
 - 经过长时间努力Debug获得的错误, 印象更深刻
@@ -70,9 +123,9 @@ Debug的基本步骤
 实在Debug不出来怎么办？
 - 如果你已经Debug了一整天, 可以考虑向他人求助
 
-# 5. 面试
+# 7. 面试
 
-## 5.1. 电话面试
+## 7.1. 电话面试
 难度 < onsite
 - 自我介绍
 - 要和面试官保持一个沟通的状态 (Think Loud)
@@ -81,7 +134,7 @@ Debug的基本步骤
 - 提前熟悉CodePad, GoogleDoc 等
 - 问面试官的问题
 
-## 5.2. onsite 现场面授
+## 7.2. onsite 现场面授
 1轮一小时, 一天4-7轮, 无轮间休息时间 (上午2-3轮, 午饭, 下午2-3轮, 最后一轮有时是manager, 问问软实力和past expirence)
 whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在做不出来, 可以要提示)
 
@@ -90,7 +143,7 @@ whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在
     - 面试者遇到困难怎么办
 
 
-## 5.3. onsite 后
+## 7.3. onsite 后
 - 没offer (问原因)
 
 - 有offer
@@ -104,3 +157,7 @@ whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在
 
         - match (competing offer)
     - background check
+
+
+
+Reference: Draw Diagram https://support.typora.io/Draw-Diagrams-With-Markdown/
