@@ -2,10 +2,10 @@
 <!-- TOC -->
 
 - [1. 二分法 Binary Search](#1-%E4%BA%8C%E5%88%86%E6%B3%95-binary-search)
-    - [1.1. 第2节课: Binary Search 二分法](#11-%E7%AC%AC2%E8%8A%82%E8%AF%BE-binary-search-%E4%BA%8C%E5%88%86%E6%B3%95)
+    - [1.1. Binary Search](#11-binary-search)
     - [1.2. 独孤九剑——破剑式 比O(n)更优的时间复杂度 几乎只能是O(logn)的二分法](#12-%E7%8B%AC%E5%AD%A4%E4%B9%9D%E5%89%91%E7%A0%B4%E5%89%91%E5%BC%8F-%E6%AF%94on%E6%9B%B4%E4%BC%98%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-%E5%87%A0%E4%B9%8E%E5%8F%AA%E8%83%BD%E6%98%AFologn%E7%9A%84%E4%BA%8C%E5%88%86%E6%B3%95)
     - [1.3. 第一境界 二分法模板](#13-%E7%AC%AC%E4%B8%80%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E6%B3%95%E6%A8%A1%E6%9D%BF)
-    - [1.4. 第二境界 二分位置 之 OOXX 一般会给你一个数组](#14-%E7%AC%AC%E4%BA%8C%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-ooxx-%E4%B8%80%E8%88%AC%E4%BC%9A%E7%BB%99%E4%BD%A0%E4%B8%80%E4%B8%AA%E6%95%B0%E7%BB%84)
+    - [1.4. 第二境界 二分位置 之 OOXX](#14-%E7%AC%AC%E4%BA%8C%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-ooxx)
     - [1.5. 第三境界 二分位置 之 Half Half](#15-%E7%AC%AC%E4%B8%89%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-half-half)
     - [1.6. 第四境界(至高境界): 二分答案 Binary Search on Result, 二分法难题 (Hard)](#16-%E7%AC%AC%E5%9B%9B%E5%A2%83%E7%95%8C%E8%87%B3%E9%AB%98%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88-binary-search-on-result-%E4%BA%8C%E5%88%86%E6%B3%95%E9%9A%BE%E9%A2%98-hard)
 - [2. 搜索 Search](#2-%E6%90%9C%E7%B4%A2-search)
@@ -28,8 +28,6 @@
 
 
 # 1. 二分法 Binary Search
-
-## 1.1. 第2节课: Binary Search 二分法
 1. 第一境界: 二分法模板
     递归与非递归的权衡
     二分的三大痛点 (while < 还是 while <=; 超出time limit)
@@ -40,7 +38,7 @@
     保留有解的一半, 或者去掉无解的一半
 4. 第四境界(至高境界): 二分答案
 
-Binary Search
+## 1.1. Binary Search
 Given a sorted integer array nums, and an integer target.
 Find the any/first/last position of target in nums. Return -1 if target does not exist.
 (问last时, 容易出现死循环, 超时)
@@ -78,13 +76,13 @@ Time Complexity in Coding Interview
 考察如何计算时间复杂度, 面试中常考O(n), O(nlogn), O(n2)
 
 ## 1.2. 独孤九剑——破剑式 比O(n)更优的时间复杂度 几乎只能是O(logn)的二分法 
-经验之谈: 根据时间复杂度倒推算法是面试中的常用策略
+*经验之谈: 根据时间复杂度倒推算法是面试中的常用策略*
 若一眼看就是O(n), 就要考虑O(logn)的实现方式了 → 两个指针一头一尾, 中间取点, 去一半
 
 哪种方法实现二分法 Recursion or While Loop? 		R: Recursion W: While loop B: Both work 
 (建议, 能不用recursion就不用, recursion是一个不好的coding pattern, 递归易造成stack overflow 栈溢出, 程序crash)
 
-面试中是否使用 Recursion 的几个判断条件
+面试中是否使用 Recursion 的几个判断条件, 使用递归与非递归的权衡方法
 * ①面试官是否要求了不使用 Recursion (如果你不确定, 就向面试官询问)
 * ②不用 Recursion 是否会造成实现变得很复杂 (二分法一般不会很复杂)
 * ③Recursion 的深度是否会很深
@@ -112,75 +110,75 @@ Lintcode 457.[Classical Binary Search]()
 Lintcode 14.[First Position of Target]()
 Lintcode 458.[Last Position of Target]()
 
-## 1.4. 第二境界 二分位置 之 OOXX 一般会给你一个数组
-让你找数组中第一个/最后一个满足某个条件的位置 OOOOOOO..OOXX....XXXXXX
-	O = '< target的数' X='≥ target的数'   找第一个X 或者最后一个O
+## 1.4. 第二境界 二分位置 之 OOXX 
+一般会给你一个数组, 让你找数组中第一个/最后一个满足某个条件的位置 OOOOOOO..O**OX**X....XXXXXX
+O=小于target的数, X=大于等于target的数, 找第一个X或者最后一个O
 
 Lintcode 74.[First Bad Version]()
-Lintcode 447.[Search in a Big Sorted Array]()
 
+Lintcode 447.[Search in a Big Sorted Array]()
 排序数组二分法 → 二分, 起点+终点, 取中点
 现在没有终点怎么办? 找终点, 令点 ≥ target (终点要在k的级别上)
 Vector/ArrayList: 动态数组实现方式, 不用声明多大多长, 倍增思想, 和网络访问的exponential backoff类似
-	Note: 一道题问完用什么数据结构, 还会追问数据结构的实现方式
+	*Note: 一道题问完用什么数据结构, 还会追问数据结构的实现方式*
 要求复杂度O(log k) 	k是数所在位置
 以2倍递增 1→2→4→8 直到 ≥target, 共递增logk次  (可以确定数在 [k, 2k]范围里)
 
-Lintcode 159.[Find Minimum in Rotated Sorted Array]()   (图)
-First position <= Last Number
-(WRONG: First position <= or < First Number)
+Lintcode 159.[Find Minimum in Rotated Sorted Array]()  oooooxxxxx
+![](.pic/binarysearch_minrsa.png) 
+- Sorted Array ⊆ Rotated Sorted Array (在做RSA的题时, 需要考虑没有rotated的情况)
+- RSA: 
+    x is the First Position <= last number? ✔️
+    x is the First Position <= or < First Number? (WRONG)
 
-Sorted Array⊆Rotated Sorted Array (在做RSA的题时, 需要考虑没有rotated的情况)
-
-相关练习
 Lintcode 28.[Search a 2D Matrix]() 不是二分法, 但是是常考题
 Lintcode 38.[Search a 2D Matrix II]() 不是二分法, 但是是常考题
-Lintcode 61.[Search for a Range]()
-Lintcode 600.[Smallest Rectangle Enclosing black Pixels]()
-→ 在列中需要找出第一个'1'出现的最左侧坐标和最右侧坐标, 在行中需要找出第一个'1'出现的最上面坐标和最下面坐标。采用二分的方法在区间查找即可。最后返回(right - left + 1) * (down - up + 1)即可。
+- 从左下角开始，往右上角逼近
+
+Lintcode 61.[Search for a Range]() First Position of Target + Last Position of Target
+
+Lintcode 600.[Smallest Rectangle Enclosing Black Pixels]()
+在列中需要找出第一个'1'出现的最左侧坐标和最右侧坐标, 在行中需要找出第一个'1'出现的最上面坐标和最下面坐标。采用二分的方法在区间查找即可。最后返回(right - left + 1) * (down - up + 1)即可。
 
 ## 1.5. 第三境界 二分位置 之 Half Half
 无法找到一个条件, 形成 OOXX 的模型; 但可以根据判断, 保留下有解的那一半或者去掉无解的一半
 
 Lintcode 585.[Maximum Number in Mountain Sequence]() 在先增后减的序列中找最大值
+
 Lintcode 75.[Find Peak Element]()
-先增后减数组, 一定有peak(局部最大); 找所有peak→for循环, O(n) 		找一个peak→非排序数组如何二分?
+先增后减数组, 一定有peak(局部最大); 找所有peak→for循环, O(n) 		
+找一个peak → 非排序数组如何二分?
 四种情况  
-    mid-1 < mid < mid+1 (递减区间, 左半部分一定有峰)   mid-1>mid>mid+1 (有半部分一定有峰) 
-    mid > mid-1 & mid+1 (mid就是峰, return it)      mid < mid-1 & mid+1 (左右两边都至少存在一个解)
+- mid-1 < mid < mid+1 (递减区间, 左半部分一定有峰)   
+- mid-1>mid>mid+1 (有半部分一定有峰) 
+- mid > mid-1 & mid+1 (mid就是峰, return it)      
+- mid < mid-1 & mid+1 (左右两边都至少存在一个解)
 
 有时选算法, 看要求的答案个数(为下限)
 
-Lintcode 62.[Search in Rotated Sorted Array]()
+Lintcode 62.[Search in Rotated Sorted Array]()  会了这道题, 才敢说自己会二分法
 4 5 6 7 0 1 2   target=6
-o o x x o o o      (not ooxx)
-→找最小的数(找到o) O(logn), 然后还原成 ooxx, 但还原操作为O(n), 不行
-→用两次二分的方法: 
-第一次二分找到最小数的位置, 参考 find minimum number in rotated sorted array 第二次二分确定 target 在左侧区间还是右侧 (start ≤ target ≤ mid 答案在左边,  target > mid && target < start 答案在右边) 再用一个普通的二分法即可找到
-→用一次二分法
+o o x x o o o   (not ooxx)
 
-二分思想要求, 去掉一半后, 剩下的一半必须还是刚开始的构型。→ 二分之后必须还是RSA (SA⊆RSA)
+二分思想要求, 去掉一半后, 剩下的一半必须还是刚开始的构型。
+    → 二分之后必须还是RSA (SA⊆RSA)
+* Soln 1: 找最小的数(找到o/找最小) O(logn), 然后还原成 ooxx, 但还原操作为O(n) 不🉑
+* Soln 2: 用两次二分的方法
+    第一次二分找到最小数的位置, find minimum number in rotated sorted array
+    第二次二分确定 target, 在左侧区间还是右侧 (start ≤ target ≤ mid 答案在左边,  target > mid && target < start 答案在右边) 
+    再用一个普通的二分法即可找到
+* Soln 3: 用一次二分法
+    start ≤ target ≤ mid 答案在左边;  target > mid && target < start 答案在右边
 
-总结
-  使用递归与非递归的权衡方法
-  使用T函数的时间复杂度计算方式
-  二分法模板的四点要素 
-  start + 1 < end
-  start + (end - start) / 2
-  A[mid] ==, <, >
-  A[start] A[end] ? target
-  三个境界: 二分法模板, OOXX, Half half
-Binary Search: http://www.lintcode.com/en/tag/binary-search/
+二分思想要求, 去掉一半后, 剩下的一半必须还是刚开始的构型 → 二分之后必须还是RSA (SA⊆RSA)
 
-Lintcode 39.[Recover Rotated Sorted Array]()
-Lintcode 8.[Rotate String]()
-http://www.jiuzhang.com/video/3-step-reverse/
-三步翻转法: [4,5,1,2,3] → [5,4,1,2,3] → [5,4,3,2,1] → [1,2,3,4,5]
+Lintcode 39.[Recover Rotated Sorted Array]() in-place
+Lintcode 8.[Rotate String]() in-place
+三步翻转法 3 step reverse: [4,5,1,2,3] → [5,4,1,2,3] → [5,4,3,2,1] → [1,2,3,4,5] offset=2
 
-k closest number:  oooxxxx 先找到x 然后左右两个指针分别往两边移动  O(logn + k)  因为不知道logn和k哪个大
-
-点题时间: http://www.jiuzhang.com/qa/974/
-二分法相关题目的解题报告 参考程序+详细的思路描述 http://www.jiuzhang.com/article/?tags=binary-search
+Lintcode 459.[Closest Number in Sorted Array]()
+Lintcode 460.[Find K Closest Elements]()
+oooxxxx 先找到x 然后左右两个指针分别往两边移动  O(logn + k)  因为不知道logn和k哪个大
 
 ## 1.6. 第四境界(至高境界): 二分答案 Binary Search on Result, 二分法难题 (Hard)
 往往没有给你一个数组让你二分, 同样是找到满足某个条件的最大或者最小值 (原题求最大/最小不太好做时, 可以考虑二分答案)
