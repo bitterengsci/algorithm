@@ -15,6 +15,18 @@
 
 九章算法基础班+强化班+树状数组线段树+递归+背包+动态规划
 
+
+TODO:
+基础 1 intro
+    3 binary tree & divide conquer
+    4 5 BFS DFS
+    6 linked list, array
+    7 two pointer
+    8 heap, stack
+
+提高 1 7 follow-up
+    堆, 单调栈
+
 # 1. [Data Structure](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Data%20Structure.md)
 - 数据结构 Heap (双堆)
 - 数据结构 Stack (单调栈)
