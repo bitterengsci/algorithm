@@ -20,16 +20,16 @@
 - 数据结构 Stack (单调栈)
 - 数据结构 Array
 - 数据结构 Linked List
-- 数据结构 Deque Done
+- 数据结构 Deque             Done
 - 数据结构 并查集Union Find   Done
-- 数据结构 字典树Trie   Done
+- 数据结构 字典树Trie         Done
 - 数据结构 树状数组 
 - 数据结构 线段树
 
 # 2. [Algorithm](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Algorithm.md)
-- Binary Search 二分法 (二分, 二分答案)
+- Binary Search 二分法 (二分, 二分答案)     Done
 - Search搜索, BFS, DFS, dijkstra's algorithm
-- 扫描线 Sweep Line  (Done)
+- 扫描线 Sweep Line             Done
 - 递归 Recursion
 - 贪心 Greedy
 - 分治 Divide & Conquer
@@ -44,6 +44,7 @@
     * 背包问题
     * Sliding Array 滚动数组
 
+--- 
 
 * 做题的常见误区: 做题获得Accepted就可以了? 看答案抄一遍然后就会了?
 * 导致的结果: 做过的题面试中居然还不会; 觉得新题越来越多
@@ -53,7 +54,6 @@
     - 题目中哪些条件可以看出这是同类题?
     - 同类题目在思维方式上有什么相似之处?
     - 同类题目在代码实现上有什么相似之处?
-
 
 
 # 4. Coding Style 代码风格

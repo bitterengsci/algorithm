@@ -6,9 +6,8 @@
 - [2. 链表 Linked List](#2-%E9%93%BE%E8%A1%A8-linked-list)
     - [2.1. Dummy Node](#21-dummy-node)
 - [3. 数组 Array](#3-%E6%95%B0%E7%BB%84-array)
-    - [3.1. High Frequency   Array](#31-high-frequency---array)
-    - [3.2. Sorted Array 排序数组](#32-sorted-array-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84)
-    - [3.3. 子数组 Subarray](#33-%E5%AD%90%E6%95%B0%E7%BB%84-subarray)
+    - [3.1. Sorted Array 排序数组](#31-sorted-array-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84)
+    - [3.2. 子数组 Subarray](#32-%E5%AD%90%E6%95%B0%E7%BB%84-subarray)
 - [4. 哈希表 Hash  (原理 应用)](#4-%E5%93%88%E5%B8%8C%E8%A1%A8-hash--%E5%8E%9F%E7%90%86-%E5%BA%94%E7%94%A8)
 - [5. Heap 堆](#5-heap-%E5%A0%86)
 - [6. stack 栈](#6-stack-%E6%A0%88)
@@ -145,7 +144,6 @@ Hibbard deletion algorithm  http://www.mathcs.emory.edu/~cheung/Courses/171/Sy
 # 2. 链表 Linked List 
 Lintcode 35.[Reverse Linked List]()
 Lintcode 450.[Reverse Nodes in k-Group]()
-http://www.jiuzhang.com/solutions/reverse-nodes-in-k-group/
 
 ## 2.1. Dummy Node
 独孤九剑 —— 破索式 链表结构发生变化时, 就需要 Dummy Node
@@ -158,93 +156,57 @@ Dummy Node 初始化的值重要么?
 链表的问题都需要用到 Dummy Node 么?
 
 用到了 Dummy Node 的值得一做的题目
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-http://www.lintcode.com/en/problem/partition-list/
-http://www.lintcode.com/en/problem/merge-two-sorted-lists/ 
-http://www.lintcode.com/en/problem/reverse-linked-list-ii/ 
-http://www.lintcode.com/en/problem/swap-two-nodes-in-linked-list/ 
-http://www.lintcode.com/en/problem/reorder-list/ 
-http://www.lintcode.com/en/problem/rotate-list/
+Lintcode .[]() http://www.lintcode.com/en/problem/partition-list/
+Lintcode .[]() http://www.lintcode.com/en/problem/merge-two-sorted-lists/ 
+Lintcode .[]() http://www.lintcode.com/en/problem/reverse-linked-list-ii/ 
+Lintcode .[]() http://www.lintcode.com/en/problem/swap-two-nodes-in-linked-list/ 
+Lintcode .[]() http://www.lintcode.com/en/problem/reorder-list/ 
+Lintcode .[]() http://www.lintcode.com/en/problem/rotate-list/
+
+Lintcode .[Copy List with Random Pointer]() http://www.lintcode.com/problem/copy-list-with-random-pointer/
+
+Lintcode .[Linked List Cycle]()http://www.lintcode.com/en/problem/linked-list-cycle/
 
 Lintcode .[]()
-Copy List with Random Pointer
-http://www.lintcode.com/problem/copy-list-with-random-pointer/
-http://www.jiuzhang.com/solutions/copy-list-with-random-pointer/
+follow up: http://www.lintcode.com/en/problem/linked-list-cycle-ii/ 
 
-Lintcode .[]()
-Linked List Cycle
-http://www.lintcode.com/en/problem/linked-list-cycle/
-http://www.jiuzhang.com/solutions/linked-list-cycle/
-
-Lintcode .[]()
-follow up:
-http://www.lintcode.com/en/problem/linked-list-cycle-ii/ 
-http://www.jiuzhang.com/solutions/intersection-of-two-linked-lists/
-
-Lintcode .[]()
-Sort List
+Lintcode .[Sort List]()
 http://www.lintcode.com/en/problem/sort-list/
-http://www.jiuzhang.com/solutions/sort-list/
 哪些排序算法时间复杂度是 O(nlogn) 的? MergeSort, HeapSort, QuickSort
 哪些排序算法空间复杂度是 O(1) 的? QuickSort
 
 Related  Lintcodes
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-  http://www.lintcode.com/problem/convert-sorted-list-to-balanced-bst/
-  http://www.lintcode.com/problem/delete-node-in-the-middle-of-singly-linked-list/
-  http://www.lintcode.com/problem/convert-binary-search-tree-to-doubly-linked-list/
+Lintcode .[]() http://www.lintcode.com/problem/convert-sorted-list-to-balanced-bst/
+Lintcode .[]() http://www.lintcode.com/problem/delete-node-in-the-middle-of-singly-linked-list/
+Lintcode .[]() http://www.lintcode.com/problem/convert-binary-search-tree-to-doubly-linked-list/
 
 # 3. 数组 Array
 
-## 3.1. High Frequency   Array
+## 3.1. Sorted Array 排序数组
 
-## 3.2. Sorted Array 排序数组
-
-Lintcode .[]()
-Merge Two Sorted Arrays
-http://www.lintcode.com/problem/merge-two-sorted-arrays
-http://www.jiuzhang.com/solutions/merge-two-sorted-arrays/
+Lintcode .[Merge Two Sorted Arrays]() http://www.lintcode.com/problem/merge-two-sorted-arrays
 
 Related  Lintcodes
-Lintcode .[]() 将小数组归并到大数组里
-  http://www.lintcode.com/problem/merge-sorted-array/   http://www.jiuzhang.com/solutions/merge-sorted-array/
-Lintcode .[]() 两个数组的交
-  http://www.lintcode.com/problem/intersection-of-two-arrays/
-  数组内积(点乘)
-  Example [1,3] · [2,4] = 1*2 + 3*4 = 14
-  Follow up: 两个数组都非常大, 但是其中都包含很多0
-  Example [1,0,0,0,0 ..., 0, 2, 0,..., 0, 3] · [0,..., 0, 4, 0,..., 0, 5]
+Lintcode .[]() 将小数组归并到大数组里 http://www.lintcode.com/problem/merge-sorted-array/
 
-Lintcode .[]()
-Median of Two Sorted Arrays
-http://www.lintcode.com/problem/median-of-two-sorted-arrays/
-http://www.jiuzhang.com/solutions/median-of-two-sorted-arrays/
+Lintcode .[]() 两个数组的交 http://www.lintcode.com/problem/intersection-of-two-arrays/
+数组内积(点乘)
+Example [1,3] · [2,4] = 1*2 + 3*4 = 14
+Follow up: 两个数组都非常大, 但是其中都包含很多0
+Example [1,0,0,0,0 ..., 0, 2, 0,..., 0, 3] · [0,..., 0, 4, 0,..., 0, 5]
 
-## 3.3. 子数组 Subarray
+Lintcode .[Median of Two Sorted Arrays]() http://www.lintcode.com/problem/median-of-two-sorted-arrays/
+
+## 3.2. 子数组 Subarray
 令 PrefixSum[i] = A[0] + A[1] + ... A[i - 1], PrefixSum[0] = 0 易知构造 PrefixSum 耗费 O(n) 时间和 O(n) 空间 如需计算子数组从下标i到下标j之间的所有数之和 则有 Sum(i~j) = PrefixSum[j + 1] - PrefixSum[i]
 
-Lintcode .[]() Maximum Subarray
-http://www.lintcode.com/en/problem/maximum-subarray/
-http://www.jiuzhang.com/solutions/maximum-subarray/
+Lintcode .[Maximum Subarray]() http://www.lintcode.com/en/problem/maximum-subarray/
 
-Lintcode .[]() Subarray Sum
-http://www.lintcode.com/en/problem/subarray-sum/
-http://www.jiuzhang.com/solutions/subarray-sum/
+Lintcode .[Subarray Sum]() http://www.lintcode.com/en/problem/subarray-sum/
 
-Lintcode .[]() Subarray Sum Closest
-http://www.lintcode.com/en/problem/subarray-sum-closest/
-http://www.jiuzhang.com/solutions/subarray-sum-closest/
-
+Lintcode .[Subarray Sum Closest]() http://www.lintcode.com/en/problem/subarray-sum-closest/
 
 ---
-
 
 What is Data Structure? 可以认为是一个集合, 并且提供集合上的若干操作
  
@@ -256,9 +218,7 @@ BFS的主要数据结构 多做做BFS的题就可以了
 支持操作:O(1) Push / O(1) Pop / O(1) Top 
 非递归实现DFS的主要数据结构
  
-
 独孤九剑 —— 破箭式 BFS 的主要数据结构是 Queue, DFS 的主要数据结构是 Stack 千万不要搞反了! 很体现基础知识的扎实度!
-
 
 # 4. 哈希表 Hash  (原理 应用)
 支持操作:O(1) Insert / O(1) Find / O(1) Delete Hash Table / Hash Map / Hash Set 的区别是什么?
@@ -279,17 +239,13 @@ Open Hashing vs Closed Hashing 再好的 hash 函数也会存在冲突(Collision
 Rehashing 当hash不够大时怎么办?
 Lintcode .[]()
 http://www.lintcode.com/problem/rehashing/ 
-http://www.jiuzhang.com/solutions/rehashing/
-
 
 哈希表的饱和度
 饱和度 = 实际存储元素个数 / 总共开辟的空间大小 size / capacity
 一般来说, 超过 1/10(经验值) 的时候, 说明需要进行 rehash
  
 
-Lintcode .[]() LRU Cache
-http://www.lintcode.com/problem/lru-cache/ 
-http://www.jiuzhang.com/solutions/lru-cache/ 
+Lintcode .[LRU Cache]() http://www.lintcode.com/problem/lru-cache/ 
 Example: [2 1 3 2 5 3 6 7]
  
 LRU Cache
@@ -303,17 +259,10 @@ LRU Cache
 Singly List 是否可行?
 可以, 在 Hash 中存储 Singly List 中的 prev node 即可 如 linked list = dummy->1->2->3->null 时 hash[1] = dummy, hash[2] = node1 ...
 
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-
-Related  Lintcodes
-  http://www.lintcode.com/problem/subarray-sum/
-  http://www.lintcode.com/problem/copy-list-with-random-pointer/   
-  http://www.lintcode.com/problem/anagrams/
-  http://www.lintcode.com/problem/longest-consecutive-sequence/
- 
+Lintcode .[]() http://www.lintcode.com/problem/subarray-sum/
+Lintcode .[]() http://www.lintcode.com/problem/copy-list-with-random-pointer/  
+Lintcode .[]() http://www.lintcode.com/problem/anagrams/
+Lintcode .[]() http://www.lintcode.com/problem/longest-consecutive-sequence/
 
 # 5. Heap 堆
 原理:小视频
@@ -325,49 +274,32 @@ Related  Lintcodes
 PriorityQueue vs Heap Heap 的基本原理和具体实现
 请见课程小视频 http://www.jiuzhang.com/video/heap
 
-Lintcode .[]() Ugly Number
-http://www.lintcode.com/problem/ugly-number-ii/ 
-http://www.jiuzhang.com/solutions/ugly-number-ii/
+Lintcode .[Ugly Number]() http://www.lintcode.com/problem/ugly-number-ii/ 
  
-Lintcode .[]() Top k Largest Number II
-http://www.lintcode.com/problem/top-k-largest-numbers-ii/ 
-http://www.jiuzhang.com/solutions/top-k-largest-number-ii/
+Lintcode .[Top k Largest Number II]() http://www.lintcode.com/problem/top-k-largest-numbers-ii/ 
 
-Lintcode .[]() Merge K Sorted Lists
-http://www.lintcode.com/problem/merge-k-sorted-lists/ 
-http://www.jiuzhang.com/solution/merge-k-sorted-lists/
+Lintcode .[Merge K Sorted Lists]() http://www.lintcode.com/problem/merge-k-sorted-lists/ 
  
 三种方法, 都需要练习
 方法一:使用 PriorityQueue 方法二:类似归并排序的分治算法 方法三:自底向上的两两归并算法
 时间复杂度均为 O(NlogK)
  
 Related  Lintcodes
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-Lintcode .[]()
-  http://www.lintcode.com/en/problem/high-five/ (A)
-  http://www.lintcode.com/en/problem/k-closest-points/ (L, A, F)
-  http://www.lintcode.com/problem/merge-k-sorted-arrays/
-  http://www.lintcode.com/problem/data-stream-median/
-  http://www.lintcode.com/problem/top-k-largest-numbers/
-  http://www.lintcode.com/problem/kth-smallest-number-in-sorted-matrix/
+Lintcode .[]() http://www.lintcode.com/en/problem/high-five/ (A)
+Lintcode .[]() http://www.lintcode.com/en/problem/k-closest-points/ (L, A, F)
+Lintcode .[]() http://www.lintcode.com/problem/merge-k-sorted-arrays/
+Lintcode .[]() http://www.lintcode.com/problem/data-stream-median/
+Lintcode .[]() http://www.lintcode.com/problem/top-k-largest-numbers/
+Lintcode .[]() http://www.lintcode.com/problem/kth-smallest-number-in-sorted-matrix/
 
 TreeMap(optional) 又想知道最小值, 又想支持修改和删除
 https://docs.oracle.com/javase/7/docs/api/java/util/TreeMap.html
 通常来说, 面试中几乎没有必须要用 TreeMap 的题
  
-相关习题
-Lintcode .[]()
-Lintcode .[]()
-  http://www.lintcode.com/problem/building-outline/
-  http://www.lintcode.com/problem/top-k-frequent-words/
-
+Lintcode .[]() http://www.lintcode.com/problem/building-outline/
+Lintcode .[]() http://www.lintcode.com/problem/top-k-frequent-words/
 
 # 6. stack 栈
-
 
 
 # 7. Deque 双端队列
