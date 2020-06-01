@@ -161,3 +161,11 @@ whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在
 
 
 Reference: Draw Diagram https://support.typora.io/Draw-Diagrams-With-Markdown/
+
+
+Lintcode questions associated with .. in .. folder 
+    Algorithm.md            基础班LintCode or 强化班LintCode
+    Data Structure.md       基础班LintCode or 强化班LintCode
+    动态规划.md               动态规划
+
+Note: Whose name starting with C{num}. in 基础班LintCode are archived. (2019.5一刷九章算法v4.2做的题)
