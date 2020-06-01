@@ -11,18 +11,27 @@
 - [2. 搜索 Search](#2-%E6%90%9C%E7%B4%A2-search)
     - [2.1. 宽度优先搜索 Breadth First Search](#21-%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-breadth-first-search)
         - [2.1.1. 二叉树上的宽度优先搜索 BFS in Binary Tree](#211-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-binary-tree)
-        - [2.1.2. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)](#212-%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-graph--%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-topological-sorting%E5%BF%85%E8%80%83)
-        - [2.1.3. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)](#213-%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-matrix-%E6%A0%BC%E5%AD%90%E5%9B%BE)
+            - [2.1.1.1. Soft and Deep Copy (深度拷贝)](#2111-soft-and-deep-copy-%E6%B7%B1%E5%BA%A6%E6%8B%B7%E8%B4%9D)
+            - [2.1.1.2. 层级遍历](#2112-%E5%B1%82%E7%BA%A7%E9%81%8D%E5%8E%86)
+        - [2.1.2. Serialization 序列化](#212-serialization-%E5%BA%8F%E5%88%97%E5%8C%96)
+        - [2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)](#213-%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-graph--%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-topological-sorting%E5%BF%85%E8%80%83)
+        - [2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)](#214-%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-matrix-%E6%A0%BC%E5%AD%90%E5%9B%BE)
     - [2.2. 深度优先搜索 Depth First Search](#22-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-depth-first-search)
         - [2.2.1. 组合搜索问题 Combination 2**n](#221-%E7%BB%84%E5%90%88%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-combination-2n)
         - [2.2.2. 排列搜索问题 Permutation](#222-%E6%8E%92%E5%88%97%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-permutation)
-        - [2.2.3. Non Recursion](#223-non-recursion)
+        - [2.2.3. Search in a Graph 图中的搜索](#223-search-in-a-graph-%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2)
+        - [2.2.4. Non Recursion](#224-non-recursion)
+        - [2.2.5. DFS时间复杂度](#225-dfs%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6)
+    - [2.3. dijkstra's algorithm](#23-dijkstras-algorithm)
 - [3. Sweep Line 扫描线算法 处理区间问题的扫描线](#3-sweep-line-%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95-%E5%A4%84%E7%90%86%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98%E7%9A%84%E6%89%AB%E6%8F%8F%E7%BA%BF)
 - [4. 两根指针 Two Pointers](#4-%E4%B8%A4%E6%A0%B9%E6%8C%87%E9%92%88-two-pointers)
     - [4.1. 同向双指针](#41-%E5%90%8C%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
     - [4.2. 相向双指针](#42-%E7%9B%B8%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
     - [4.3. Two Sum & its variation](#43-two-sum--its-variation)
     - [4.4. Partition Array 分割数组](#44-partition-array-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84)
+- [5. 递归 Recursion](#5-%E9%80%92%E5%BD%92-recursion)
+- [6. 贪心 Greedy](#6-%E8%B4%AA%E5%BF%83-greedy)
+- [7. 分治 Divide & Conquer](#7-%E5%88%86%E6%B2%BB-divide--conquer)
 
 <!-- /TOC -->
 
@@ -133,7 +142,7 @@ Lintcode 159.[Find Minimum in Rotated Sorted Array]()  oooooxxxxx
 
 Lintcode 28.[Search a 2D Matrix]() 不是二分法, 但是是常考题
 Lintcode 38.[Search a 2D Matrix II]() 不是二分法, 但是是常考题
-- 从左下角开始，往右上角逼近
+- 从左下角开始, 往右上角逼近
 
 Lintcode 61.[Search for a Range]() First Position of Target + Last Position of Target
 
@@ -299,15 +308,19 @@ LintCode 617.[Maximum Average Subarray II]() 二分答案的典型题目
 
 # 2. 搜索 Search
 
+使用 DFS → 找所有的方案; 找最优的问题, 找最短/最长问题 (但很少)
+使用 BFS → 图的遍历问题(层级遍历, 联通问题灌水法, 拓扑排序) + 简单图最短路径问题
+
+难度 BFS < DFS < DP
+
 ## 2.1. 宽度优先搜索 Breadth First Search
 什么时候应该使用BFS? (BFS 就是循环)
-① 图的遍历 Traversal in Graph
-   * 层级遍历 Level Order Traversal    (起点 → 一层一层遍历)
-   * 由点及面 Connected Component   (A&B能否联通)
-   * 拓扑排序 Topological Sorting
-
-② 最短路径 Shortest Path in Simple Graph   
-仅限简单图求最短路径 (简单图: 图中每条边长度都是1, 且没有方向 unweighted & undirected)
+* ① 图的遍历 Traversal in Graph
+   - 层级遍历 Level Order Traversal (起点 → 一层一层遍历)
+   - 由点及面 Connected Component (A&B能否联通)
+   - 拓扑排序 Topological Sorting
+* ② 最短路径 Shortest Path in Simple Graph   
+    仅限简单图求最短路径 (简单图: 图中每条边长度都是1, 且没有方向 unweighted & undirected)
 
 如果题目问最短路径, 除了BFS还可能是什么算法? BFS只能解决边长为1的最短问题, 还可以用动态规划DP
 如果问最长路径呢? DFS, DP
@@ -322,24 +335,21 @@ if root is None: return [ ]    # 而不是 return None !!!
 Lintcode 69.[Binary Tree Level Order Traversal]() 图的遍历(层级遍历) 
 树是图的一种特殊形态, 树属于图
 
-Soft and Deep copy (深度拷贝)
+#### 2.1.1.1. Soft and Deep Copy (深度拷贝)
 A deep copy constructs a new compound object and then, recursively, inserts copies into it of the objects found in the original.
+```java
 import java.util.ArrayList;
 
 public class HelloWorld{
-     public static void main(String []args){
+    public static void main(String []args){
         ArrayList<Integer> list1 = new ArrayList<>();
         ArrayList<Integer> list2 = list1;    // soft copy, 只copy了reference
         list1.add(1);       		// list1, list2均为 [1]
-        System.out.println(list1);
-        System.out.println(list2);
         ArrayList<Integer> list3 = new ArrayList<>(list1);  // deep copy/clone, copy content
-        list1.add(2);  			// list3为[1], list1, list2为[1, 2]
-        System.out.println(list1);
-        System.out.println(list2);
-        System.out.println(list3);
-     }
+        list1.add(2);  			    // list3为[1], list1, list2为[1, 2]
+    }
 }
+```
 
 deep copy in BFS → 每次加进去的是相同的东西
 no deep copy → 每次加进去的是新new出来的东西
@@ -347,39 +357,40 @@ no deep copy → 每次加进去的是新new出来的东西
 宽搜BFS使用队列Queue作为主要的数据结构  (Queue可以用linked list实现, delete/add为O(1))
 用栈(Stack)是否可行? BFS标配Queue, DFS标配Stack
 
-是否需要实现分层? 需要分层的算法比不需要分层的算法多一个循环 
+#### 2.1.1.2. 层级遍历
+需要分层的算法比不需要分层的算法多一个循环 size=queue.size()
 
-size=queue.size()
 如果直接 for (int i = 0; i < queue.size(); i++) 会怎么样?   for上一层节点, 拓展出新的节点
-queue.size()在变化→所有的东西都挤在一层
+queue.size()在变化 → 所有的东西都挤在一层
 
-**Serialization 序列化**
-什么是序列化?  数据 → 字符串, 在传输中很重要
-将“内存”中结构化的数据变成“字符串”的过程 序列化:object to string 反序列化:string to object
+### 2.1.2. Serialization 序列化
+将内存中结构化的数据变成"字符串"的过程  (在传输中很重要)
+序列化:object to string 反序列化:string to object
 
 什么时候需要序列化?
 * ①将内存中的数据持久化存储时
     内存中重要的数据不能只是呆在内存里, 这样断电就没有了, 所需需要用一种方式写入硬盘, 在需要的时候, 能否再从硬盘中读出来在内存中重新创建
 * ②网络传输时, 机器与机器之间交换数据的时候, 不可能互相去读对方的内存。只能讲数据变成字符流数据(字符串)后, 通过网络传输过去。接受的一方再将字符串解析后到内存中。 
-    常用的一些序列化手段:
-    - XML 耗费空间, 但可读性高
-    - Json 和JS兼容
-    - Thrift (by Facebook)  可以序列化, 也可以做别的。
-    - ProtoBuf (by Google) 可以序列化, 也可以做别的。可以远程函数调用
 
-一些序列化的例子:
-    比如一个数组, 里面都是整数, 我们可以简单的序列化为"[1,2,3]"
-    一个整数链表, 我们可以序列化为 "1->2->3"
-    一个哈希表(HashMap), 我们可以序列化为 "{\"key\": \"value\"}"
+常用的一些序列化手段:
+- XML 耗费空间, 但可读性高
+- Json 和JS兼容
+- Thrift (by Facebook)  可以序列化, 也可以做别的。
+- ProtoBuf (by Google) 可以序列化, 也可以做别的。可以远程函数调用
+
+例:
+- 一个数组, 里面都是整数, 我们可以简单的序列化为"[1,2,3]"
+- 一个整数链表, 我们可以序列化为 "1->2->3"
+- 一个哈希表(HashMap), 我们可以序列化为 "{\"key\": \"value\"}"
 
 序列化算法设计时需要考虑的因素:
-* ①压缩率: 对于网络传输和磁盘存储而言, 当然希望更节省。
-  如 Thrift, ProtoBuf 都是为了更快的传输数据和节省存储空间而设计的。
+* ①压缩率: 对于网络传输和磁盘存储而言, 当然希望更节省
+  如 Thrift, ProtoBuf 都是为了更快的传输数据和节省存储空间而设计的
 * ②可读性: 希望开发人员, 能够通过序列化后的数据直接看懂原始数据是什么。如 Json, LintCode 的输入数据
 
-Binary Tree Serialization & 多叉树序列化
-二叉树如何序列化? 你可以使用任何你想要用的方法进行序列化, 只要保证能够解析回来即可。
-LintCode采用的是 BFS的方式对二叉树数据进行序列化, 好处是可以更为容易的自己画出整棵二叉树。
+二叉树序列化 Binary Tree Serialization & 多叉树序列化
+二叉树可以使用任何方法进行序列化, 只要保证能够解析回来即可。
+LintCode采用的是BFS的方式对二叉树数据进行序列化, 好处是可以更为容易的自己画出整棵二叉树。
 
 算法描述: http://www.lintcode.com/en/help/binary-tree-representation/  层级遍历
 
@@ -392,18 +403,19 @@ Lintcode 70.[Binary Tree Level Order Traversal II]()
 Lintcode 71.[Binary Tree Zigzag Level Order Traversal]()
 Lintcode 242.[Convert Binary Tree to Linked Lists by Depth]()
 
-### 2.1.2. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)
-问: 和树上有什么区别? 树→父子关系; 图→双向关系, 可能存在地位平等(邻居关系)   directed/undirected graph
+### 2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)
+和树上有什么区别? 树→父子关系; 图→双向关系, 可能存在地位平等(邻居关系)   directed/undirected graph
 图是点和边组成的结构, 甚至可以不联通  G = < V, E > 
 
 套用social network背景来考察图 (六度理论: 问A和B是几度关系? 用BFS, 从A开始层级遍历)
-
+ 
 图中存在环(图和树的本质区别) --> 同一个节点可能重复进入队列
-    图中BFS时, 用hashmap/hashset记录是否完成任务
+图中BFS时, 用hashmap/hashset记录是否完成任务
 
 Lintcode 178.[Graph Valid Tree]()
-图的遍历(由点及面) 图是数的 (条件1) N个点, N-1条边 (条件2) N个点连通 (从o出发可以联通所有点)
+图的遍历(由点及面) 图是树的 (条件1) N个点, N-1条边 (条件2) N个点连通 (从o出发可以联通所有点)
 	BFS求连通性: 灌水法 flood fill. queue当前队列, hashset放入所有进入过队列的点 (看哈希表是不是n个数)
+
 如何用基本数据结构表示一个图?  用hashmap {vertex, its neighbors} → {integer, hashset(int)} 
 
 Lintcode 137.[Clone Graph]() = deep copy		
@@ -411,17 +423,15 @@ Lintcode 137.[Clone Graph]() = deep copy
 训练code structure的好题, 所有程序实现在一个函数, 逻辑不清晰; 好程序其实不需要注释, 就能读懂
 
 独孤九剑——破枪式
-能够用 BFS 解决的问题, 一定不要用 DFS 去做! 能用 BFS 的一定不要用 DFS (除非面试官特别要求)
-因为用 Recursion 实现的 DFS 可能造成 StackOverflow! (NonRecursion 的 DFS你不会写, 面试官也看不懂)
+能用 BFS 解决的问题, 不要用 DFS! (除非面试官特别要求)
+因为用 Recursion 实现的 DFS 可能造成 StackOverflow! (Non-Recursion 的 DFS你不会写, 面试官也看不懂)
 
-Lintcode 618.[Search Graph Nodes]()
-http://www.lintcode.com/problem/search-graph-nodes/ 
+Lintcode 618.[Search Graph Nodes]() 
 图的遍历(由点及面) 为什么不需要做分层遍历?
 如何找所有最近的value=target的点? 分层遍历
 
 Lintcode 127.[Topological Sorting]()
-http://www.lintcode.com/problem/topological-sorting/ 
-拓扑排序可以用来检测循环依赖 (e.g 先修课程的问题), 拓扑排序不是一个排序算法, 排的是topo order
+拓扑排序可以用来检测循环依赖 (e.g 先修课程的问题), 拓扑排序排的是topo order (并不是一个排序算法)
 几乎每个公司都有一道拓扑排序的面试题! 
 indegree(入度): 有多少条边指向此点,   hashmap 点→点的入度   
 入度为0的点为start node, 将入度0的放进队列进行BFS
@@ -431,103 +441,90 @@ Lintcode 615.[Course Schedule]()
 Lintcode 616.[Course Schedule II]() 裸拓扑排序
 Lintcode 605.[Sequence Reconstruction]()
 http://www.lintcode.com/problem/sequence-reconstruction/
-判断是否只存在一个拓扑排序的序列 只需要保证队列中一直最多只有1个元素即可
+判断是否只存在一个拓扑排序的序列, 只需要保证队列中一直最多只有1个元素即可
 
 能不能被拓扑排序? 判断有没有入度为0的点
 
-### 2.1.3. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)
+### 2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)
 图 Graph: N个点, M条边, M最大是 O(N^2) 的级别 (两两连通), 图上BFS时间复杂度 O(N + M)   (点边之和)
     说O(M)问题也不大, 因为M一般都比N大 所以最坏情况可能是 O(N^2)
-矩阵 Matrix: R行C列, R * C个点, R * C * 2 条边(每个点上下左右4条边, 每条边被2个点共享),  矩阵中BFS时间复杂度 O(R*C)
+矩阵 Matrix: R行C列, R * C个点, R * C * 2 条边(每个点上下左右4条边, 每条边被2个点共享), 矩阵中BFS时间复杂度 O(R*C)
 
 Lintcode 433.[Number of Islands]()
-http://www.lintcode.com/problem/number-of-islands/
-http://www.jiuzhang.com/solutions/number-of-islands/ 
+图的遍历(由点及面)
 
-坐标变换数组
-int[] deltaX = {1, 0, 0, -1}; 
-int[] deltaY = {0, 1, -1, 0};
+四个方向用四个if语句非常bad, 用坐标变换数组和if语句; inBound函数, 测在不在边界范围内
+坐标变换数组 deltaX, deltaY = [1, 0, 0, -1], [0, 1, -1, 0]
 如何写出八个方向的坐标变换数组?
-四个方向用四个if语句非常bad, 用坐标变换数组和if语句; inbound函数, 测一下在不在边界范围内
 
 Lintcode.[Zombie in Matrix]()
-http://www.lintcode.com/problem/zombie-in-matrix/ 
-http://www.jiuzhang.com/solutions/zombie-in-matrix/ 
 图的遍历(层级遍历)  分层遍历
-大写variable name来定义常量, 甚至可以加static, 写在外面, 千万不要写在程序里!!
+大写variable name来定义常量, 甚至可以加static, 写在外面, 不要写在程序里!!
 public int PEOPLE = 0;
 public int ZOMBIE = 1;
 public int WALL = 2;
 千万别写 grid[?][?] == 1;    // bad coding style, 1是什么不直观
 
 Lintcode.[Knight Shortest Path]()
-http://www.lintcode.com/problem/knight-shortest-path/ 
-http://www.jiuzhang.com/solutions/knight-shortest-path/ 
 简单图最短路径  八个方向 BFS
 follow up: speed up?
 
-  无向图联通块
-  http://www.lintcode.com/problem/connected-component-in-undirected-graph/   
+无向图联通块
+    http://www.lintcode.com/problem/connected-component-in-undirected-graph/   
 
- 覆盖黑点的最小矩阵(BFS无法AC但是可以作为BFS的练习题)
-  http://www.lintcode.com/problem/smallest-rectangle-enclosing-black-pixels/
+覆盖黑点的最小矩阵(BFS无法AC但是可以作为BFS的练习题)
+    http://www.lintcode.com/problem/smallest-rectangle-enclosing-black-pixels/
 
 简单图最短路径
-  单词阶梯
-  http://www.lintcode.com/problem/word-ladder/
-
-  建邮局问题 Build Post Office II 简单图最短路径
-  http://www.lintcode.com/en/problem/build-post-office-ii/
-  http://www.jiuzhang.com/solutions/build-post-office-ii
-(方法一) 从空格出发
-	循环枚举所有的office修建未知的可能性(空格)
-	计算从这个位置出发到达所有房子的距离之和
-	在所有方案中找到最小的距离和
-(方法二) 从房子出发
-	循环枚举所有的房子位置
-	从房子出发, 机选每个空格到达房子的距离之和
-	累加某个空格到达其他所有房子距离之和
-	在所有空格中, 找到最小距离和
-
+    单词阶梯    http://www.lintcode.com/problem/word-ladder/
+    建邮局问题 Build Post Office II 简单图最短路径  http://www.lintcode.com/en/problem/build-post-office-ii/
+    (方法一) 从空格出发
+        循环枚举所有的office修建未知的可能性(空格)
+        计算从这个位置出发到达所有房子的距离之和
+        在所有方案中找到最小的距离和
+    (方法二) 从房子出发
+        循环枚举所有的房子位置
+        从房子出发, 机选每个空格到达房子的距离之和
+        累加某个空格到达其他所有房子距离之和
+        在所有空格中, 找到最小距离和
 
 ## 2.2. 深度优先搜索 Depth First Search
+什么时候用 DFS? 求所有方案时
 
-Recursion(不特别说明的话, DFS用recursion实现; 有几道题需要掌握non-recursion的方式)
-难度 BFS < DFS < DP
+怎么解决DFS? Recursion(不特别说明的话, DFS用recursion实现; 有几道题需要掌握non-recursion的方式)
 
 Note: DFS把结果放入results中, 一定要使用deep copy!
 
 面试时脚本语言(Ruby, Python)更占便宜
 
-什么时候使用 DFS? 找所有的方案; 找最优的问题, 找最短/最长问题 (但很少)
-什么时候使用 BFS? 图的遍历问题(层级遍历, 联通问题灌水法, 拓扑排序) + 简单图最短路径问题
-
-独孤九剑 —— 破鞭式   找所有方案的题, 一定是DFS
+独孤九剑 —— 破鞭式   
+找所有方案的题, 一定是DFS
 90% DFS的题, 要么是排列, 要么是组合
 
 ### 2.2.1. 组合搜索问题 Combination 2**n
-问题模型:求出所有满足条件的“组合”
-判断条件:组合中的元素是顺序无关的
-时间复杂度:与 2^n 相关  因为 
+问题模型: 求出所有满足条件的“组合”
+判断条件: 组合中的元素是顺序无关的
+时间复杂度: 与 2^n 相关, 因为 C[0][n] + C[1][n] + .. C[n][n] = 2^n, C[i][n]=n个数中取i个
 
 一般来说, 如果面试官不特别要求的话, DFS都可以使用递归(Recursion)的方式来实现。 
 递归三要素是实现递归的重要步骤: 递归的定义   递归的拆解   递归的出口
 
-*** Lintcode 135-Combination Sum
-和subsets的区别?
-  Combination Sum 限制了组合中的数之和→加入一个新的参数(target)来限制
-  Subsets 无重复元素, Combination Sum 有重复元素→ 需要先去重
-  Subsets 一个数只能选一次, Combination Sum 一个数可以选很多次 → 搜索时从 index 开始而不是从 index + 1
+我们在第一节课中讲过的全子集问题(http://www.lintcode.com/problem/subsets/)就是典型的组合搜索 问题。
 
-*** Lintcode 153-Combination Sum II
+Lintcode 135.[Combination Sum]()
+和subsets的区别?
+- Combination Sum 限制了组合中的数之和 → 加入一个新的参数(target)来限制
+- Subsets 无重复元素, Combination Sum 有重复元素 → 需要先去重
+- Subsets 一个数只能选一次, Combination Sum 一个数可以选很多次 → 搜索时从 index 开始而不是从 index + 1
+
+Lintcode 153.[Combination Sum II]()
 如何去重? (错误做法) 找到所有结果后再去重  (正确做法) 选代表
 
-*** Lintcode 136-Palindrome Partitioning
+Lintcode 136.[Palindrome Partitioning]()
 如何优化?
-→用hashmap存储回文串, 但这样没效果
-	getkey不是 O(1), 是O(size of key), 取决于用作key的字符串有多长..
-→用二维数组
-
+- 用hashmap存储回文串, 但这样没效果
+    getkey不是 O(1), 是O(size of key), 取决于用作key的字符串有多长..
+- 用二维数组
 
 ### 2.2.2. 排列搜索问题 Permutation
 (相比组合问题少start index, 但同一个数不能重复的选, 所以多一个set放使用过的数或者使用过数的下标)
@@ -535,50 +532,44 @@ Note: DFS把结果放入results中, 一定要使用deep copy!
 判断条件: 组合中的元素是顺序“相关”的
 时间复杂度:与 n! 相关
 
-*** Lintcode 15-Permutations
-*** Lintcode 16-Permutations II
+Lintcode 15.[Permutations]()
+Lintcode 16.[Permutations II]()
 如何去重?
 
-*** Lintcode 33-N Queens
+Lintcode 33.[N Queens]()
 
-通用的DFS时间复杂度计算公式 O(答案个数 * 构造每个答案的时间)
-搜索的时间复杂度：O(答案总数 * 构造每个答案的时间) 举例：Subsets问题，求所有的子集。子集个数一共 2^n，每个集合的平均长度是 O(n) 的，所以时间复杂度为 O(n * 2^n)，同理 Permutations 问题的时间复杂度为：O(n * n!)
-动态规划的时间复杂度：O(状态总数 * 计算每个状态的时间复杂度) 举例：triangle，数字三角形的最短路径，状态总数约 O(n^2) 个，计算每个状态的时间复杂度 O(1)——就是求一下 min。所以总的时间复杂度为 O(n^2)
-用分治法解决二叉树问题的时间复杂度：O(二叉树节点个数 * 每个节点的计算时间) 举例：二叉树最大深度。二叉树节点个数为 N，每个节点上的计算时间为 O(1)。总的时间复杂度为 O(N)
-
-Search in a Graph 图中的搜索
-
-*** Lintcode 120-Word Ladder
+### 2.2.3. Search in a Graph 图中的搜索
+Lintcode 120.[Word Ladder]()
 http://www.lintcode.com/problem/word-ladder/
 http://www.jiuzhang.com/solutions/word-ladder/
 
-*** Lintcode Word Ladder II
+Lintcode.[Word Ladder II]()
 http://www.lintcode.com/problem/word-ladder-ii/
 http://www.jiuzhang.com/solutions/word-ladder-ii/
 
-### 2.2.3. Non Recursion 
+### 2.2.4. Non Recursion
 基本上都会用上栈(Stack)
 必“背”程序
 Tree Traversal
-http://www.jiuzhang.com/solutions/binary-tree-preorder-traversal/
-http://www.jiuzhang.com/solutions/binary-tree-inorder-traversal/ 
-http://www.jiuzhang.com/solutions/binary-tree-postorder-traversal/ 
-http://www.jiuzhang.com/solutions/binary-search-tree-iterator/ 
+Lintcode .[]()  http://www.jiuzhang.com/solutions/binary-tree-preorder-traversal/
+Lintcode .[]()  http://www.jiuzhang.com/solutions/binary-tree-inorder-traversal/ 
+Lintcode .[]()  http://www.jiuzhang.com/solutions/binary-tree-postorder-traversal/
+Lintcode .[]()  http://www.jiuzhang.com/solutions/binary-search-tree-iterator/ 
 
-Combination
-http://www.jiuzhang.com/solutions/subsets/
-Permutation
-http://www.jiuzhang.com/solutions/permutations/
+Lintcode .[]()  Combination http://www.jiuzhang.com/solutions/subsets/
+Lintcode .[]()  Permutation http://www.jiuzhang.com/solutions/permutations/
 
-总结 Conclusion
-  什么时候用 DFS?   求所有方案时
-  怎么解决DFS?
-  不是排列就是组合
-  复杂度怎么算?
-  O(答案个数 * 构造每个答案的时间复杂度)
-  非递归怎么办?   必“背”程序
+### 2.2.5. DFS时间复杂度
+O(答案个数 * 构造每个答案的时间)
+* 搜索的时间复杂度: O(答案总数 * 构造每个答案的时间)
+    举例: Subsets问题, 求所有的子集。子集个数一共 2^n, 每个集合的平均长度是 O(n) 的, 所以时间复杂度为 O(n * 2^n), 同理 Permutations 问题的时间复杂度为: O(n * n!)
+* 动态规划的时间复杂度: O(状态总数 * 计算每个状态的时间复杂度)
+    举例: triangle, 数字三角形的最短路径, 状态总数约 O(n^2) 个, 计算每个状态的时间复杂度 O(1)——就是求一下 min。所以总的时间复杂度为 O(n^2)
+* 用分治法解决二叉树问题的时间复杂度: O(二叉树节点个数 * 每个节点的计算时间)
+    举例: 二叉树最大深度。二叉树节点个数为 N, 每个节点上的计算时间为 O(1)。总的时间复杂度为 O(N)
 
 
+## 2.3. dijkstra's algorithm
 
 # 3. Sweep Line 扫描线算法 处理区间问题的扫描线 
 见到区间需要排序, 就可以考虑扫描线 (区间问题巧妙解法)
@@ -623,7 +614,6 @@ LintCode 131.[The Skyline Problem/Building Outline]()
 LintCode 919. [Meeting Rooms II]()
 
 LintCode 821. [Time Intersection]() F家高频题 输出两组区间的交集
-
 
 
 # 4. 两根指针 Two Pointers 
@@ -730,3 +720,9 @@ http://www.geeksforgeeks.org/pancake-sorting/
 unique pairs
 closest to target
 difference = target
+
+# 5. 递归 Recursion
+
+# 6. 贪心 Greedy
+
+# 7. 分治 Divide & Conquer

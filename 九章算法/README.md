@@ -28,7 +28,7 @@
 
 # 2. [Algorithm](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Algorithm.md)
 - Binary Search 二分法 (二分, 二分答案)
-- Search搜索, BFS, DFS
+- Search搜索, BFS, DFS, dijkstra's algorithm
 - 扫描线 Sweep Line  (Done)
 - 递归 Recursion
 - 贪心 Greedy
