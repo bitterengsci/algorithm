@@ -16,6 +16,12 @@
 - [9. 字典树Trie, Prefix Tree 前缀树](#9-%E5%AD%97%E5%85%B8%E6%A0%91trie-prefix-tree-%E5%89%8D%E7%BC%80%E6%A0%91)
     - [9.1. Trie用于剪枝](#91-trie%E7%94%A8%E4%BA%8E%E5%89%AA%E6%9E%9D)
     - [9.2. Typeahead Trie 在系统设计中的运用 (实际运用)](#92-typeahead-trie-%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8-%E5%AE%9E%E9%99%85%E8%BF%90%E7%94%A8)
+- [10. 线段树 Segment Tree](#10-%E7%BA%BF%E6%AE%B5%E6%A0%91-segment-tree)
+    - [10.1. 线段树的构建](#101-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA)
+    - [10.2. 线段树的修改](#102-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E4%BF%AE%E6%94%B9)
+    - [10.3. 线段树的查询](#103-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9F%A5%E8%AF%A2)
+- [11. 树状数组 binary index tree](#11-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-binary-index-tree)
+    - [11.1. 树状数组的构建](#111-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%9A%84%E6%9E%84%E5%BB%BA)
 
 <!-- /TOC -->
 - 数据结构 Heap (双堆)
@@ -553,3 +559,196 @@ Trie可以帮助剪枝
 
 "ab" "abc" "adc" "cad" "bad" "bd"中有多少不同的前缀? 可以自己构建一棵Trie, 将所有字符串插入字典树, 数其中有多少节点即可。共有a, ab, abc, ad, adc, b, ba, bad, bd, c, ca, cad 共12个本质不同的前缀。
 
+# 10. 线段树 Segment Tree
+线段树就是⼀个二叉树, 二叉树中的每个节点代表一个区间 (叶子节点代表最小区间=1个单位长度)
+  
+![](.pic/线段树.png)
+
+range-sum问题   [i, j] 区间元素之和
+
+线段树的作用
+- 线段树主要问题对象是区间。 
+- 求解区间和、区间最值以及其它区间上的问题。 
+- 根据问题的需要定义node的属性(sum/max) 
+ 
+线段树适⽤题型
+维护一个序列的问题: 给定⼀个整数序列, 每次操作会修改序列某个位置上的数, 或是询问序列中某个区间内所有数的和
+- 暴力: 	   修改时间O(1)    查询(查询和、查询最大值..) 时间O(n) 	空间O(1) 
+- 前缀和数组: 	修改时间O(n) 	查询时间O(1)    空间O(n) 
+        前缀和数组 [1, 2, 3, 4, 5, 6] → [1, 3, 6, 10, 15, 21]
+        修改index 1处为3   [1, 3, 3, 4, 5, 6] → [1, 4, 7, 11, 16, 22]  (前缀和数组需要修改5个元素)
+- 在序列上单点/区间修改, 然后对区间进行查询 ——线段树 
+    修改和查询的时间复杂度都是O(logn) 空间复杂度是O(n) 		
+	当n很大时, logn 接近一个常数 << n
+- 如果仅涉及区间上的查询, ⽽不涉及修改, 那么⽤前缀和即可 O(n)时间构建前缀和数组, O(1)查询
+
+线段树的结构/性质:
+* 除表示单点(单位区间)的⼀个节点是叶子结点外, 其它每一个表示区间的节点都有两颗子树。
+* 每一个节点分出了左右节点的区间长度为父亲节点⻓度的⼀半(左边向上取整, 右边向下取整; 近似平分两半)		
+    e.g. [L, R]	 mid=(L+R)/2	   [L, mid]  [mid, R]
+* 每⼀个节点存储的值都是左右节点进行对应运算得出的。这个运算是根据要求⽽定的。如: 求和的是和, 求最大值的是max。 
+
+结点定义: 左端点start, 右端点end		左孩子left, 右孩⼦right	  val(sum、max)
+public class SegmentTreeNode{
+    public int start, end, max;
+    public SegmentTreeNode left, right;
+    public SegmentTreeNode(int start, int end, int max){
+        this.start = start;
+        this.end = end;
+        this.max = max;
+        this.left = this.right = null;
+    }
+}
+
+线段树三个基本操作: 构建, 修改, 查询
+* 构建 O(n): ⾃上向下, 将⼤区间一切两半, 递归调⽤
+    1+2+4+8+..+ n/4 + n/2 + n → 2n  线段树有O(n)个节点, 构建线段树O(n)
+* 修改 O(h)≈O(log n): TC与线段树高度有关, 但线段树近似于完全二叉树
+    递归调⽤, 一路向下然后触底反弹
+	⼀路向下是为了找到最小区间, 触底反弹的时候才去修改node
+* 查询: O(logn) 0-3 and 2-3
+Note: logn比常数大, 但远远小于n
+
+## 10.1. 线段树的构建
+如何去根据问题去构建线段树 
+```java
+public SegmentTreeNode build(int start, int end){
+    if(start > end) return null;
+    if(start == end) return new SegmentTreeNode(start, end);
+
+    SegmentTreeNode root = new SegmentTreeNode(start, end);
+
+    if(start != end) {
+        int mid = (start + end) / 2;
+        root.left = build(start, mid);
+        root.right = build(mid + 1, end);
+    }
+    return root;
+}
+```
+构造max-range线段树:
+```java
+public SegmentTreeNode buildTree(int start, int end, int[] A){
+    if(start > end) return null;
+    if(start == end) return new SegmentTreeNode(start, end, A[start]);  
+						// 先用A[start] initiate node value  (值初始化为端点的值)
+
+    SegmentTreeNode node = new SegmentTreeNode(start, end, A[start]);   
+						// 先用A[start] initiate node value
+
+    if(start != end) {
+        int mid = (start + end) / 2;
+        node.left = this.buildTree(start, mid, A);
+        node.right = this.buildTree(mid + 1, end, A);
+    }
+
+    if (node.left != null && node.left.max > node.max)
+        node.max = node.left.max;
+    if (node.right != null && node.right.max > node.max)
+        node.max = node.right.max;
+
+    return node;
+}
+```
+如果是range-sum线段树呢?    node.val = node.left.val + node.right.val;
+
+## 10.2. 线段树的修改
+```java
+public void modify(SegmentTreeNode root, int index, int value) { // index值改为value
+    if(root.start == index && root.end == index) { 
+        root.max = value; 
+        return;
+    }
+    int mid = (root.start + root.end) / 2;
+    if(root.start <= index && index <= mid)
+        modify(root.left, index, value);
+    if(mid < index && index <= root.end)
+        modify(root.right, index, value);
+    
+    root.max = Math.max(root.left.max, root.right.max);
+}
+```
+
+## 10.3. 线段树的查询
+```java
+public int query(SegmentTreeNode root, int start, int end) {
+    if(root.start == index && root.end == index) { 
+        return root.max;
+    }
+
+    int mid = (root.start + root.end) / 2;
+    int leftmax = Integer.MIN_VALUE, rightmax = Integer.MIN_VALUE;
+
+    if(start <= mid) {
+        if(mid < end) {
+            leftmax = query(root.left, start, mid);
+        } else {
+            leftmax = query(root.left, start, end);
+        }
+    }
+    if(mid < end) {
+        if(start <= mid) {
+            rightmax = query(root.right, mid+1, end);
+        } else {
+            rightmax = query(root.right, start, end);
+        }
+    }
+    return Math.max(leftmax, rightmax);
+}
+```
+
+线段树Lintcode: 206, 207, 248, 249, (439, 201, 247, 203, 202)
+
+# 11. 树状数组 binary index tree
+树状数组⽤于维护前缀信息的结构
+对前缀信息的处理也是⾮常高效的
+北美常见面试题
+熟练掌握树状数组类似问题的解决, 可以加深初学者对于逻辑分层的理解
+
+树状数组问题举例 (前缀, 区间问题)
+给定⼀个整数组 nums, 然后你需要实现两个函数: 
+    update(i, val) 将数组下标为 i 的元素修改为val 
+    sumRange(l, r) 返回数组下标在 [l, r] 区间的元素的和 
+- 暴⼒求解: update时间复杂度O(1), sumRange时间复杂度O(n) 
+- 如果⽤树状数组来求解呢? logn logn
+   
+树状数组与区间和的联系 
+树状数组是通过前缀和思想, ⽤来完成单点更新和区间查询的数据结构。
+它⽐之线段树, 所⽤空间更小, 速度更快 (空间都是O(n), 但是树状数组只开了一个长度为n的数组, 但线段树有..)
+
+如何⽤前缀和求解sumRange(i, j)呢?
+那么树状数组具体如何实现单点更新以及区间求和呢? 可变数组range-sum问题
+  
+树状数组算法分析 
+注意: 树状数组的下标从 1 开始计数	定义: 数组 C 是⼀个对原始数组 A 的预处理数组
+
+图图图图图
+
+C[i]来⾃几个数组A中的元素: 取决于i的⼆进制末尾有几个连续的0。⽐如有k个0, 那么C[i]来自2^k个A中的元素 
+
+
+定义⼀个lowbit函数: lowbit(i) = 2 ^ k
+根据lowbit函数, 可以知道 ①C[i]代表⼏个A中元素相加 = lowbit(i)    		②i的⽗亲在哪 = i + lowbit(i)
+  
+## 11.1. 树状数组的构建
+先都初始化为0 (这样依旧满足C[i] = A[i]等式), 然后再更新为相应的值
+e.g [1 2 3 4 ..]
+delta=1  A[1]=1  C[1]+=delta (1)  C2是1+lowbit(1)  
+C2+=1  C4..  
+delta=3 A[3]=3  C[3]+=delta (3)  
+  
+进⾏区间和查询 = 进⾏两次前缀和查询     [i, j] = [1, j] ﹣ [1, i-1]
+sum(i) = sum{A[j] | 1 <= j <= i } = A[1] + A[2] + .. + A[i] 
+       = A[1] + A[2] + A[i-2^k] + A[i-2^k+1] + .. + A[i] = A[1] + A[2] + A[i-2^k] + C[i] 
+       = sum(i - 2^k) + C[i] = sum(i - lowbit(i)) + C[i]
+e.g. sum(6) = C[6] + sum(6-lowbit(6)) = C[6] + sum(4)
+     sum(4) = C[4] + sum(4-lowbit(4)) = C[4] + sum(0) = C[4]		sum(6) = C[6] + C[4]
+
+lowbit(i) = 2 ^ k   (k=i的2进制末尾0的个数)
+位运算& 1&1=1 0&1=0 1&0=0 0&0=0 
+3 & 11 = 0011 & 1011 = 0011
+正数和负数的⼆进制  	int 有一位是符号位  正数01011 负数 a)补码, 0变1, 1变0 b)再加1   -11是10101
+num & (-num) = 2 ^ k 
+e.g lowbit(12) = 2 ^ 2 = 4    与运算 01100 & 10100 = 00100 = 4
+  
+lintcode 840 [range-sum]() 树状数组算法程序实现
