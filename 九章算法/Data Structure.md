@@ -752,3 +752,9 @@ num & (-num) = 2 ^ k
 e.g lowbit(12) = 2 ^ 2 = 4    与运算 01100 & 10100 = 00100 = 4
   
 lintcode 840 [range-sum]() 树状数组算法程序实现
+
+树状数组Lintcode: 
+206 Interval Sum, 
+207 Interval Sum II, 
+248 Count of Smaller Number, 
+249 Count of Smaller Number before itself
