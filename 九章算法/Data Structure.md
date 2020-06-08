@@ -22,9 +22,13 @@
     - [10.3. 线段树的查询](#103-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9F%A5%E8%AF%A2)
     - [10.4. Python 线段树](#104-python-%E7%BA%BF%E6%AE%B5%E6%A0%91)
         - [10.4.1. SideNote: staticmethod & classmethod](#1041-sidenote-staticmethod--classmethod)
+    - [10.5. 线段树Lintcode](#105-%E7%BA%BF%E6%AE%B5%E6%A0%91lintcode)
 - [11. 树状数组 binary index tree](#11-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-binary-index-tree)
     - [11.1. 树状数组算法分析](#111-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90)
     - [11.2. 树状数组的构建](#112-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%9A%84%E6%9E%84%E5%BB%BA)
+        - [11.2.1. lowbit](#1121-lowbit)
+    - [11.3. Python 树状数组](#113-python-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84)
+    - [11.4. 树状数组Lintcode:](#114-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84lintcode)
 
 <!-- /TOC -->
 - 数据结构 Heap (双堆)
@@ -813,9 +817,7 @@ class A(object):
         print(cls().foo2(name))
 ```
 
-
-线段树Lintcode: 206, 207, 248, 249, (439, 201, 247, 203, 202)
-
+## 10.5. 线段树Lintcode
 Lintcode 206.[Interval Sum]()
 Given an integer array (index from 0 to n-1, where n is the size of this array), and an query list. Each query has two integers [start, end]. For each query, calculate the sum number between index start and end in the given array, return the result list.
 * Soln 1: Cumulative Sum Array
@@ -832,7 +834,6 @@ https://www.lintcode.com/problem/count-of-smaller-number/
 Lintcode 249.[Count of Smaller Number before itself]()
 https://www.lintcode.com/problem/count-of-smaller-number-before-itself/
 
-
 SegmentTreeNode的val为range max
 Lintcode 201.[Segment Tree Build]()
 The structure of Segment Tree is a binary tree which each node has two attributes start and end denote an segment/interval. start and end are both integers, they should be assigned in following rules:
@@ -847,7 +848,6 @@ Lintcode 203.[Segment Tree Modify]()
 
 Lintcode 439.[Segment Tree Build II]()
 Lintcode 247.[Segment Tree Query II]()
-
 
 
 # 11. 树状数组 binary index tree
@@ -882,42 +882,77 @@ C[i]来⾃几个数组A中的元素: 取决于i的⼆进制末尾有几个连续
 |数组C的索引i| i的二进制表示 | k |2^k 数组C中的元素来自数组A的个数| 数组C的定义由数组A的那些元素而来 |
 |-----------|------------|---|:--------------------------:|-----------------------------|
 |     1     | 0000 0001  | 0 |             1              | C[1] = A[1]                 |
-|     2     | 0000 0010  | 1 |             2              | C[1] = A[1] + A[2]          |
+|     2     | 0000 0010  | 1 |             2              | C[2] = A[1] + A[2]          |
 |     3     | 0000 0011  | 0 |             1              | C[3] = A[3]                 |
 |     4     | 0000 0100  | 2 |             4              | C[4] = A[1] + A[2] + A[3] + A[4]    |
 |     5     | 0000 0101  | 0 |             1              | C[5] = A[5]                 |
 |     6     | 0000 0110  | 1 |             2              | C[6] = A[5] + A[6]          |
 |     7     | 0000 0111  | 0 |             1              | C[7] = A[7]                 |
-|     8     | 0000 1000  | 3 |             8        | C[8] = A[1] + A[2] + A[3] + A[4] + A[5] + A[6] + A[7] + A[8] |
+|     8     | 0000 1000  | 3 |             8        |   C[8] = A[1] + A[2] + A[3] + A[4] + A[5] + A[6] + A[7] + A[8] |
 
-定义⼀个lowbit函数: lowbit(i) = 2 ^ k
-根据lowbit函数, 可以知道 ①C[i]代表⼏个A中元素相加 = lowbit(i)    		②i的⽗亲在哪 = i + lowbit(i)
+定义⼀个lowbit函数: lowbit(i) = 2 ^ k (k为i的2进制末尾0的个数)
+根据lowbit函数, 可以知道 
+①C[i]代表⼏个A中元素相加 = lowbit(i) ②i的⽗亲在哪 = i + lowbit(i)
   
 ## 11.2. 树状数组的构建
 先都初始化为0 (这样依旧满足C[i] = A[i]等式), 然后再更新为相应的值
 e.g [1 2 3 4 ..]
-delta=1  A[1]=1  C[1]+=delta (1)  C2是1+lowbit(1)  
-C2+=1  C4..  
-delta=3 A[3]=3  C[3]+=delta (3)  
+delta=1  A[1]=1  C[1]+=delta (1)  C2是1+lowbit(1)  C2+=1  C4..  
+delta=3 A[3]=3  C[3]+=delta (3)
   
-进⾏区间和查询 = 进⾏两次前缀和查询     [i, j] = [1, j] ﹣ [1, i-1]
-sum(i) = sum{A[j] | 1 <= j <= i } = A[1] + A[2] + .. + A[i] 
-       = A[1] + A[2] + A[i-2^k] + A[i-2^k+1] + .. + A[i] = A[1] + A[2] + A[i-2^k] + C[i] 
-       = sum(i - 2^k) + C[i] = sum(i - lowbit(i)) + C[i]
-e.g. sum(6) = C[6] + sum(6-lowbit(6)) = C[6] + sum(4)
-     sum(4) = C[4] + sum(4-lowbit(4)) = C[4] + sum(0) = C[4]		sum(6) = C[6] + C[4]
+区间和查询 = 两次前缀和查询
+从i到j的和, sum([i, j]) = sum([1, j]) ﹣ sum([1, i-1])
+```
+sum(i) = sum{A[k] | 1 <= k <= i } = A[1] + A[2] + .. + A[i] 
+       = A[1] + A[2] + .. + A[i-2^k] + A[i-2^k+1] + .. + A[i] = A[1] + A[2] + .. + A[i-2^k] + C[i] 
+       = sum(i - 2^k) + C[i] 
+       = sum(i - lowbit(i)) + C[i]
+```
+sum(6) = C[6] + sum(6-lowbit(6)) = C[6] + sum(4)
+sum(4) = C[4] + sum(4-lowbit(4)) = C[4] + sum(0) = C[4]		sum(6) = C[6] + C[4]
 
-lowbit(i) = 2 ^ k   (k=i的2进制末尾0的个数)
+### 11.2.1. lowbit
+lowbit(i) = 2 ^ k   (k = i的2进制末尾0的个数)
 位运算& 1&1=1 0&1=0 1&0=0 0&0=0 
 3 & 11 = 0011 & 1011 = 0011
-正数和负数的⼆进制  	int 有一位是符号位  正数01011 负数 a)补码, 0变1, 1变0 b)再加1   -11是10101
+正数和负数的⼆进制  	Note: int有一位是符号位  正数01011 负数 a)补码, 0变1, 1变0 b)再加1   -11是10101
 num & (-num) = 2 ^ k 
 e.g lowbit(12) = 2 ^ 2 = 4    与运算 01100 & 10100 = 00100 = 4
 
 
-lintcode 840 [range-sum]() 树状数组算法程序实现
+## 11.3. Python 树状数组
+```python
+class BinaryIndexTree(object):
+    def __init__(self, A): # build the tree
+        self.nums = A
+        self.size = len(A)
+        self.bit = [0 for _ in range(self.size + 1)]  # 树状数组的下标从 1 开始计数
+        
+        for i, num in enumerate(self.nums):
+            self.update(i, num)   # # 树状数组的下标从 1 开始计数
 
-树状数组Lintcode: 
+    def update(self, index, delta):
+        i = index + 1
+        while i <= self.size:
+            self.bit[i] += delta
+            i += self.lowbit(i)
+    
+    def lowbit(self, num):
+        return num & (- num)
+    
+    def get_prefix_sum(self, index):
+        i = index + 1
+        presum = 0
+        
+        while i > 0:
+            presum += self.bit[i]
+            i -= self.lowbit(i)
+        
+        return presum
+```
+
+
+## 11.4. 树状数组Lintcode: 
 Lintcode 206.[Interval Sum]()
 
 Lintcode 207.[Interval Sum II]()
@@ -926,4 +961,5 @@ Lintcode 248.[Count of Smaller Number]()
 https://www.lintcode.com/problem/count-of-smaller-number/
 
 Lintcode 249.[Count of Smaller Number before itself]()
-https://www.lintcode.com/problem/count-of-smaller-number-before-itself/
+
+Lintcode 1297. [Count of Smaller Numbers After Self]()

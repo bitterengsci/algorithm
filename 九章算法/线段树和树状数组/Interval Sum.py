@@ -5,63 +5,8 @@ class Interval(object):
         self.start = start
         self.end = end
 """
-
-class SegmentTree(object):  # SegmentTreeNode
-    def __init__(self, start, end, sum=0):   # val = sum or max, etc..
-        self.start = start    # index
-        self.end = end        # index
-        self.sum = sum
-        self.left, self.right = None, None
-
-    @classmethod
-    def build(self, start, end, array):
-        if start > end:
-            return None
-    	
-        if start == end: # a leaf node
-            return SegmentTree(start, end, array[start])
-
-        node = SegmentTree(start, end, array[start])
-
-        mid = (start + end) // 2
-        node.left = self.build(start, mid, array)
-        node.right = self.build(mid + 1, end, array)
-        # lsum, rsum = 0, 0
-        # if node.left:
-        #     lsum += node.left.sum
-        # if node.right:
-        #     rsum += node.right.sum
-        # node.sum = lsum + rsum
-        node.sum = node.left.sum + node.right.sum
-        
-        return node # the root
-
-    @classmethod
-    def modify(cls, root, index, value):
-        if root is None:
-            return
-
-        if root.start == root.end:
-            root.sum = value
-            return
-    
-        if root.left.end >= index:
-            cls.modify(root.left, index, value)
-        else:
-            cls.modify(root.right, index, value)
-        
-        root.sum = root.left.sum + root.right.sum
-
-    @classmethod
-    def query(cls, root, start, end):
-        if root.start > end or root.end < start:
-            return 0
-    
-        if start <= root.start and root.end <= end:   # why <= not ==?
-            return root.sum
-        
-        return cls.query(root.left, start, end) + cls.query(root.right, start, end)
-
+from SegmentTree import *
+from BinaryIndexTree import *
 
 class Solution:
     """
@@ -78,17 +23,26 @@ class Solution:
             cumulative.append(cumulative[-1] + i)
         
         res = []
-        for q in queries:
+        for q in queries: # 需要注意的是 prefixsum中元素下标 和 原数组中元素下标的不同
             res.append(cumulative[q.end + 1] - cumulative[q.start])
         
         return res
         
     # Approach: Segment Tree
-    def intervalSum(self, A, queries):
-        
+    def intervalSum_2(self, A, queries):
         root = SegmentTree.build(0, len(A)-1, A)
         res = []
         for q in queries:
             res.append(SegmentTree.query(root, q.start, q.end))
+            
+        return res
+
+    # Approach: Binary Index Tree
+    def intervalSum(self, A, queries):
+        bitree = BinaryIndexTree(A)
+        
+        res = []
+        for q in queries:
+            res.append(bitree.get_prefix_sum(q.end) - bitree.get_prefix_sum(q.start - 1))
             
         return res
