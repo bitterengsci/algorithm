@@ -23,7 +23,8 @@
     - [10.4. Python 线段树](#104-python-%E7%BA%BF%E6%AE%B5%E6%A0%91)
         - [10.4.1. SideNote: staticmethod & classmethod](#1041-sidenote-staticmethod--classmethod)
 - [11. 树状数组 binary index tree](#11-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-binary-index-tree)
-    - [11.1. 树状数组的构建](#111-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%9A%84%E6%9E%84%E5%BB%BA)
+    - [11.1. 树状数组算法分析](#111-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90)
+    - [11.2. 树状数组的构建](#112-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%9A%84%E6%9E%84%E5%BB%BA)
 
 <!-- /TOC -->
 - 数据结构 Heap (双堆)
@@ -844,44 +845,55 @@ Implement a build method with two parameters start and end, so that we can creat
 Lintcode 202.[Segment Tree Query]()
 Lintcode 203.[Segment Tree Modify]()
 
-
 Lintcode 439.[Segment Tree Build II]()
 Lintcode 247.[Segment Tree Query II]()
 
 
 
 # 11. 树状数组 binary index tree
-树状数组⽤于维护前缀信息的结构
-对前缀信息的处理也是⾮常高效的
+树状数组⽤于维护前缀信息的结构, 对前缀信息的处理也是⾮常高效的
 北美常见面试题
 熟练掌握树状数组类似问题的解决, 可以加深初学者对于逻辑分层的理解
 
 树状数组问题举例 (前缀, 区间问题)
-给定⼀个整数组 nums, 然后你需要实现两个函数: 
+给⼀个整数组 nums, 然后你需要实现两个函数: 
     update(i, val) 将数组下标为 i 的元素修改为val 
     sumRange(l, r) 返回数组下标在 [l, r] 区间的元素的和 
 - 暴⼒求解: update时间复杂度O(1), sumRange时间复杂度O(n) 
 - 如果⽤树状数组来求解呢? logn logn
    
 树状数组与区间和的联系 
-树状数组是通过前缀和思想, ⽤来完成单点更新和区间查询的数据结构。
-它⽐之线段树, 所⽤空间更小, 速度更快 (空间都是O(n), 但是树状数组只开了一个长度为n的数组, 但线段树有..)
+树状数组是通过前缀和思想, ⽤来完成单点更新和区间查询的数据结构
+它相比线段树, 所⽤空间更小, 速度更快 (空间都是O(n), 但是树状数组只开了一个长度为n的数组, 但线段树有..)
 
 如何⽤前缀和求解sumRange(i, j)呢?
 那么树状数组具体如何实现单点更新以及区间求和呢? 可变数组range-sum问题
   
-树状数组算法分析 
-注意: 树状数组的下标从 1 开始计数	定义: 数组 C 是⼀个对原始数组 A 的预处理数组
+## 11.1. 树状数组算法分析 
+注意: 树状数组的下标从 1 开始计数	
+定义: 数组 C 是⼀个对原始数组 A 的预处理数组
 
-图图图图图
+![](.pic/树状数组1.png)
+![](.pic/树状数组2.png)
+![](.pic/树状数组3.png)
+![](.pic/树状数组4.png)
 
 C[i]来⾃几个数组A中的元素: 取决于i的⼆进制末尾有几个连续的0。⽐如有k个0, 那么C[i]来自2^k个A中的元素 
-
+|数组C的索引i| i的二进制表示 | k |2^k 数组C中的元素来自数组A的个数| 数组C的定义由数组A的那些元素而来 |
+|-----------|------------|---|:--------------------------:|-----------------------------|
+|     1     | 0000 0001  | 0 |             1              | C[1] = A[1]                 |
+|     2     | 0000 0010  | 1 |             2              | C[1] = A[1] + A[2]          |
+|     3     | 0000 0011  | 0 |             1              | C[3] = A[3]                 |
+|     4     | 0000 0100  | 2 |             4              | C[4] = A[1] + A[2] + A[3] + A[4]    |
+|     5     | 0000 0101  | 0 |             1              | C[5] = A[5]                 |
+|     6     | 0000 0110  | 1 |             2              | C[6] = A[5] + A[6]          |
+|     7     | 0000 0111  | 0 |             1              | C[7] = A[7]                 |
+|     8     | 0000 1000  | 3 |             8        | C[8] = A[1] + A[2] + A[3] + A[4] + A[5] + A[6] + A[7] + A[8] |
 
 定义⼀个lowbit函数: lowbit(i) = 2 ^ k
 根据lowbit函数, 可以知道 ①C[i]代表⼏个A中元素相加 = lowbit(i)    		②i的⽗亲在哪 = i + lowbit(i)
   
-## 11.1. 树状数组的构建
+## 11.2. 树状数组的构建
 先都初始化为0 (这样依旧满足C[i] = A[i]等式), 然后再更新为相应的值
 e.g [1 2 3 4 ..]
 delta=1  A[1]=1  C[1]+=delta (1)  C2是1+lowbit(1)  
@@ -901,11 +913,17 @@ lowbit(i) = 2 ^ k   (k=i的2进制末尾0的个数)
 正数和负数的⼆进制  	int 有一位是符号位  正数01011 负数 a)补码, 0变1, 1变0 b)再加1   -11是10101
 num & (-num) = 2 ^ k 
 e.g lowbit(12) = 2 ^ 2 = 4    与运算 01100 & 10100 = 00100 = 4
-  
+
+
 lintcode 840 [range-sum]() 树状数组算法程序实现
 
 树状数组Lintcode: 
-206 Interval Sum, 
-207 Interval Sum II, 
-248 Count of Smaller Number, 
-249 Count of Smaller Number before itself
+Lintcode 206.[Interval Sum]()
+
+Lintcode 207.[Interval Sum II]()
+
+Lintcode 248.[Count of Smaller Number]()
+https://www.lintcode.com/problem/count-of-smaller-number/
+
+Lintcode 249.[Count of Smaller Number before itself]()
+https://www.lintcode.com/problem/count-of-smaller-number-before-itself/
