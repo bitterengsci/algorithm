@@ -20,6 +20,8 @@
     - [10.1. 线段树的构建](#101-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA)
     - [10.2. 线段树的修改](#102-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E4%BF%AE%E6%94%B9)
     - [10.3. 线段树的查询](#103-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9F%A5%E8%AF%A2)
+    - [10.4. Python 线段树](#104-python-%E7%BA%BF%E6%AE%B5%E6%A0%91)
+        - [10.4.1. SideNote: staticmethod & classmethod](#1041-sidenote-staticmethod--classmethod)
 - [11. 树状数组 binary index tree](#11-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-binary-index-tree)
     - [11.1. 树状数组的构建](#111-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%9A%84%E6%9E%84%E5%BB%BA)
 
@@ -559,46 +561,49 @@ Trie可以帮助剪枝
 
 "ab" "abc" "adc" "cad" "bad" "bd"中有多少不同的前缀? 可以自己构建一棵Trie, 将所有字符串插入字典树, 数其中有多少节点即可。共有a, ab, abc, ad, adc, b, ba, bad, bd, c, ca, cad 共12个本质不同的前缀。
 
+
 # 10. 线段树 Segment Tree
 线段树就是⼀个二叉树, 二叉树中的每个节点代表一个区间 (叶子节点代表最小区间=1个单位长度)
   
 ![](.pic/线段树.png)
 
-range-sum问题   [i, j] 区间元素之和
+range-sum问题 [i, j] 区间元素之和
 
 线段树的作用
-- 线段树主要问题对象是区间。 
-- 求解区间和、区间最值以及其它区间上的问题。 
+- 线段树主要问题对象是区间
+- 求解区间和、区间最值以及其它区间上的问题
 - 根据问题的需要定义node的属性(sum/max) 
  
 线段树适⽤题型
 维护一个序列的问题: 给定⼀个整数序列, 每次操作会修改序列某个位置上的数, 或是询问序列中某个区间内所有数的和
 - 暴力: 	   修改时间O(1)    查询(查询和、查询最大值..) 时间O(n) 	空间O(1) 
 - 前缀和数组: 	修改时间O(n) 	查询时间O(1)    空间O(n) 
-        前缀和数组 [1, 2, 3, 4, 5, 6] → [1, 3, 6, 10, 15, 21]
-        修改index 1处为3   [1, 3, 3, 4, 5, 6] → [1, 4, 7, 11, 16, 22]  (前缀和数组需要修改5个元素)
-- 在序列上单点/区间修改, 然后对区间进行查询 ——线段树 
+    前缀和数组 [1, 2, 3, 4, 5, 6] → [1, 3, 6, 10, 15, 21]
+    修改index 1处为3   [1, 3, 3, 4, 5, 6] → [1, 4, 7, 11, 16, 22]  (前缀和数组需要修改5个元素)
+- 在序列上单点/区间修改, 然后对区间进行查询 —— 线段树 
     修改和查询的时间复杂度都是O(logn) 空间复杂度是O(n) 		
-	当n很大时, logn 接近一个常数 << n
-- 如果仅涉及区间上的查询, ⽽不涉及修改, 那么⽤前缀和即可 O(n)时间构建前缀和数组, O(1)查询
+    当n很大时, logn 接近一个常数 << n
+- 如果仅涉及区间上的查询, ⽽不涉及修改, 那么⽤前缀和即可; O(n)时间构建前缀和数组, O(1)查询
 
 线段树的结构/性质:
-* 除表示单点(单位区间)的⼀个节点是叶子结点外, 其它每一个表示区间的节点都有两颗子树。
+* 除表示单点(单位区间)的⼀个节点是叶子结点外, 其它每一个表示区间的节点都有两颗子树
 * 每一个节点分出了左右节点的区间长度为父亲节点⻓度的⼀半(左边向上取整, 右边向下取整; 近似平分两半)		
-    e.g. [L, R]	 mid=(L+R)/2	   [L, mid]  [mid, R]
+    e.g. [L, R]	 mid=(L+R)/2    [L, mid], [mid, R]
 * 每⼀个节点存储的值都是左右节点进行对应运算得出的。这个运算是根据要求⽽定的。如: 求和的是和, 求最大值的是max。 
 
-结点定义: 左端点start, 右端点end		左孩子left, 右孩⼦right	  val(sum、max)
+结点定义: 左端点start, 右端点end, 左孩子left, 右孩⼦right, val(sum、max)
+```java
 public class SegmentTreeNode{
     public int start, end, max;
     public SegmentTreeNode left, right;
     public SegmentTreeNode(int start, int end, int max){
-        this.start = start;
-        this.end = end;
+        this.start = start;   // index
+        this.end = end;       // index
         this.max = max;
         this.left = this.right = null;
     }
 }
+```
 
 线段树三个基本操作: 构建, 修改, 查询
 * 构建 O(n): ⾃上向下, 将⼤区间一切两半, 递归调⽤
@@ -610,7 +615,8 @@ public class SegmentTreeNode{
 Note: logn比常数大, 但远远小于n
 
 ## 10.1. 线段树的构建
-如何去根据问题去构建线段树 
+如何根据问题构建线段树
+
 ```java
 public SegmentTreeNode build(int start, int end){
     if(start > end) return null;
@@ -626,6 +632,7 @@ public SegmentTreeNode build(int start, int end){
     return root;
 }
 ```
+
 构造max-range线段树:
 ```java
 public SegmentTreeNode buildTree(int start, int end, int[] A){
@@ -697,7 +704,151 @@ public int query(SegmentTreeNode root, int start, int end) {
 }
 ```
 
+## 10.4. Python 线段树
+```python
+class SegmentTree(object):  # SegmentTreeNode
+    def __init__(self, start, end, sum=0):   # val = sum or max, etc..
+        self.start = start    # index
+        self.end = end        # index
+        self.sum = sum
+        self.left, self.right = None, None
+
+    @classmethod
+    def build(self, start, end, array):
+        if start > end:
+            return None
+    	
+        if start == end: # a leaf node
+            return SegmentTree(start, end, array[start])
+
+        node = SegmentTree(start, end, array[start])
+
+        mid = (start + end) // 2
+        node.left = self.build(start, mid, array)
+        node.right = self.build(mid + 1, end, array)
+        # lsum, rsum = 0, 0
+        # if node.left:
+        #     lsum += node.left.sum
+        # if node.right:
+        #     rsum += node.right.sum
+        # node.sum = lsum + rsum
+        node.sum = node.left.sum + node.right.sum
+
+        return node  # the root
+
+    @classmethod
+    def modify(cls, root, index, value):
+        if root is None:
+            return
+
+        if root.start == root.end:
+            root.sum = value
+            return
+    
+        if root.left.end >= index:
+            cls.modify(root.left, index, value)
+        else:
+            cls.modify(root.right, index, value)
+        
+        root.sum = root.left.sum + root.right.sum
+
+    @classmethod
+    def query(cls, root, start, end):
+        if not root or root.start > end or root.end < start:  # "not root" not necessary
+            return 0
+    
+        if start <= root.start and root.end <= end:   # why <= not ==?
+            return root.sum
+        
+        return cls.query(root.left, start, end) + cls.query(root.right, start, end)
+```
+
+### 10.4.1. SideNote: staticmethod & classmethod
+使用某个类的方法，需要先实例化一个对象再调用方法
+而使用@staticmethod或@classmethod，就可以不需要实例化，直接类名.方法名()来调用
+这有利于组织代码，把某些应该属于某个类的函数给放到那个类里去，同时有利于命名空间的整洁
+```python
+class A(object):
+    a = 'a'
+    @staticmethod  # 静态函数, 用@staticmethod装饰器装饰
+    def foo1(name): 
+        print(name)
+    def foo2(self, name): # 正常的函数, 类的实例的函数, 只能通过a调用
+        print(name)
+    @classmethod
+    def foo3(cls, name):  # 类函数, cls作为第一个参数用来表示类本身
+        print(name)
+        
+# 定义一个类A，类A中有三个函数
+a = A()
+# foo1为静态函数，用@staticmethod装饰器装饰，这种方法与类有某种关系但不需要使用到实例或者类来参与。如下两种方法都可以正常输出，也就是说既可以作为类的方法使用，也可以作为类的实例的方法使用
+a.foo1('mamq') # 输出: mamq
+A.foo1('mamq')# 输出: mamq
+# foo2为正常的函数, 类的实例的函数, 只能通过a调用
+a.foo2('mamq') # 输出: mamq  
+A.foo2('mamq') # 报错: unbound method foo2() must be called with A instance as first argument (got str instance instead)
+# foo3为类函数，cls作为第一个参数用来表示类本身. 在类方法中用到，类方法是只与类本身有关而与实例无关的方法。如下两种方法都可以正常输出。
+a.foo3('mamq') # 输出: mamq
+A.foo3('mamq') # 输出: mamq
+```
+@staticmethod和@classmethod都可以直接类名.方法名()来调用，且输出结果相同, 
+- 从它们的使用上来看,@staticmethod不需要表示自身对象的self和自身类的cls参数，就跟使用函数一样。@classmethod也不需要self参数，但第一个参数需要是表示自身类的cls参数。
+- 在@staticmethod中要调用到这个类的一些属性方法，只能直接类名.属性名或类名.方法名。而@classmethod因为持有cls参数，可以来调用类的属性，类的方法，实例化对象等，避免硬编码。也就是说在classmethod中可以调用类中定义的其他方法、类的属性，但staticmethod只能通过A.a调用类的属性，但无法通过在该函数内部调用A.foo2()
+
+```python
+class A(object):
+    a = 'a'
+    @staticmethod
+    def foo1(name):
+        print(name)
+        print(A.a) # 正常
+        print(A.foo2('mamq')) # 报错: unbound method foo2() must be called with A instance as first argument (got str instance instead)
+    def foo2(self, name):
+        print(name)
+    @classmethod
+    def foo3(cls, name):
+        print(name)
+        print(A.a)
+        print(cls().foo2(name))
+```
+
+
 线段树Lintcode: 206, 207, 248, 249, (439, 201, 247, 203, 202)
+
+Lintcode 206.[Interval Sum]()
+Given an integer array (index from 0 to n-1, where n is the size of this array), and an query list. Each query has two integers [start, end]. For each query, calculate the sum number between index start and end in the given array, return the result list.
+* Soln 1: Cumulative Sum Array
+* Soln 2: Segment Tree
+
+Lintcode 207.[Interval Sum II]()
+Given an integer array in the construct method, implement two methods query(start, end) and modify(index, value):
+- For query(start, end), return the sum from index start to index end in the given array.
+- For modify(index, value), modify the number in the given index to value
+
+Lintcode 248.[Count of Smaller Number]()
+https://www.lintcode.com/problem/count-of-smaller-number/
+
+Lintcode 249.[Count of Smaller Number before itself]()
+https://www.lintcode.com/problem/count-of-smaller-number-before-itself/
+
+
+SegmentTreeNode的val为range max
+Lintcode 201.[Segment Tree Build]()
+The structure of Segment Tree is a binary tree which each node has two attributes start and end denote an segment/interval. start and end are both integers, they should be assigned in following rules:
+- The root's start and end is given by build method.
+- The left child of node A has start=A.start, end=(A.start + A.end) / 2.
+- The right child of node A has start=(A.start + A.end) / 2 + 1, end=A.end.
+- if start equals to end, there will be no children for this node.
+Implement a build method with two parameters start and end, so that we can create a corresponding segment tree with every node has the correct start and start value, return the root of this segment tree.
+
+Lintcode 202.[Segment Tree Query]()
+Lintcode 203.[Segment Tree Modify]()
+
+
+Lintcode 439.[Segment Tree Build II]()
+Lintcode 247.[Segment Tree Query II]()
+
+
 
 # 11. 树状数组 binary index tree
 树状数组⽤于维护前缀信息的结构
