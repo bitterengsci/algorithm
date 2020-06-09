@@ -32,6 +32,7 @@
 - [5. 递归 Recursion](#5-%E9%80%92%E5%BD%92-recursion)
 - [6. 贪心 Greedy](#6-%E8%B4%AA%E5%BF%83-greedy)
 - [7. 分治 Divide & Conquer](#7-%E5%88%86%E6%B2%BB-divide--conquer)
+- [8. String问题](#8-string%E9%97%AE%E9%A2%98)
 
 <!-- /TOC -->
 
@@ -726,3 +727,19 @@ difference = target
 # 6. 贪心 Greedy
 
 # 7. 分治 Divide & Conquer
+
+
+
+# 8. String问题
+ACM带刷班 
+* Question 54-String to Integer (atoi)
+* Question 1510-Buddy Strings
+* Question 415-Valid Palindrome
+* Question 53-Reverse Words in a String
+* Question 78-Longest Common Prefix
+* Question 1263-Is Subsequence
+* Question 384-Longest Substring Without Repeating Characters
+* Question 213-String Compression
+* Question 1352-Compare Version Numbers
+* Question 1542-Next Time No Repeat
+* Question 92-Wildcard Matching

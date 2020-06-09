@@ -951,14 +951,12 @@ class BinaryIndexTree(object):
         return presum
 ```
 
-
 ## 11.4. 树状数组Lintcode: 
 Lintcode 206.[Interval Sum]()
 
 Lintcode 207.[Interval Sum II]()
 
 Lintcode 248.[Count of Smaller Number]()
-https://www.lintcode.com/problem/count-of-smaller-number/
 
 Lintcode 249.[Count of Smaller Number before itself]()
 

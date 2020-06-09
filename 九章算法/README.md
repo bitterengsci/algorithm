@@ -27,6 +27,8 @@ TODO:
 提高 1 7 follow-up
     堆, 单调栈
 
+https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed71aa3
+
 # 1. [Data Structure](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Data%20Structure.md)
 - 数据结构 Heap (双堆)
 - 数据结构 Stack (单调栈)
@@ -35,8 +37,8 @@ TODO:
 - 数据结构 Deque             Done
 - 数据结构 并查集Union Find   Done
 - 数据结构 字典树Trie         Done
-- 数据结构 树状数组 
-- 数据结构 线段树
+- 数据结构 树状数组           Done
+- 数据结构 线段树            Done
 
 # 2. [Algorithm](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Algorithm.md)
 - Binary Search 二分法 (二分, 二分答案)     Done
@@ -45,16 +47,23 @@ TODO:
 - 递归 Recursion
 - 贪心 Greedy
 - 分治 Divide & Conquer
-
+- String问题
 
 - 位运算 Bit Manipulation
-
 
 - Follow Up 问题
 
 # 3. [动态规划 Dynamic Programming](https://github.com/bitterengsci/algorithm/blob/master/九章算法/动态规划.md)
-    * 背包问题
-    * Sliding Array 滚动数组
+* 坐标型(矩阵)动态规划 10%    (f[x][y], 有坐标信息)
+* 接龙型动态规划 20%  
+* 划分型动态规划      
+* 匹配型动态规划      
+* 背包型动态规划      
+* 区间型动态规划      
+* 树图型动态规划  
+* 博弈型动态规划 (游戏, 2人博弈 90%都是DP)
+
+* Sliding Array 滚动数组
 
 --- 
 
@@ -112,10 +121,10 @@ New Grad一般问两道题, Experience问一道
 
 Ladder 180题
 
-1.别做难题,不要花时间攻关难题 (把时间花在如何做到 BUG FREE和如何提高编程􏰀度上 多做 LintCode 上 Medium 难度的题
-2.是面试不是考试 和面试官愉快交流, 一起合作解决面试问题 (证明自己牛逼, 但别去证明面试官傻逼)
-3.理解而不是单纯的背诵 (在课程中主要学习的是思维方式和分析技巧而不是某个题的解法)
-4.刀要用在刀刃上 不要把时间浪费在那些基本不会考你又很心虚的内容 (比如KMP, 红黑树, AVL, ACM竞赛题)
+1. 别做难题,不要花时间攻关难题 (把时间花在如何做到 BUG FREE和如何提高编程程度上, 多做LintCode上 Medium 难度的题
+2. 是面试不是考试 和面试官愉快交流, 一起合作解决面试问题 (证明自己牛逼, 但别去证明面试官傻逼)
+3. 理解而不是单纯的背诵 (在课程中主要学习的是思维方式和分析技巧而不是某个题的解法)
+4. 刀要用在刀刃上 不要把时间浪费在那些基本不会考你又很心虚的内容 (比如KMP, 红黑树, AVL, ACM竞赛题)
 
 
 # 6. [Debug的基本步骤](http://www.jiuzhang.com/qa/3815/)
@@ -176,8 +185,8 @@ Reference: Draw Diagram https://support.typora.io/Draw-Diagrams-With-Markdown/
 
 
 Lintcode questions associated with .. in .. folder 
-    Algorithm.md            基础班LintCode or 强化班LintCode
-    Data Structure.md       基础班LintCode or 强化班LintCode
-    动态规划.md               动态规划
+    Algorithm.md            基础班LintCode or 强化班LintCode or 递归 or String问题
+    Data Structure.md       基础班LintCode or 强化班LintCode or 线段树和树状数组
+    动态规划.md              动态规划 or 背包问题
 
 Note: Whose name starting with C{num}. in 基础班LintCode are archived. (2019.5一刷九章算法v4.2做的题)
