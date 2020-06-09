@@ -1,5 +1,6 @@
-from BinaryIndexTree import *
-
+######################################################
+#          Sorted Array, Binary Search/Hashmap
+######################################################
 class Solution:
     """
     @param A: An integer array
@@ -161,7 +162,7 @@ class Solution:
             self.query(root.right, mid + 1, end)
 
 ######################################################
-#       Something goes wrong with my code
+#       Segment Tree -- My Ans (Python 3)
 ######################################################
 class SegmentTree(object):  # SegmentTreeNode
     def __init__(self, start, end, value=0):
@@ -191,7 +192,7 @@ class SegmentTree(object):  # SegmentTreeNode
             return
         
         if root.start == root.end == index:
-            root.val = value
+            root.val += value  # increment the occurence
             return
     
         if root.left.end >= index:
@@ -209,6 +210,7 @@ class SegmentTree(object):  # SegmentTreeNode
             return root.val
         
         return self.query(root.left, start, end) + self.query(root.right, start, end)
+
 
 class Solution:
     """
@@ -234,10 +236,80 @@ class Solution:
         # results 
         results = []
         for i in queries:
-            if  minimum <= i <= maximum and type(i) == int:
+            if minimum <= i <= maximum and type(i) == int:
                 idx = i - minimum
                 results.append(segtree.query(root, 0, idx - 1))
-            else:
+            elif i < minimum:
                 results.append(0)
+            elif i > maximum:
+                results.append(len(A))
+            else:
+                raise Exception("invalid query")
+        
+        return results
+
+
+######################################################
+#       Segment Tree -- Another Ans using modify tree (Python 3)
+######################################################
+class SegmentTree():
+    
+    def __init__(self, start, end, value=0):
+        self.start, self.end = start, end
+        self.val = value
+        self.left, self.right = None, None
+    
+    @classmethod
+    def build(cls, start, end):
+        if start > end:
+            return None
+            
+        root = SegmentTree(start, end, 0)
+    	
+        if start == end:
+            return root
+
+        mid = (start + end) // 2
+        root.left = cls.build(start, mid)
+        root.right = cls.build(mid + 1, end)
+
+        return root
+    
+    @classmethod
+    def modify(cls, root, index, value):
+        if root.start == index and root.end == index:
+            root.val += value  # increment the occurence
+            return
+        
+        mid = (root.start + root.end) // 2
+        if root.start <= index <= mid:
+            cls.modify(root.left, index, value)
+        if mid + 1 <= index <= root.end:
+            cls.modify(root.right, index, value)
+        
+        root.val = root.left.val + root.right.val
+    
+    @classmethod
+    def query(cls, root, start, end):
+        if root.start > end or root.end < start:
+            return 0
+    
+        if start <= root.start and root.end <= end:
+            return root.val
+        
+        return cls.query(root.left, start, end) + cls.query(root.right, start, end)
+
+class Solution:
+
+    def countOfSmallerNumber(self, A, queries):
+
+        segtree_root = SegmentTree.build(0, max(A or [1]))
+        
+        for num in A:
+            SegmentTree.modify(segtree_root, num, 1)
+
+        results = []
+        for query in queries:
+            results.append(SegmentTree.query(segtree_root, 0, query - 1))
         
         return results
