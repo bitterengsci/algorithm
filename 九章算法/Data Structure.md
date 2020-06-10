@@ -244,7 +244,6 @@ http://www.lintcode.com/problem/rehashing/
 哈希表的饱和度
 饱和度 = 实际存储元素个数 / 总共开辟的空间大小 size / capacity
 一般来说, 超过 1/10(经验值) 的时候, 说明需要进行 rehash
- 
 
 Lintcode .[LRU Cache]() http://www.lintcode.com/problem/lru-cache/ 
 Example: [2 1 3 2 5 3 6 7]
@@ -295,7 +294,7 @@ Lintcode .[Merge K Sorted Lists]() http://www.lintcode.com/problem/merge-k-sorte
 方法三:自底向上的两两归并算法
 时间复杂度均为 O(NlogK)
  
-Related  Lintcodes
+Related Lintcodes
 Lintcode .[]() http://www.lintcode.com/en/problem/high-five/ (A)
 Lintcode .[]() http://www.lintcode.com/en/problem/k-closest-points/ (L, A, F)
 Lintcode .[]() http://www.lintcode.com/problem/merge-k-sorted-arrays/
