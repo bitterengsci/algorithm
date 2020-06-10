@@ -35,7 +35,7 @@
         - [5.1.2. 递归与非递归方法的比较](#512-%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83)
     - [5.2. 递归调用栈](#52-%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8%E6%A0%88)
         - [5.2.1. 回溯法Backtracking](#521-%E5%9B%9E%E6%BA%AF%E6%B3%95backtracking)
-        - [5.2.2. 二分查找/搜索 Binary Search 的递归写法   (二分)](#522-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2-binary-search-%E7%9A%84%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95---%E4%BA%8C%E5%88%86)
+        - [5.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)](#522-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2-binary-search-%E7%9A%84%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-%E4%BA%8C%E5%88%86)
     - [5.3. 值传递和引⽤传递](#53-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
         - [5.3.1. 值传递](#531-%E5%80%BC%E4%BC%A0%E9%80%92)
         - [5.3.2. 引⽤传递](#532-%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
@@ -902,18 +902,18 @@ Java的数组存在堆空间, 访问数组通过数组的引用, 在栈空间; C
 正在执行的就是最上面的函数; 一个函数执行完毕, 就会被拿出来(一个函数占用“桶”的空间与参数、局部变量的数量有关)
 
 ### 5.2.1. 回溯法Backtracking
-暴力搜索法的⼀种
-试探着找问题的解, 如果到某一步发现上一次的选择不优或者达不到目标, 则退⼀步重新选择 
-回溯是递归函数中经常发生的现象
-经典问题: ⼋皇后                                              
+* 暴力搜索法的⼀种
+* 试探着找问题的解, 如果到某一步发现上一次的选择不优或者达不到目标, 则退⼀步重新选择 
+* 回溯是递归函数中经常发生的现象
+经典问题: ⼋皇后     
+Lintcode 33.[N-Queens]()                                         
 
 LintCode 97.[Maximum Depth of Binary Tree]() 二叉树最⼤深度
-* 二叉树中, 一个节点的深度是该节点到根节点的距离+1
-* 给定一棵二叉树, 问其中最大的节点的深度是多少
+二叉树中, 一个节点的深度是该节点到根节点的距离+1, 给定一棵二叉树, 问其中最大的节点的深度是多少
 F[i] = max(F[i].left, F[i].right) + 1    F[null] = 0
 递归层数与深度有关  
 
-### 5.2.2. 二分查找/搜索 Binary Search 的递归写法   (二分)
+### 5.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)
 在有序数组(假定升序) 中查找某一特定元素 X. 若有重复, 返回任意⼀个下标
 1.若数组为空, 查找失败, 不存在 (边界判断)
 2.若中间元素恰好是 X, 查找结束
@@ -921,10 +921,9 @@ F[i] = max(F[i].left, F[i].right) + 1    F[null] = 0
 4.若中间元素⼩小于 X, 则到右边的区间继续搜索, 转 1
 每次把区间长度减掉⼀半, 时间复杂度 O(logN)
 
-LintCode 457.[]()
-
-LintCode 14.[]() First Position of Target 
-LintCode 458.[]() Last Position of Target
+LintCode 457.[Classical Binary Search]()
+LintCode 14.[First Position of Target]()
+LintCode 458.[Last Position of Target]()
 
 ## 5.3. 值传递和引⽤传递
 函数调用的参数传递 (和返回值返回方式)
@@ -954,7 +953,7 @@ LintCode 458.[]() Last Position of Target
 值传递和引⽤传递的主要区别: 内容是否复制; 空间占⽤ / 复制的时间消耗; 修改是否影响上⼀层
 递归要在保证正确性的前提下, 尽可能提高效率. 需要考虑不仅参数传递, 还有返回值 (→尽量传引用)
    
-LintCode 22.[]() 列表扁平化
+LintCode 22.[Flatten List]() 列表扁平化
 给⼀个列表, 每个元素可能是⼀个整数, 也可能是⼀个列表, 将其转化为⼀个只包含整数的简单列表
 比如 [1, [2, 3], [4, [5]]] 应该被转化为 [1, 2, 3, 4, 5]
 对于 Java / C++ 提供特定的接口: 判断⼀个元素是否整数; 返回这个整数 (仅在是整数的时候可调⽤用) ;  返回这个列表
@@ -962,7 +961,10 @@ LintCode 22.[]() 列表扁平化
 - 递归的拆解: nestedList 中的每个列表元素都递归地调⽤ flatten() 进⾏扁平化 
 - 递归的出⼝: 列表中的元素均为整数
 
-LintCode 66, 67, 68.[]() ⼆叉树的遍历 Binary Tree Preorder/Inorder/Postorder Traversal
+⼆叉树的遍历 Binary Tree Preorder/Inorder/Postorder Traversal
+LintCode 66.[Binary Tree Preorder Traversal]() 
+LintCode 67.[Binary Tree Inorder Traversal]() 
+LintCode 68.[Binary Tree Postorder Traversal]() 
 使⽤递归可以访问⼀颗⼆叉树的所有节点
 定义: traverse(node) 		拆解: traverse(node.left/right) 	  出⼝: node == null
 ⼆叉树的三种遍历顺序: 前/中/后序遍历   前序列:124356	中序列:421536	后序列:425631
@@ -970,7 +972,7 @@ LintCode 66, 67, 68.[]() ⼆叉树的遍历 Binary Tree Preorder/Inorder/Postord
 * 中序遍历: 先访问左⼦树, 再访问当前节点, 最后访问右子树   
 * 后序遍历: 先访问左右子树, 再访问当前节点
 
-LintCode 72.[]() Construct Binary Tree from Inorder and Postorder Traversal 确定⼀棵⼆叉树
+LintCode 72.[Construct Binary Tree from Inorder and Postorder Traversal]() 确定⼀棵⼆叉树
 三种遍历序列, 其中⼀个相同, ⼆叉树不⼀定相同
 * 中序列相同, 前序列相同, ⼆叉树相同
 * 中序列相同, 后序列相同, ⼆叉树相同
@@ -986,8 +988,7 @@ LintCode 72.[]() Construct Binary Tree from Inorder and Postorder Traversal 确�
 递归的出口: inorder == postorder == ""
 
 ## 5.4. 递归综合训练
-
-LintCode 551.[]() 嵌套列表加权和 Nested List Weight Sum
+LintCode 551.[Nested List Weight Sum]() 嵌套列表加权和
 在 22. Flatten List 中提到了嵌套列表 (平化嵌套列表)
 现在我们要求这样⼀一个列列表的元素的加权和, 每个元素的权重就是这个元素的深度  (元素×权重)
 比如[1,[2,3]]的加权和就是1×1+2×2+3×2=11    [1,[2,[3]]]的加权和就是1×1+2×2+3×3=14 
@@ -1002,7 +1003,7 @@ LintCode 22 的解决⽅法
 - 递归的拆解: 递归调⽤时注意深度的改变 (调用时深度+1)
 - 递归的出口: 不变
 
-LintCode 1359.[]() 根据有序数组构造 BST Convert Sorted Array to Binary Search Tree
+LintCode 1359.[Convert Sorted Array to Binary Search Tree]() 根据有序数组构造
 Binary Search Tree ⼆叉搜索树, 一种特殊的⼆叉树(对于每个节点, 左子树的节点都⽐它⼩, 右子树的节点都⽐它大)
 给⼀个有序的数组, 返回一棵合法的二叉搜索树  (中序遍历BST按顺序得到所有元素)
 
@@ -1019,7 +1020,7 @@ Binary Search Tree ⼆叉搜索树, 一种特殊的⼆叉树(对于每个节点,
     ⼆叉树的每⼀个节点的两个子树的最⼤深度相差不超过 1 (LintCode 1359) 
 思考: 递归的哪⼀步影响⼆叉树的深度?
 
-LintCode 1106.[]() 最⼤二叉树 Maximum Binary Tree
+LintCode 1106.[Convert Sorted Array to Binary Search Tree]() 最⼤二叉树
 给⼀个⽆重复元素的数组, 按照以下规则构造⼀棵二叉树	
 根节点是当前数组中最⼤的元素	
 使⽤用最⼤元素左侧的子数组构造左子树, 右侧的⼦数组构造右子树 
@@ -1029,7 +1030,7 @@ LintCode 1106.[]() 最⼤二叉树 Maximum Binary Tree
 - 递归的拆解: root.left = buildTree(subarr)	root.right = buildTree(subarr) 
 - 递归的出口: arr == null
 
-LintCode 469.[]() 是否相同的二叉树 Same Tree
+LintCode 469.[Same Tree]() 是否相同的二叉树 identical binary tree
 给两棵⼆叉树, 判断它们的结构是否完全相同 (每一个节点权值相等, 并且左右子树也一样)
 两棵⼆叉树相同, 当且仅当: 根节点的权值相同; 左⼦树相同; 右⼦树相同 
 
@@ -1039,12 +1040,12 @@ LintCode 469.[]() 是否相同的二叉树 Same Tree
 
 也可以用序列化解决 → 序列化相同才相同
 
-LintCode 470.[]() 可扭转左右子树 Tweaked Identical Binary Tree 
+LintCode 470.[Tweaked Identical Binary Tree]() 可扭转左右子树 Tweaked Identical Binary Tree 
 Follow up 添加一个条件: ⼆叉树的左右子树可以扭转 
 如果原本的 "递归的拆解" 得到了了 false, 那么就扭转⼀下再 "拆解" 一次 
 - 递归的拆解: (isIdentical(al, bl) && isIdentical(ar, br)) || (isIdentical(al, br) && isIdentical(ar, bl)) 
 
-LintCode 169.[]() 汉诺塔 Tower of Hanoi
+LintCode 169.[Tower of Hanoi]() 汉诺塔
 有 A, B, C 三根柱⼦和 N 个⼤小互不相同的圆盘 
 一开始所有的圆盘都在A柱上, 并且放在下⾯的圆盘都⽐上面的要大 
 每次可以将某个柱子上顶端的圆盘移动到另一个柱子上 
