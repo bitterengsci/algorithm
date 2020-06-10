@@ -11,8 +11,6 @@ Hashmaps and sets
 Stacks and queues
 
 
-
-
 Table of LeetCode
 |  1st |  2nd |  3rd |        Question (leetcode #)       | Type & Difficulty |Time| Bug | Note |
 |------|------|------|------------------------------------|-------------------|----|-----|------|
@@ -35,11 +33,6 @@ Table of LeetCode
 
 
 
-
-
-a2df592ac0b48651a320e21456
-
-
 # 1. Chapter 1. Hack the Algorithm Interview (4 Required, 3 Optional, 0 Related)
 ---Required---
 627.Longest Palindrome
@@ -49,21 +42,6 @@ a2df592ac0b48651a320e21456
 ---Optional---
 
 # 2. Chapter 2. Binary Search & LogN Algorithm (10 Required, 10 Optional, 8 Related)
-```python
-if nums is None:
-    return -1
-
-start, end = 0, len(nums) - 1
-while start + 1 < end:
-    mid = start + (end - start) // 2
-    if nums[mid] == target:
-        return mid
-    elif nums[mid] > target:
-        end = mid
-    else:
-        start = mid
-```
-
 457.Classical Binary Search
 14.First Position of Target
 28.Search a 2D Matrix
@@ -325,8 +303,6 @@ sys.maxsize  # MAX
 ---Optional---
 
 
-## 6.2 Backpack
-
 # 7. Union and Find
 connecting graph
 connecting-graph-ii
@@ -340,10 +316,6 @@ leetcode130. Surrounded Regions
 leetcode128. Longest Consecutive Sequence
 leetcode547. Friend Circles
 
-# 8. Trie
-
-
-# 9. Sweeping Line
 
 # 10. Sorting Algorithm
 Mergesort
@@ -512,12 +484,6 @@ class Node{
 ## QuickSort
 pivot (randomly pick)
 ## MergeSort
-
-## Bit Manipulation
-binary pos/neg
-addition
-shifting
-masks
 
 ## Bottom-Up 
 Bottom-Up is a way to avoid recursion, saving the memory cost that recursion incurs when it builds up the call stack.

@@ -19,11 +19,11 @@
 
 TODO:
 基础 1 intro
-    3 binary tree & divide conquer
-    4 5 BFS DFS
-    6 linked list, array
+    3 binary tree & divide conquer (重要)
+    4 5 BFS DFS   (重要)
+    6 linked list, array (重要)
     7 two pointer
-    8 heap, stack
+    8 heap, stack (重要)
 
 提高 1 7 follow-up
     堆, 单调栈
@@ -73,7 +73,7 @@ https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed
 Lintcode questions associated with .. in .. folder 
     Algorithm.md            基础班LintCode or 强化班LintCode or 递归 or String问题
     Data Structure.md       基础班LintCode or 强化班LintCode or 线段树和树状数组
-    动态规划.md              动态规划 or 背包问题
+    动态规划.md              动态规划
     Bit.md                  位运算
 
 Note: Whose name starting with C{num}. in 基础班LintCode are archived. (2019.5一刷九章算法v4.2做的题)
