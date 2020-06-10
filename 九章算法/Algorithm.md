@@ -1042,7 +1042,7 @@ LintCode 469.[Same Tree]() 是否相同的二叉树 identical binary tree
 
 LintCode 470.[Tweaked Identical Binary Tree]() 可扭转左右子树 Tweaked Identical Binary Tree 
 Follow up 添加一个条件: ⼆叉树的左右子树可以扭转 
-如果原本的 "递归的拆解" 得到了了 false, 那么就扭转⼀下再 "拆解" 一次 
+如果原本的 "递归的拆解" 得到了 false, 那么就扭转⼀下再 "拆解" 一次 
 - 递归的拆解: (isIdentical(al, bl) && isIdentical(ar, br)) || (isIdentical(al, br) && isIdentical(ar, bl)) 
 
 LintCode 169.[Tower of Hanoi]() 汉诺塔
