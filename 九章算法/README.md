@@ -3,18 +3,19 @@
 - [1. Data Structure](#1-data-structure)
 - [2. Algorithm](#2-algorithm)
 - [3. 动态规划 Dynamic Programming](#3-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dynamic-programming)
-- [4. Coding Style 代码风格](#4-coding-style-%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC)
-- [5. 算法, 永远的痛](#5-%E7%AE%97%E6%B3%95-%E6%B0%B8%E8%BF%9C%E7%9A%84%E7%97%9B)
-- [6. Debug的基本步骤](#6-debug%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4)
-- [7. 面试](#7-%E9%9D%A2%E8%AF%95)
-    - [7.1. 电话面试](#71-%E7%94%B5%E8%AF%9D%E9%9D%A2%E8%AF%95)
-    - [7.2. onsite 现场面授](#72-onsite-%E7%8E%B0%E5%9C%BA%E9%9D%A2%E6%8E%88)
-    - [7.3. onsite 后](#73-onsite-%E5%90%8E)
+- [4. 位运算 Bit Manipulation](#4-%E4%BD%8D%E8%BF%90%E7%AE%97-bit-manipulation)
+- [5. Coding Questions](#5-coding-questions)
+- [6. Coding Style 代码风格](#6-coding-style-%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC)
+- [7. 算法, 永远的痛](#7-%E7%AE%97%E6%B3%95-%E6%B0%B8%E8%BF%9C%E7%9A%84%E7%97%9B)
+- [8. Debug的基本步骤](#8-debug%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4)
+- [9. 面试](#9-%E9%9D%A2%E8%AF%95)
+    - [9.1. 电话面试](#91-%E7%94%B5%E8%AF%9D%E9%9D%A2%E8%AF%95)
+    - [9.2. onsite 现场面授](#92-onsite-%E7%8E%B0%E5%9C%BA%E9%9D%A2%E6%8E%88)
+    - [9.3. onsite 后](#93-onsite-%E5%90%8E)
 
 <!-- /TOC -->
 
-九章算法基础班+强化班+树状数组线段树+递归+背包+动态规划
-
+九章算法基础班+强化班+树状数组线段树+递归+背包+动态规划+位运算
 
 TODO:
 基础 1 intro
@@ -49,8 +50,6 @@ https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed
 - 分治 Divide & Conquer
 - String问题
 
-- 位运算 Bit Manipulation
-
 - Follow Up 问题
 
 # 3. [动态规划 Dynamic Programming](https://github.com/bitterengsci/algorithm/blob/master/九章算法/动态规划.md)
@@ -65,6 +64,21 @@ https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed
 
 * Sliding Array 滚动数组
 
+
+# 4. [位运算 Bit Manipulation](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Bit.md)
+
+--- 
+
+# 5. Coding Questions
+Lintcode questions associated with .. in .. folder 
+    Algorithm.md            基础班LintCode or 强化班LintCode or 递归 or String问题
+    Data Structure.md       基础班LintCode or 强化班LintCode or 线段树和树状数组
+    动态规划.md              动态规划 or 背包问题
+    Bit.md                  位运算
+
+Note: Whose name starting with C{num}. in 基础班LintCode are archived. (2019.5一刷九章算法v4.2做的题)
+
+
 --- 
 
 * 做题的常见误区: 做题获得Accepted就可以了? 看答案抄一遍然后就会了?
@@ -77,7 +91,7 @@ https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed
     - 同类题目在代码实现上有什么相似之处?
 
 
-# 4. Coding Style 代码风格
+# 6. Coding Style 代码风格
 1. 变量命名 meaningful (循环变量可以用i, j, k, 参数命名要meaningful) 变量命名注意单复数!!!
 2. 括号问题  
 	C++ for-loop 和 if-clause的statement 哪怕只有一行也要加括号(便于代码之后扩展)
@@ -106,7 +120,7 @@ New Grad一般问两道题, Experience问一道
 	     (要先交流, 到底要求实现到什么程度。“这个题, 暴力的方法是XX” 先问问行不行。不是说暴力算法一定不行)
 	      (先问问想的方法行不行, 可以的话再写, 不要闷头开始写。) -> 和coworker达成共识在开始做
 
-# 5. 算法, 永远的痛
+# 7. 算法, 永远的痛
 - 题做了很多, 但就是记不住解法
 - 从来就没有弄明白过动态规划是怎么回事
 - 这题好像见过, 不过还是不知道怎么做
@@ -127,7 +141,7 @@ Ladder 180题
 4. 刀要用在刀刃上 不要把时间浪费在那些基本不会考你又很心虚的内容 (比如KMP, 红黑树, AVL, ACM竞赛题)
 
 
-# 6. [Debug的基本步骤](http://www.jiuzhang.com/qa/3815/)
+# 8. [Debug的基本步骤](http://www.jiuzhang.com/qa/3815/)
 为什么Debug一定要靠自己？
 - 如果是别人给你指出你的程序哪儿错了, 你自己不会有任何收获, 你下一次依旧会犯同样的错误
 - 经过长时间努力Debug获得的错误, 印象更深刻
@@ -144,9 +158,9 @@ Debug的基本步骤
 实在Debug不出来怎么办？
 - 如果你已经Debug了一整天, 可以考虑向他人求助
 
-# 7. 面试
+# 9. 面试
 
-## 7.1. 电话面试
+## 9.1. 电话面试
 难度 < onsite
 - 自我介绍
 - 要和面试官保持一个沟通的状态 (Think Loud)
@@ -155,7 +169,7 @@ Debug的基本步骤
 - 提前熟悉CodePad, GoogleDoc 等
 - 问面试官的问题
 
-## 7.2. onsite 现场面授
+## 9.2. onsite 现场面授
 1轮一小时, 一天4-7轮, 无轮间休息时间 (上午2-3轮, 午饭, 下午2-3轮, 最后一轮有时是manager, 问问软实力和past expirence)
 whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在做不出来, 可以要提示)
 
@@ -164,7 +178,7 @@ whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在
     - 面试者遇到困难怎么办
 
 
-## 7.3. onsite 后
+## 9.3. onsite 后
 - 没offer (问原因)
 
 - 有offer
@@ -179,14 +193,4 @@ whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在
         - match (competing offer)
     - background check
 
-
-
 Reference: Draw Diagram https://support.typora.io/Draw-Diagrams-With-Markdown/
-
-
-Lintcode questions associated with .. in .. folder 
-    Algorithm.md            基础班LintCode or 强化班LintCode or 递归 or String问题
-    Data Structure.md       基础班LintCode or 强化班LintCode or 线段树和树状数组
-    动态规划.md              动态规划 or 背包问题
-
-Note: Whose name starting with C{num}. in 基础班LintCode are archived. (2019.5一刷九章算法v4.2做的题)
