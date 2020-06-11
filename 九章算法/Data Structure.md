@@ -160,12 +160,14 @@ Lintcode 450.[Reverse Nodes in k-Group]()
 ## 2.1. Dummy Node
 独孤九剑 —— 破索式 链表结构发生变化时, 就需要 Dummy Node
 如何使用 Dummy Node
+head = dummy 这句话总是需要么?
 什么时候使用 Dummy Node?
 Dummy Node 是否需要删除?
 使用 Dummy Node 算面试官会说我耗费了额外空间么? 
 Dummy Node 非用不可么?
 Dummy Node 初始化的值重要么? 
 链表的问题都需要用到 Dummy Node 么?
+
 
 用到了 Dummy Node 的值得一做的题目
 Lintcode .[]() http://www.lintcode.com/en/problem/partition-list/
@@ -179,8 +181,8 @@ Lintcode .[Copy List with Random Pointer]() http://www.lintcode.com/problem/copy
 
 Lintcode .[Linked List Cycle]()http://www.lintcode.com/en/problem/linked-list-cycle/
 
-Lintcode .[]()
-follow up: http://www.lintcode.com/en/problem/linked-list-cycle-ii/ 
+follow up:
+Lintcode .[]() http://www.lintcode.com/en/problem/linked-list-cycle-ii/ 
 
 Lintcode .[Sort List]()
 http://www.lintcode.com/en/problem/sort-list/
@@ -196,28 +198,41 @@ Lintcode .[]() http://www.lintcode.com/problem/convert-binary-search-tree-to-dou
 
 ## 3.1. Sorted Array 排序数组
 
-Lintcode .[Merge Two Sorted Arrays]() http://www.lintcode.com/problem/merge-two-sorted-arrays
+Lintcode 6.[Merge Two Sorted Arrays]()
 
-Related  Lintcodes
-Lintcode .[]() 将小数组归并到大数组里 http://www.lintcode.com/problem/merge-sorted-array/
+Lintcode 64.[Merge Sorted Array]() 将小数组归并到大数组里
 
-Lintcode .[]() 两个数组的交 http://www.lintcode.com/problem/intersection-of-two-arrays/
-数组内积(点乘)
-Example [1,3] · [2,4] = 1*2 + 3*4 = 14
-Follow up: 两个数组都非常大, 但是其中都包含很多0
-Example [1,0,0,0,0 ..., 0, 2, 0,..., 0, 3] · [0,..., 0, 4, 0,..., 0, 5]
+Lintcode 547.[Intersection of Two Arrays]() 两个数组的交
 
-Lintcode .[Median of Two Sorted Arrays]() http://www.lintcode.com/problem/median-of-two-sorted-arrays/
+数组内积(点乘) [1, 3] · [2, 4] = 1 * 2 + 3 * 4 = 14
+Follow up: 两个数组都非常大, 但是其中都包含很多0? [1,0,0,0,0 ..., 0, 2, 0,..., 0, 3] · [0,..., 0, 4, 0,..., 0, 5]
+```python
+from operator import mul
+def dot_product(*vectors):
+    """
+    Compute the dot product of sparse vectors, where each vector is represented as a list of (index, value) tuples.
+    >>> v1 = [(0, 2), (1, 4), (5, 6)]       # (2, 4, 0, 0, 0, 6)
+    >>> v2 = [(1, 3), (2, 4), (5, 7)]       # (0, 3, 4, 0, 0, 7)
+    >>> dot_product(v1, v2)
+    54
+    """
+    vectors = [dict(v) for v in vectors]
+    indices = (set(v.iterkeys()) for v in vectors)
+    return sum(reduce(mul, (v[i] for v in vectors)) for i in set.intersection(*indices))
+```
+
+Lintcode 65.[Median of two Sorted Arrays]()
 
 ## 3.2. 子数组 Subarray
-令 PrefixSum[i] = A[0] + A[1] + ... A[i - 1], PrefixSum[0] = 0 易知构造 PrefixSum 耗费 O(n) 时间和 O(n) 空间 如需计算子数组从下标i到下标j之间的所有数之和 则有 Sum(i~j) = PrefixSum[j + 1] - PrefixSum[i]
+令前缀和数组 PrefixSum[i] = A[0] + A[1] + ... A[i - 1], PrefixSum[0] = 0
+构造 PrefixSum 耗费 O(n)时间 和 O(n)空间
+如需计算子数组从下标i到下标j之间的所有数之和, 则有 Sum(i~j) = PrefixSum[j + 1] - PrefixSum[i]
 
-Lintcode .[Maximum Subarray]() http://www.lintcode.com/en/problem/maximum-subarray/
+Lintcode 41.[Maximum Subarray]()
 
-Lintcode .[Subarray Sum]() http://www.lintcode.com/en/problem/subarray-sum/
+Lintcode 138.[Subarray Sum]()
 
-Lintcode .[Subarray Sum Closest]() http://www.lintcode.com/en/problem/subarray-sum-closest/
-
+Lintcode 139.[Subarray Sum Closest]()
 
 # 4. 哈希表 Hash 原理 & 应用
 支持操作:O(1) Insert / O(1) Find / O(1) Delete 
