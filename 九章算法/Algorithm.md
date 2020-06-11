@@ -322,6 +322,16 @@ LintCode 617.[Maximum Average Subarray II]() 二分答案的典型题目
 使用 DFS → 找所有的方案; 找最优的问题, 找最短/最长问题 (但很少)
 使用 BFS → 图的遍历问题(层级遍历, 联通问题灌水法, 拓扑排序) + 简单图最短路径问题
 
+BFS 的主要数据结构是 Queue, DFS 的主要数据结构是 Stack
+
+* 队列 Queue 
+    支持操作: O(1) Push / O(1) Pop / O(1) Top
+    BFS的主要数据结构, 多做做BFS的题就可以了
+ 
+* 栈 Stack 
+    支持操作: O (1) Push / O(1) Pop / O(1) Top 
+    非递归实现DFS的主要数据结构
+
 难度 BFS < DFS < DP
 
 ## 2.1. 宽度优先搜索 Breadth First Search
@@ -451,7 +461,6 @@ indegree(入度): 有多少条边指向此点,   hashmap 点→点的入度
 Lintcode 615.[Course Schedule]()
 Lintcode 616.[Course Schedule II]() 裸拓扑排序
 Lintcode 605.[Sequence Reconstruction]()
-http://www.lintcode.com/problem/sequence-reconstruction/
 判断是否只存在一个拓扑排序的序列, 只需要保证队列中一直最多只有1个元素即可
 
 能不能被拓扑排序? 判断有没有入度为0的点
@@ -552,11 +561,9 @@ Lintcode 33.[N Queens]()
 ### 2.2.3. Search in a Graph 图中的搜索
 Lintcode 120.[Word Ladder]()
 http://www.lintcode.com/problem/word-ladder/
-http://www.jiuzhang.com/solutions/word-ladder/
 
 Lintcode.[Word Ladder II]()
 http://www.lintcode.com/problem/word-ladder-ii/
-http://www.jiuzhang.com/solutions/word-ladder-ii/
 
 ### 2.2.4. Non Recursion
 基本上都会用上栈(Stack)
