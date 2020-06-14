@@ -15,9 +15,6 @@ Sliding Window Median, 就是不断的增加数, 删除数, 然后求中点
 
 '''
 
-
-
-
 # 九章算法Solution
 class HashHeap:
     def __init__(self, desc=False):
