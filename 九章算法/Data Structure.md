@@ -5,31 +5,33 @@
     - [1.2. 二叉树的深度优先搜索 DFS in Binary Tree](#12-%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-dfs-in-binary-tree)
 - [2. 链表 Linked List](#2-%E9%93%BE%E8%A1%A8-linked-list)
     - [2.1. Dummy Node](#21-dummy-node)
-- [3. 链表 Linked List](#3-%E9%93%BE%E8%A1%A8-linked-list)
-    - [3.1. Dummy Node](#31-dummy-node)
-- [4. 数组 Array](#4-%E6%95%B0%E7%BB%84-array)
-    - [4.1. Sorted Array 排序数组](#41-sorted-array-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84)
-    - [4.2. 子数组 Subarray](#42-%E5%AD%90%E6%95%B0%E7%BB%84-subarray)
-- [5. 哈希表 Hash 原理 & 应用](#5-%E5%93%88%E5%B8%8C%E8%A1%A8-hash-%E5%8E%9F%E7%90%86--%E5%BA%94%E7%94%A8)
-- [6. Stack 栈 & Heap 堆 & Queue(Priority Queue)](#6-stack-%E6%A0%88--heap-%E5%A0%86--queuepriority-queue)
-- [7. Deque 双端队列](#7-deque-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97)
-- [8. 并查集 Union Find 集合的合并查找操作,并查集](#8-%E5%B9%B6%E6%9F%A5%E9%9B%86-union-find-%E9%9B%86%E5%90%88%E7%9A%84%E5%90%88%E5%B9%B6%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C%E5%B9%B6%E6%9F%A5%E9%9B%86)
-- [9. 字典树Trie, Prefix Tree 前缀树](#9-%E5%AD%97%E5%85%B8%E6%A0%91trie-prefix-tree-%E5%89%8D%E7%BC%80%E6%A0%91)
-    - [9.1. Trie用于剪枝](#91-trie%E7%94%A8%E4%BA%8E%E5%89%AA%E6%9E%9D)
-    - [9.2. Typeahead Trie 在系统设计中的运用 (实际运用)](#92-typeahead-trie-%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8-%E5%AE%9E%E9%99%85%E8%BF%90%E7%94%A8)
-- [10. 线段树 Segment Tree](#10-%E7%BA%BF%E6%AE%B5%E6%A0%91-segment-tree)
-    - [10.1. 线段树的构建](#101-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA)
-    - [10.2. 线段树的修改](#102-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E4%BF%AE%E6%94%B9)
-    - [10.3. 线段树的查询](#103-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9F%A5%E8%AF%A2)
-    - [10.4. Python 线段树](#104-python-%E7%BA%BF%E6%AE%B5%E6%A0%91)
-        - [10.4.1. SideNote: staticmethod & classmethod](#1041-sidenote-staticmethod--classmethod)
-    - [10.5. 线段树Lintcode](#105-%E7%BA%BF%E6%AE%B5%E6%A0%91lintcode)
-- [11. 树状数组 binary index tree](#11-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-binary-index-tree)
-    - [11.1. 树状数组算法分析](#111-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90)
-    - [11.2. 树状数组的构建](#112-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%9A%84%E6%9E%84%E5%BB%BA)
-        - [11.2.1. lowbit](#1121-lowbit)
-    - [11.3. Python 树状数组](#113-python-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84)
-    - [11.4. 树状数组Lintcode:](#114-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84lintcode)
+- [3. 数组 Array](#3-%E6%95%B0%E7%BB%84-array)
+    - [3.1. Sorted Array 排序数组](#31-sorted-array-%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84)
+    - [3.2. 子数组 Subarray](#32-%E5%AD%90%E6%95%B0%E7%BB%84-subarray)
+- [4. 哈希表 Hash 原理 & 应用](#4-%E5%93%88%E5%B8%8C%E8%A1%A8-hash-%E5%8E%9F%E7%90%86--%E5%BA%94%E7%94%A8)
+- [5. Stack 栈 & Heap 堆 & Queue(Priority Queue)](#5-stack-%E6%A0%88--heap-%E5%A0%86--queuepriority-queue)
+    - [5.1. 堆 Heap = 优先队列 Priority Queue](#51-%E5%A0%86-heap--%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97-priority-queue)
+        - [5.1.1. 双堆](#511-%E5%8F%8C%E5%A0%86)
+    - [5.2. 栈 Stack](#52-%E6%A0%88-stack)
+        - [5.2.1. 单调栈 Monotonous stack](#521-%E5%8D%95%E8%B0%83%E6%A0%88-monotonous-stack)
+- [6. Deque 双端队列](#6-deque-%E5%8F%8C%E7%AB%AF%E9%98%9F%E5%88%97)
+- [7. 并查集 Union Find 集合的合并查找操作,并查集](#7-%E5%B9%B6%E6%9F%A5%E9%9B%86-union-find-%E9%9B%86%E5%90%88%E7%9A%84%E5%90%88%E5%B9%B6%E6%9F%A5%E6%89%BE%E6%93%8D%E4%BD%9C%E5%B9%B6%E6%9F%A5%E9%9B%86)
+- [8. 字典树Trie, Prefix Tree 前缀树](#8-%E5%AD%97%E5%85%B8%E6%A0%91trie-prefix-tree-%E5%89%8D%E7%BC%80%E6%A0%91)
+    - [8.1. Trie用于剪枝](#81-trie%E7%94%A8%E4%BA%8E%E5%89%AA%E6%9E%9D)
+    - [8.2. Typeahead Trie 在系统设计中的运用 (实际运用)](#82-typeahead-trie-%E5%9C%A8%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1%E4%B8%AD%E7%9A%84%E8%BF%90%E7%94%A8-%E5%AE%9E%E9%99%85%E8%BF%90%E7%94%A8)
+- [9. 线段树 Segment Tree](#9-%E7%BA%BF%E6%AE%B5%E6%A0%91-segment-tree)
+    - [9.1. 线段树的构建](#91-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9E%84%E5%BB%BA)
+    - [9.2. 线段树的修改](#92-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E4%BF%AE%E6%94%B9)
+    - [9.3. 线段树的查询](#93-%E7%BA%BF%E6%AE%B5%E6%A0%91%E7%9A%84%E6%9F%A5%E8%AF%A2)
+    - [9.4. Python 线段树](#94-python-%E7%BA%BF%E6%AE%B5%E6%A0%91)
+        - [9.4.1. SideNote: staticmethod & classmethod](#941-sidenote-staticmethod--classmethod)
+    - [9.5. 线段树Lintcode](#95-%E7%BA%BF%E6%AE%B5%E6%A0%91lintcode)
+- [10. 树状数组 binary index tree](#10-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84-binary-index-tree)
+    - [10.1. 树状数组算法分析](#101-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90)
+    - [10.2. 树状数组的构建](#102-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84%E7%9A%84%E6%9E%84%E5%BB%BA)
+        - [10.2.1. lowbit](#1021-lowbit)
+    - [10.3. Python 树状数组](#103-python-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84)
+    - [10.4. 树状数组Lintcode:](#104-%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84lintcode)
 
 <!-- /TOC -->
 - 数据结构 Heap (双堆)
@@ -154,55 +156,11 @@ Lintcode 85.[Insert Node in a Binary Search Tree]()  (不用recursion怎么写??
 Lintcode 87.[Remove Node in Binary Search Tree]()
 Hibbard deletion algorithm  http://www.mathcs.emory.edu/~cheung/Courses/171/Syllabus/9-BinTree/BST-delete.html
 
-
 # 2. 链表 Linked List 
-Lintcode 35.[Reverse Linked List]()
-Lintcode 450.[Reverse Nodes in k-Group]()
-
-## 2.1. Dummy Node
-独孤九剑 —— 破索式 链表结构发生变化时, 就需要 Dummy Node
-如何使用 Dummy Node
-head = dummy 这句话总是需要么?
-什么时候使用 Dummy Node?
-Dummy Node 是否需要删除?
-使用 Dummy Node 算面试官会说我耗费了额外空间么? 
-Dummy Node 非用不可么?
-Dummy Node 初始化的值重要么? 
-链表的问题都需要用到 Dummy Node 么?
-
-
-用到了 Dummy Node 的值得一做的题目
-Lintcode .[]() http://www.lintcode.com/en/problem/partition-list/
-Lintcode .[]() http://www.lintcode.com/en/problem/merge-two-sorted-lists/ 
-Lintcode .[]() http://www.lintcode.com/en/problem/reverse-linked-list-ii/ 
-Lintcode .[]() http://www.lintcode.com/en/problem/swap-two-nodes-in-linked-list/ 
-Lintcode .[]() http://www.lintcode.com/en/problem/reorder-list/ 
-Lintcode .[]() http://www.lintcode.com/en/problem/rotate-list/
-
-Lintcode .[Copy List with Random Pointer]() http://www.lintcode.com/problem/copy-list-with-random-pointer/
-
-Lintcode .[Linked List Cycle]()http://www.lintcode.com/en/problem/linked-list-cycle/
-
-follow up:
-Lintcode .[]() http://www.lintcode.com/en/problem/linked-list-cycle-ii/ 
-
-Lintcode .[Sort List]()
-http://www.lintcode.com/en/problem/sort-list/
-哪些排序算法时间复杂度是 O(nlogn) 的? MergeSort, HeapSort, QuickSort
-哪些排序算法空间复杂度是 O(1) 的? QuickSort
-
-Related  Lintcodes
-Lintcode .[]() http://www.lintcode.com/problem/convert-sorted-list-to-balanced-bst/
-Lintcode .[]() http://www.lintcode.com/problem/delete-node-in-the-middle-of-singly-linked-list/
-Lintcode .[]() http://www.lintcode.com/problem/convert-binary-search-tree-to-doubly-linked-list/
-
-
-
-# 3. 链表 Linked List 
 Lintcode 35.[Reverse Linked List](https://github.com/bitterengsci/algorithm/blob/master/九章算法/基础班LintCode/Reverse%20Linked%20List.py)
 Lintcode 450.[Reverse Nodes in k-Group](https://github.com/bitterengsci/algorithm/blob/master/九章算法/基础班LintCode/Reverse%20Nodes%20in%20k-Group.py)
 
-## 3.1. Dummy Node
+## 2.1. Dummy Node
 独孤九剑 —— 破索式 链表结构发生变化时, 就需要 Dummy Node
 如何使用 Dummy Node
 head = dummy 这句话总是需要么?
@@ -239,9 +197,9 @@ Lintcode .[]() http://www.lintcode.com/problem/convert-sorted-list-to-balanced-b
 Lintcode .[]() http://www.lintcode.com/problem/delete-node-in-the-middle-of-singly-linked-list/
 Lintcode .[]() http://www.lintcode.com/problem/convert-binary-search-tree-to-doubly-linked-list/
 
-# 4. 数组 Array
+# 3. 数组 Array
 
-## 4.1. Sorted Array 排序数组
+## 3.1. Sorted Array 排序数组
 
 Lintcode 6.[Merge Two Sorted Arrays]()
 
@@ -268,7 +226,7 @@ def dot_product(*vectors):
 
 Lintcode 65.[Median of two Sorted Arrays]()
 
-## 4.2. 子数组 Subarray
+## 3.2. 子数组 Subarray
 令前缀和数组 PrefixSum[i] = A[0] + A[1] + ... A[i - 1], PrefixSum[0] = 0
 构造 PrefixSum 耗费 O(n)时间 和 O(n)空间
 如需计算子数组从下标i到下标j之间的所有数之和, 则有 Sum(i~j) = PrefixSum[j + 1] - PrefixSum[i]
@@ -281,7 +239,7 @@ Lintcode 139.[Subarray Sum Closest]()
 
 
 
-# 5. 哈希表 Hash 原理 & 应用
+# 4. 哈希表 Hash 原理 & 应用
 支持操作: O(1) Insert / O(1) Find / O(1) Delete 
 Hash Table / Hash Map / Hash Set 的区别是什么?
 
@@ -349,7 +307,7 @@ Two strings are anagram if they can be the same after change the order of charac
 
 Lintcode 124.[Longest Consecutive Sequence]()
 
-# 6. Stack 栈 & Heap 堆 & Queue(Priority Queue)
+# 5. Stack 栈 & Heap 堆 & Queue(Priority Queue)
 队列 Queue 
 支持操作: O(1) Push / O(1) Pop / O(1) Top
 BFS的主要数据结构, 多做做BFS的题就可以了
@@ -400,7 +358,7 @@ https://docs.oracle.com/javase/7/docs/api/java/util/TreeMap.html
 Lintcode .[]() http://www.lintcode.com/problem/building-outline/
 Lintcode .[]() http://www.lintcode.com/problem/top-k-frequent-words/
 
-## 堆 Heap = 优先队列 Priority Queue
+## 5.1. 堆 Heap = 优先队列 Priority Queue
 堆 Heap = 优先队列 Priority Queue -> 树的结构
 支持操作: O(1) Min/Max 求最大/最小 (=根的值)    log(N) Push 插入    log(N) Pop 删除
 
@@ -417,7 +375,7 @@ python: heapq (最小堆 -> 最大堆, 插入时值取负) Java: PriorityQueue  
 
 若要动态维护第K大的数, 应将前K个数加入最小堆。(每次要看的是当前加入的数与前k大的数中最小的数的大小关系, 因此应将前K个数加入最小堆)
 
-### 双堆
+### 5.1.1. 双堆
 LintCode 81: [Find Median from Data Stream](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Find%20Median%20from%20Data%20Stream.py) Data Stream Median 数据流中位数
 给N个数, 求前1个数、前2个数...、前N个数的中位数 (the median is A[n//2])
 输入:[4,5,1,3,2,6,0] 输出:[4,4,4,3,3,3,3]
@@ -467,7 +425,7 @@ LintCode 364.[Trapping Rain Water II]()
 - TC=mnlog(mn)  m*n个点, 每个点只能被插入堆一次, 每次插入log(mn)
 - 堆保证吃水线低的先求, 高的后求 (因此不需要求出所有路径的最小吃水线)
 
-## 栈 Stack
+## 5.2. 栈 Stack
 先进后出
 计算机中实现递归的方式
 支持操作: O(1) Push     O(1) Pop        O(1) Top
@@ -514,7 +472,7 @@ s = 3[2[ad]3[pf]]xyz, 输出: adadpfpfpfadadpfpfpfadadpfpfpfxyz
 
 [2[3[a]2[bc]]]解码后应为aaabcbcaaabcbc (a重复3次, bc重复两次, 得到aaabcbc; 再把此序列重复2次)
 
-### 1.2.1. 单调栈 Monotonous stack
+### 5.2.1. 单调栈 Monotonous stack
 栈中只保存升序序列 (新元素插入前, pop掉所有比它大的)
 stack([1, 2, 8, 10]).push(5) => stack([1, 2, 5])
 - 实现非递归  (树的前中后序遍历, 非递归版, 也是常考)
@@ -567,7 +525,7 @@ LintCode 126: [Max Tree]()
     如何找到每个值左右第一个比它大的值? 单调递减栈
 
 
-# 7. Deque 双端队列
+# 6. Deque 双端队列
 维护一个候选可能(窗口)的最大值集合 (队首pop, 队尾insert)
 类似单调栈, 但两端都有操作 (两端都会有push和pop)
 
@@ -580,7 +538,7 @@ LintCode 362: [Sliding Window Maximum]() 滑动窗口经典题型
     - 窗口向右移动, 左端元素移出队首(如果仍在队列中), 右端元素A[j]移进队尾, 并删除所有小于等于A[j]的A[i]
     TC=O(N), 每个元素只会进一次deque
 
-# 8. 并查集 Union Find 集合的合并查找操作,并查集
+# 7. 并查集 Union Find 集合的合并查找操作,并查集
 一种用于支持集合(一堆元素形成的整体)快速合并和查找操作的数据结构
 * Union 合并(两个集合取并)两个集合 O(1)
 * Find 查询元素所属集合 O(1)  给定单个元素, 求所属集合
@@ -758,7 +716,7 @@ LintCode 805: [Maximum Association Set](https://github.com/bitterengsci/algorith
 - 统计当前集合个数
 - 关键操作:快速寻找根节点
 
-# 9. 字典树Trie, Prefix Tree 前缀树
+# 8. 字典树Trie, Prefix Tree 前缀树
 来自单词Retrieval,发音与Tree相同, 用于处理字符串
 Trie的考点: 实现一个Trie; 比较Trie和Hash的优劣 (字符矩阵类问题使用Trie更高效)
 
@@ -778,7 +736,7 @@ search(word): 搜索一个词,其中可能有".", 代表任何单个字符 ("." 
 addWord使用Trie
 searchWord在Trie中DFS,一旦需要”.”字符就遍历所有儿子节点: 走到死胡同or找到了到isword=False, return False
  
-## 9.1. Trie用于剪枝
+## 8.1. Trie用于剪枝
 LintCode 634: [Word Squares](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Word%20Squares.py) 
 给出一系列不重复的单词,找出所有用这些单词能构成的单词平方。单词平方是一个k×k的单词方阵: 第k行的单词和第k列的单词相同
 输入: ["area", "lead", "wall", "lady", "ball"]
@@ -803,7 +761,7 @@ LintCode 132: [Word Search II](https://github.com/bitterengsci/algorithm/blob/ma
 在矩阵中DFS时,在Trie里对应节点向下走
 Trie可以帮助剪枝
   
-## 9.2. Typeahead Trie 在系统设计中的运用 (实际运用)
+## 8.2. Typeahead Trie 在系统设计中的运用 (实际运用)
 字典树Trie
 - 合并所有公共的前缀
 - 动态插入与查询单词
@@ -819,7 +777,7 @@ Trie可以帮助剪枝
 "ab" "abc" "adc" "cad" "bad" "bd"中有多少不同的前缀? 可以自己构建一棵Trie, 将所有字符串插入字典树, 数其中有多少节点即可。共有a, ab, abc, ad, adc, b, ba, bad, bd, c, ca, cad 共12个本质不同的前缀。
 
 
-# 10. 线段树 Segment Tree
+# 9. 线段树 Segment Tree
 线段树就是⼀个二叉树, 二叉树中的每个节点代表一个区间 (叶子节点代表最小区间=1个单位长度)
   
 ![](.pic/线段树.png)
@@ -871,7 +829,7 @@ public class SegmentTreeNode{
 * 查询: O(logn) 0-3 and 2-3
 Note: logn比常数大, 但远远小于n
 
-## 10.1. 线段树的构建
+## 9.1. 线段树的构建
 如何根据问题构建线段树
 
 ```java
@@ -916,7 +874,7 @@ public SegmentTreeNode buildTree(int start, int end, int[] A){
 ```
 如果是range-sum线段树呢?    node.val = node.left.val + node.right.val;
 
-## 10.2. 线段树的修改
+## 9.2. 线段树的修改
 ```java
 public void modify(SegmentTreeNode root, int index, int value) { // index值改为value
     if(root.start == index && root.end == index) { 
@@ -933,7 +891,7 @@ public void modify(SegmentTreeNode root, int index, int value) { // in
 }
 ```
 
-## 10.3. 线段树的查询
+## 9.3. 线段树的查询
 ```java
 public int query(SegmentTreeNode root, int start, int end) {
     if(root.start == index && root.end == index) { 
@@ -961,7 +919,7 @@ public int query(SegmentTreeNode root, int start, int end) {
 }
 ```
 
-## 10.4. Python 线段树
+## 9.4. Python 线段树
 ```python
 class SegmentTree(object):  # SegmentTreeNode
     def __init__(self, start, end, sum=0):   # val = sum or max, etc..
@@ -1020,7 +978,7 @@ class SegmentTree(object):  # SegmentTreeNode
         return cls.query(root.left, start, end) + cls.query(root.right, start, end)
 ```
 
-### 10.4.1. SideNote: staticmethod & classmethod
+### 9.4.1. SideNote: staticmethod & classmethod
 使用某个类的方法，需要先实例化一个对象再调用方法
 而使用@staticmethod或@classmethod，就可以不需要实例化，直接类名.方法名()来调用
 这有利于组织代码，把某些应该属于某个类的函数给放到那个类里去，同时有利于命名空间的整洁
@@ -1069,7 +1027,7 @@ class A(object):
         print(cls().foo2(name))
 ```
 
-## 10.5. 线段树Lintcode
+## 9.5. 线段树Lintcode
 Lintcode 206.[Interval Sum]()
 Given an integer array (index from 0 to n-1, where n is the size of this array), and an query list. Each query has two integers [start, end]. For each query, calculate the sum number between index start and end in the given array, return the result list.
 * Soln 1: Cumulative Sum Array
@@ -1102,7 +1060,7 @@ Lintcode 439.[Segment Tree Build II]()
 Lintcode 247.[Segment Tree Query II]()
 
 
-# 11. 树状数组 binary index tree
+# 10. 树状数组 binary index tree
 树状数组⽤于维护前缀信息的结构, 对前缀信息的处理也是⾮常高效的
 北美常见面试题
 熟练掌握树状数组类似问题的解决, 可以加深初学者对于逻辑分层的理解
@@ -1121,7 +1079,7 @@ Lintcode 247.[Segment Tree Query II]()
 如何⽤前缀和求解sumRange(i, j)呢?
 那么树状数组具体如何实现单点更新以及区间求和呢? 可变数组range-sum问题
   
-## 11.1. 树状数组算法分析 
+## 10.1. 树状数组算法分析 
 注意: 树状数组的下标从 1 开始计数	
 定义: 数组 C 是⼀个对原始数组 A 的预处理数组
 
@@ -1146,7 +1104,7 @@ C[i]来⾃几个数组A中的元素: 取决于i的⼆进制末尾有几个连续
 根据lowbit函数, 可以知道 
 ①C[i]代表⼏个A中元素相加 = lowbit(i) ②i的⽗亲在哪 = i + lowbit(i)
   
-## 11.2. 树状数组的构建
+## 10.2. 树状数组的构建
 先都初始化为0 (这样依旧满足C[i] = A[i]等式), 然后再更新为相应的值
 e.g [1 2 3 4 ..]
 delta=1  A[1]=1  C[1]+=delta (1)  C2是1+lowbit(1)  C2+=1  C4..  
@@ -1163,7 +1121,7 @@ sum(i) = sum{A[k] | 1 <= k <= i } = A[1] + A[2] + .. + A[i]
 sum(6) = C[6] + sum(6-lowbit(6)) = C[6] + sum(4)
 sum(4) = C[4] + sum(4-lowbit(4)) = C[4] + sum(0) = C[4]		sum(6) = C[6] + C[4]
 
-### 11.2.1. lowbit
+### 10.2.1. lowbit
 lowbit(i) = 2 ^ k   (k = i的2进制末尾0的个数)
 位运算& 1&1=1 0&1=0 1&0=0 0&0=0 
 3 & 11 = 0011 & 1011 = 0011
@@ -1172,7 +1130,7 @@ num & (-num) = 2 ^ k
 e.g lowbit(12) = 2 ^ 2 = 4    与运算 01100 & 10100 = 00100 = 4
 
 
-## 11.3. Python 树状数组
+## 10.3. Python 树状数组
 ```python
 class BinaryIndexTree(object):
     def __init__(self, A): # build the tree
@@ -1203,7 +1161,7 @@ class BinaryIndexTree(object):
         return presum
 ```
 
-## 11.4. 树状数组Lintcode: 
+## 10.4. 树状数组Lintcode: 
 Lintcode 206.[Interval Sum]()
 
 Lintcode 207.[Interval Sum II]()
