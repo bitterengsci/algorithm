@@ -7,36 +7,49 @@
     - [1.4. 第二境界 二分位置 之 OOXX](#14-%E7%AC%AC%E4%BA%8C%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-ooxx)
     - [1.5. 第三境界 二分位置 之 Half Half](#15-%E7%AC%AC%E4%B8%89%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-half-half)
     - [1.6. 第四境界(至高境界): 二分答案 Binary Search on Result, 二分法难题 (Hard)](#16-%E7%AC%AC%E5%9B%9B%E5%A2%83%E7%95%8C%E8%87%B3%E9%AB%98%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88-binary-search-on-result-%E4%BA%8C%E5%88%86%E6%B3%95%E9%9A%BE%E9%A2%98-hard)
-        - [1.6.1. Serialization 序列化](#161-serialization-%E5%BA%8F%E5%88%97%E5%8C%96)
-        - [1.6.2. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)](#162-%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-graph--%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-topological-sorting%E5%BF%85%E8%80%83)
-        - [1.6.3. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)](#163-%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-matrix-%E6%A0%BC%E5%AD%90%E5%9B%BE)
-    - [1.7. 深度优先搜索 Depth First Search](#17-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-depth-first-search)
-        - [1.7.1. 组合搜索问题 Combination 2**n](#171-%E7%BB%84%E5%90%88%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-combination-2n)
-        - [1.7.2. 排列搜索问题 Permutation](#172-%E6%8E%92%E5%88%97%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-permutation)
-        - [1.7.3. Search in a Graph 图中的搜索](#173-search-in-a-graph-%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2)
-        - [1.7.4. Non Recursion](#174-non-recursion)
-        - [1.7.5. DFS时间复杂度](#175-dfs%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6)
-    - [1.8. dijkstra's algorithm](#18-dijkstras-algorithm)
-- [2. Sweep Line 扫描线算法 处理区间问题的扫描线](#2-sweep-line-%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95-%E5%A4%84%E7%90%86%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98%E7%9A%84%E6%89%AB%E6%8F%8F%E7%BA%BF)
-- [3. 两根指针 Two Pointers](#3-%E4%B8%A4%E6%A0%B9%E6%8C%87%E9%92%88-two-pointers)
-    - [3.1. 同向双指针](#31-%E5%90%8C%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
-    - [3.2. 相向双指针](#32-%E7%9B%B8%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
-    - [3.3. Two Sum & its variation](#33-two-sum--its-variation)
-    - [3.4. Partition Array 分割数组](#34-partition-array-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84)
-- [4. 递归 Recursion](#4-%E9%80%92%E5%BD%92-recursion)
-    - [4.1. 递归的概念](#41-%E9%80%92%E5%BD%92%E7%9A%84%E6%A6%82%E5%BF%B5)
-        - [4.1.1. 递归的三要素](#411-%E9%80%92%E5%BD%92%E7%9A%84%E4%B8%89%E8%A6%81%E7%B4%A0)
-        - [4.1.2. 递归与非递归方法的比较](#412-%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83)
-    - [4.2. 递归调用栈](#42-%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8%E6%A0%88)
-        - [4.2.1. 回溯法Backtracking](#421-%E5%9B%9E%E6%BA%AF%E6%B3%95backtracking)
-        - [4.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)](#422-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2-binary-search-%E7%9A%84%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-%E4%BA%8C%E5%88%86)
-    - [4.3. 值传递和引⽤传递](#43-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
-        - [4.3.1. 值传递](#431-%E5%80%BC%E4%BC%A0%E9%80%92)
-        - [4.3.2. 引⽤传递](#432-%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
-    - [4.4. 递归综合训练](#44-%E9%80%92%E5%BD%92%E7%BB%BC%E5%90%88%E8%AE%AD%E7%BB%83)
-- [5. 贪心 Greedy](#5-%E8%B4%AA%E5%BF%83-greedy)
-- [6. 分治 Divide & Conquer](#6-%E5%88%86%E6%B2%BB-divide--conquer)
-- [7. String问题](#7-string%E9%97%AE%E9%A2%98)
+- [2. 搜索 Search](#2-%E6%90%9C%E7%B4%A2-search)
+    - [2.1. 宽度优先搜索 Breadth First Search](#21-%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-breadth-first-search)
+        - [2.1.1. 二叉树上的宽度优先搜索 BFS in Binary Tree](#211-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-binary-tree)
+        - [2.1.2. Serialization 序列化](#212-serialization-%E5%BA%8F%E5%88%97%E5%8C%96)
+        - [2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)](#213-%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-graph--%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-topological-sorting%E5%BF%85%E8%80%83)
+        - [2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)](#214-%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-matrix-%E6%A0%BC%E5%AD%90%E5%9B%BE)
+    - [2.2. 深度优先搜索 Depth First Search](#22-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-depth-first-search)
+        - [2.2.1. 组合搜索问题 Combination 2**n](#221-%E7%BB%84%E5%90%88%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-combination-2n)
+        - [2.2.2. 排列搜索问题 Permutation](#222-%E6%8E%92%E5%88%97%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-permutation)
+        - [2.2.3. Search in a Graph 图中的搜索](#223-search-in-a-graph-%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2)
+        - [2.2.4. Non Recursion](#224-non-recursion)
+        - [2.2.5. DFS时间复杂度](#225-dfs%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6)
+    - [2.3. dijkstra's algorithm](#23-dijkstras-algorithm)
+- [3. Sweep Line 扫描线算法 处理区间问题的扫描线](#3-sweep-line-%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95-%E5%A4%84%E7%90%86%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98%E7%9A%84%E6%89%AB%E6%8F%8F%E7%BA%BF)
+- [4. 两根指针 Two Pointers](#4-%E4%B8%A4%E6%A0%B9%E6%8C%87%E9%92%88-two-pointers)
+    - [4.1. 同向双指针](#41-%E5%90%8C%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
+    - [4.2. 相向双指针](#42-%E7%9B%B8%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
+    - [4.3. Two Sum & its variation](#43-two-sum--its-variation)
+    - [4.4. Partition Array 分割数组](#44-partition-array-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84)
+- [5. 递归 Recursion](#5-%E9%80%92%E5%BD%92-recursion)
+    - [5.1. 递归的概念](#51-%E9%80%92%E5%BD%92%E7%9A%84%E6%A6%82%E5%BF%B5)
+        - [5.1.1. 递归的三要素](#511-%E9%80%92%E5%BD%92%E7%9A%84%E4%B8%89%E8%A6%81%E7%B4%A0)
+        - [5.1.2. 递归与非递归方法的比较](#512-%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83)
+    - [5.2. 递归调用栈](#52-%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8%E6%A0%88)
+        - [5.2.1. 回溯法Backtracking](#521-%E5%9B%9E%E6%BA%AF%E6%B3%95backtracking)
+        - [5.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)](#522-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2-binary-search-%E7%9A%84%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-%E4%BA%8C%E5%88%86)
+    - [5.3. 值传递和引⽤传递](#53-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
+        - [5.3.1. 值传递](#531-%E5%80%BC%E4%BC%A0%E9%80%92)
+        - [5.3.2. 引⽤传递](#532-%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
+    - [5.4. 递归综合训练](#54-%E9%80%92%E5%BD%92%E7%BB%BC%E5%90%88%E8%AE%AD%E7%BB%83)
+- [6. 贪心 Greedy Algorithms](#6-%E8%B4%AA%E5%BF%83-greedy-algorithms)
+- [7. 分治 Divide & Conquer](#7-%E5%88%86%E6%B2%BB-divide--conquer)
+- [8. Graph](#8-graph)
+    - [8.1. BFS & DFS](#81-bfs--dfs)
+    - [8.2. Dijkstra,](#82-dijkstra)
+    - [8.3. Flloyd Warshall](#83-flloyd-warshall)
+    - [8.4. MST](#84-mst)
+    - [8.5. flow](#85-flow)
+- [9. String问题](#9-string%E9%97%AE%E9%A2%98)
+    - [9.1. Rabin Karp](#91-rabin-karp)
+    - [9.2. KMP](#92-kmp)
+    - [9.3. Aho-Crosaick](#93-aho-crosaick)
+- [10. Number Theory](#10-number-theory)
 
 <!-- /TOC -->
 
@@ -89,7 +102,7 @@ Time Complexity in Coding Interview
 * O(n!)             与排列有关的搜索
 考察如何计算时间复杂度, 面试中常考O(n), O(nlogn), O(n2)
 
-## 1.2. 独孤九剑——破剑式 比O(n)更优的时间复杂度 几乎只能是O(logn)的二分法 
+## 1.2. 独孤九剑——破剑式 比O(n)更优的时间复杂度 几乎只能是O(logn)的二分法
 *经验之谈: 根据时间复杂度倒推算法是面试中的常用策略*
 若一眼看就是O(n), 就要考虑O(logn)的实现方式了 → 两个指针一头一尾, 中间取点, 去一半
 
@@ -124,7 +137,7 @@ Lintcode 457.[Classical Binary Search]()
 Lintcode 14.[First Position of Target]()
 Lintcode 458.[Last Position of Target]()
 
-## 1.4. 第二境界 二分位置 之 OOXX 
+## 1.4. 第二境界 二分位置 之 OOXX
 一般会给你一个数组, 让你找数组中第一个/最后一个满足某个条件的位置 OOOOOOO..O**OX**X....XXXXXX
 O=小于target的数, X=大于等于target的数, 找第一个X或者最后一个O
 
@@ -593,7 +606,7 @@ O(答案个数 * 构造每个答案的时间)
 
 ## 1.8. dijkstra's algorithm
 
-# 2. Sweep Line 扫描线算法 处理区间问题的扫描线 
+# 2. Sweep Line 扫描线算法 处理区间问题的扫描线
 见到区间需要排序, 就可以考虑扫描线 (区间问题巧妙解法)
 扫描问题的特点: 1.事件往往是以区间的形式存在  2.区间两端代表事件的开始和结束  3.按照区间起点排序, 起点相同的按照终点排序
 扫描线要点: 将起点和终点打散排序 [[1, 3], [2, 4]] => [[1, start],[2, start],[3, end],[4, end]]
@@ -638,7 +651,7 @@ LintCode 919. [Meeting Rooms II]()
 LintCode 821. [Time Intersection]() F家高频题 输出两组区间的交集
 
 
-# 3. 两根指针 Two Pointers 
+# 3. 两根指针 Two Pointers
 
 ## 3.1. 同向双指针
 *** Lintcode 604-Window Sum
@@ -754,7 +767,7 @@ difference = target
 ## 4.1. 递归的概念
 我们生活过程中处理事情主要运用的是什么思想? 我们生活中主要运用迭代思想, 从已知推向未知
 
-### 4.1.1. 递归的三要素 
+### 4.1.1. 递归的三要素
 (递归, 函数的一种调用形式; 与普通函数类似)
 * ①递归的定义: 接受什么参数(参数列表), 返回什么值, 代表什么意思 
     - 当函数直接或者间接调用⾃己时, 则发⽣了递归(函数内部出现对自己的调用)
@@ -1080,11 +1093,23 @@ LintCode 169.[Tower of Hanoi]() 汉诺塔
     hanoi(n - 1, c2, c1, c3) 
 - 递归的出口: n == 1 
 
-# 5. 贪心 Greedy
+# 5. 贪心 Greedy Algorithms
+https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
 
 # 6. 分治 Divide & Conquer
 
+# Graph
 
+## BFS & DFS
+
+
+## Dijkstra, 
+
+## Flloyd Warshall
+
+## MST 
+
+## flow
 
 # 7. String问题
 ACM带刷班 
@@ -1099,3 +1124,12 @@ ACM带刷班
 * Question 1352-Compare Version Numbers
 * Question 1542-Next Time No Repeat
 * Question 92-Wildcard Matching
+
+## Rabin Karp
+
+## KMP
+
+## Aho-Crosaick
+
+
+# [Number Theory](https://www.geeksforgeeks.org/tag/number-theory/)
