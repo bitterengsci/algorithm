@@ -2,17 +2,17 @@
 
 - [1. 二分法 Binary Search](#1-%E4%BA%8C%E5%88%86%E6%B3%95-binary-search)
     - [1.1. Binary Search](#11-binary-search)
-    - [1.2. 独孤九剑——破剑式 比O(n)更优的时间复杂度 几乎只能是O(logn)的二分法](#12-%E7%8B%AC%E5%AD%A4%E4%B9%9D%E5%89%91%E7%A0%B4%E5%89%91%E5%BC%8F-%E6%AF%94on%E6%9B%B4%E4%BC%98%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-%E5%87%A0%E4%B9%8E%E5%8F%AA%E8%83%BD%E6%98%AFologn%E7%9A%84%E4%BA%8C%E5%88%86%E6%B3%95)
+    - [1.2. 独孤九剑——破剑式 比On更优的时间复杂度 几乎只能是Ologn的二分法](#12-%E7%8B%AC%E5%AD%A4%E4%B9%9D%E5%89%91%E7%A0%B4%E5%89%91%E5%BC%8F-%E6%AF%94on%E6%9B%B4%E4%BC%98%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-%E5%87%A0%E4%B9%8E%E5%8F%AA%E8%83%BD%E6%98%AFologn%E7%9A%84%E4%BA%8C%E5%88%86%E6%B3%95)
     - [1.3. 第一境界 二分法模板](#13-%E7%AC%AC%E4%B8%80%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E6%B3%95%E6%A8%A1%E6%9D%BF)
     - [1.4. 第二境界 二分位置 之 OOXX](#14-%E7%AC%AC%E4%BA%8C%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-ooxx)
     - [1.5. 第三境界 二分位置 之 Half Half](#15-%E7%AC%AC%E4%B8%89%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-half-half)
-    - [1.6. 第四境界(至高境界): 二分答案 Binary Search on Result, 二分法难题 (Hard)](#16-%E7%AC%AC%E5%9B%9B%E5%A2%83%E7%95%8C%E8%87%B3%E9%AB%98%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88-binary-search-on-result-%E4%BA%8C%E5%88%86%E6%B3%95%E9%9A%BE%E9%A2%98-hard)
+    - [1.6. 第四境界至高境界: 二分答案 Binary Search on Result, 二分法难题 Hard](#16-%E7%AC%AC%E5%9B%9B%E5%A2%83%E7%95%8C%E8%87%B3%E9%AB%98%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88-binary-search-on-result-%E4%BA%8C%E5%88%86%E6%B3%95%E9%9A%BE%E9%A2%98-hard)
 - [2. 搜索 Search](#2-%E6%90%9C%E7%B4%A2-search)
     - [2.1. 宽度优先搜索 Breadth First Search](#21-%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-breadth-first-search)
         - [2.1.1. 二叉树上的宽度优先搜索 BFS in Binary Tree](#211-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-binary-tree)
         - [2.1.2. Serialization 序列化](#212-serialization-%E5%BA%8F%E5%88%97%E5%8C%96)
-        - [2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)](#213-%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-graph--%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-topological-sorting%E5%BF%85%E8%80%83)
-        - [2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)](#214-%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-matrix-%E6%A0%BC%E5%AD%90%E5%9B%BE)
+        - [2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting必考](#213-%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-graph--%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-topological-sorting%E5%BF%85%E8%80%83)
+        - [2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix 格子图](#214-%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-matrix-%E6%A0%BC%E5%AD%90%E5%9B%BE)
     - [2.2. 深度优先搜索 Depth First Search](#22-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-depth-first-search)
         - [2.2.1. 组合搜索问题 Combination 2**n](#221-%E7%BB%84%E5%90%88%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-combination-2n)
         - [2.2.2. 排列搜索问题 Permutation](#222-%E6%8E%92%E5%88%97%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-permutation)
@@ -32,7 +32,7 @@
         - [5.1.2. 递归与非递归方法的比较](#512-%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83)
     - [5.2. 递归调用栈](#52-%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8%E6%A0%88)
         - [5.2.1. 回溯法Backtracking](#521-%E5%9B%9E%E6%BA%AF%E6%B3%95backtracking)
-        - [5.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)](#522-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2-binary-search-%E7%9A%84%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-%E4%BA%8C%E5%88%86)
+        - [5.2.2. 二分查找/搜索 Binary Search 的递归写法 二分](#522-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2-binary-search-%E7%9A%84%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-%E4%BA%8C%E5%88%86)
     - [5.3. 值传递和引⽤传递](#53-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
         - [5.3.1. 值传递](#531-%E5%80%BC%E4%BC%A0%E9%80%92)
         - [5.3.2. 引⽤传递](#532-%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
@@ -50,6 +50,10 @@
     - [9.2. KMP](#92-kmp)
     - [9.3. Aho-Crosaick](#93-aho-crosaick)
 - [10. Number Theory](#10-number-theory)
+- [11. Follow Up问题](#11-follow-up%E9%97%AE%E9%A2%98)
+    - [11.1. 同向双指针](#111-%E5%90%8C%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
+    - [11.2. 求第K大/小元素 单个数组, 多个数组, 矩阵](#112-%E6%B1%82%E7%AC%ACk%E5%A4%A7%E5%B0%8F%E5%85%83%E7%B4%A0-%E5%8D%95%E4%B8%AA%E6%95%B0%E7%BB%84-%E5%A4%9A%E4%B8%AA%E6%95%B0%E7%BB%84-%E7%9F%A9%E9%98%B5)
+    - [11.3. Follow Up问题的出题规律](#113-follow-up%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BA%E9%A2%98%E8%A7%84%E5%BE%8B)
 
 <!-- /TOC -->
 
@@ -1098,7 +1102,7 @@ https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
 
 # 6. 分治 Divide & Conquer
 
-# Graph
+# 7. Graph
 
 ## BFS & DFS
 
@@ -1111,7 +1115,7 @@ https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
 
 ## flow
 
-# 7. String问题
+# 8. String问题
 ACM带刷班 
 * Question 54-String to Integer (atoi)
 * Question 1510-Buddy Strings
@@ -1133,3 +1137,135 @@ ACM带刷班
 
 
 # [Number Theory](https://www.geeksforgeeks.org/tag/number-theory/)
+
+
+
+
+# Follow Up问题
+Follow Up问题: 从原题出发, 加/减/改条件 (1D -> 2D)
+
+## 1.1. 同向双指针
+LintCode 406: [Minimum Size Subarray Sum](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Minimum%20Size%20Subarray%20Sum.py)
+Given an array of n positive integers and a positive integer s, 
+find the minimal length of a contiguous subarray of which the sum ≥ s. 最短的连续一段
+If there isn't one, return 0 instead. 正整数 连续一段 数字和
+* Soln 1: 双指针 i=start, j=end, 枚举sum>S, 长度j-i+1, TC=O(枚举开始×枚举结束×枚举sum)=O(n×n×n)=O(n^3)
+* Soln 2: 前缀和数组, prefix sum array, S[j]=a0+...aj, i到j的和为S[j]-S[i-1], TC=O(n^2), 两个for loop
+* Soln 3: 同向双指针, 每次删除左指针左边的数字; 只要当前和小于s, 右指针继续向右移动
+	for loop + while loop; 右指针往右, 左指针不可能往左 TC=O(左指针移动的次数+右指针移动的次数)=O(n+n)=O(n)
+	Note: 有for/while的loop, TC不一定为O(n)
+
+LintCode 384: [Longest Substring Without Repeating Characters](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Longest%20Substring%20Without%20Repeating%20Characters.py)
+Given a string, find the length of the longest substring without repeating characters. 最长无重复
+
+固定左指针, i往右移; j可能不动或者往右(不可能往左) --> 同向双指针
+i每次往右一步(for loop主指针); j每次往右一步/几步/不动(while loop辅指针)
+需要记录两指针中间每个字符出现的次数(均<=1, 0或1); 若右指针下一个字符出现次数为0, 就可以向右移动
+
+使用一个size为26的数组记录各字符出现次数(数组内的值为0或1); 也可以用hashset, 但推荐用array/list, 因为虽然数量级的TC一样, 但是常数项不一样。array为1次, 但是hashmap可能为3次..10次等等。
+
+主指针将数组对应位置-1, 副指针检查数组对应位置是否为0
+
+LintCode 32: [Minimum Window Substring](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Minimum%20Window%20Substring.py)
+Given a string S and a string T, find the minimum window in S which will contain all the characters in T in complexity O(n). 最短子串
+
+C: 集齐B中字母种类, 阈值处理
+同向双指针, 记录每个字符ch在两个指针中间出现的次数freq[ch]
+如果ch在T中出现w次, 一旦freq[ch]增加到w, 记录这个字符被完成了
+如果ch要从区间中一走, freq[ch]减少到w-1, 记录这个字符没被完成
+
+完成的字符数=T中不同字符数 -> 当前区间包含组成T的所有字符
+
+LintCode 386: [Longest Substring with At Most Two Distinct Characters](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Longest%20Substring%20with%20At%20Most%20Two%20Distinct%20Characters.py)
+Given a string s, find the length of the longest substring t that contains at most 2 distinct characters.
+
+[Longest Substring with At Most K Distinct Characters](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Longest%20Substring%20with%20At%20Most%20K%20Distinct%20Characters.py)
+Given a string, find the length of the longest substring T that contains at most k distinct characters.
+同向双指针, 记录每个字符ch在两个指针中间出现的次数freq[ch]
+一旦freq[ch]增加到1, 记录这个字符出现了
+一旦freq[ch]减少到0, 记录这个字符不再出现
+出现的字符<=K --> 用当前区间长度更新最优解
+
+同向双指针:
+* 主指针 -> for, 副指针 -> while
+* 记录每个字符ch在两个指针中间出现的次数freq[ch]
+* 当freq[ch]增加/减少到临界值, 修改满足条件的字符数
+
+**快慢指针**
+[Remove Nth Node From End of List](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Remove%20Nth%20Node%20From%20End%20of%20List.py) 快指针先走N步, 慢指针在开始
+
+[Middle of the Linked List](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Middle%20of%20the%20Linked%20List.py) 快指针走两步, 慢指针走一步
+
+## 1.2. 求第K大/小元素 (单个数组, 多个数组, 矩阵)
+LintCode 461: [Kth Largest Element in an Array]()
+* Soln 1: 排序O(nlogn) --> 取k-th
+* Soln 2: QuickSelect, 每次用当前区间中间的数字P作为pivot; 小于P的放左边, 大于P的放右边
+    如果左边的数字个数 >= k, 递归左边; 如果左边数字个数+1 < k, 递归右边, k -= 左边数字个数+1; 否则输出P
+    平均时间复杂度O(n), randomly-ordered array
+    最差时间复杂度O(n^2)
+
+**QuickSelect**
+QuickSelect is similar to QuickSort as both of them are Divide & Conquer algorithms and use Partition to divide the array.
+* Partition: take an array (a) and two integers for the beginning and the end of the array (l, r) and choose the last element of the array as a pivot, then it sorts the array putting the pivot in the right place, so that all the elements that are smaller than the pivot on left of it and all elements that are larger than the pivot on the right of it, then returns the index of the pivot.
+
+```python
+def partition(nums, left, right):
+    x = nums[r]   # pick right as pivot
+    i = left - 1
+    for j in range(left, right):
+        if nums[j] <= x:
+            i = i + 1
+            nums[i], nums[j] = nums[j], nums[i]
+    nums[i + 1], nums[r] = nums[r], nums[i + 1]
+    return i + 1
+```
+
+LintCode 543: [kth largest in n arrays]() 多个数组  no corresponding leetcode one, skipped this question.
+Note that it is the kth smallest element in the sorted order, not the kth distinct element.
+先将n个数组各自排序, 评价每个数组长度为m, TC=O(n×mlogm), 然后将每个数组最后一个元素放入优先队列(最大堆, 插入删除logN, 求最大O(1))
+每次从堆中取出一个数字, 加入他所在数组的前一个数字 (堆的大小永远为n) -> 做k次
+时间复杂度O(klogN+nmlogm)
+
+LintCode 1272: [Kth Smallest Element in a Sorted Matrix](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Kth%20Smallest%20Element%20in%20a%20Sorted%20Matrix.py) 排序矩阵
+Given a n x n matrix where each of the rows and columns are sorted in ascending order, find the kth smallest element in the matrix.
+[[1, 5, 9],     左上角的1必定为最小
+[10, 11, 13],       
+[12, 13, 15]]
+k=8
+
+类似n个数组求第k小, 从左上角(必定为最小)开始, 每次从堆中取出一个数字, 加入他右方和下方的数字(如果还没有加入的话) -> 删1个, 加最多两个; 堆最大为k(插入为O(logk))
+时间复杂度O(klogk)
+
+LintCode 465: [kth smallest sum in two sorted arrays]() no corresponding leetcode one, skipped this question.
+[1, 7, 11], [2, 4, 6]
+1+2 1+4 1+6     行递增, 列也递增, --> 递增矩阵求第k小
+7+2 7+4 7+6
+11+2 11+4 11+6  
+M[i, j] = A[i]+ B[j] --> 不需要开一个n*m的数组, 每次计算即可
+时间复杂度O(klogk)
+
+## 1.3. Follow Up问题的出题规律
+如果我是面试官:
+a) 两个包含正整数的数组, 求两两之积的第K小  (两数组排序 -> 递增矩阵)
+b) BST上求从小到大第K个 (先求各node子树大小, 递归一遍)
+c) 在一个最小堆里(no built-in delete operation)求从小到大第K个 
+
+变化数据结构:
+- 1个array -> 多个array
+- sorted array -> unsorted array/k sorted array/k unsorted array
+- two sorted arrays, sorted matrix
+- binary search tree, linked list
+
+Follow Up 常见方式
+* 一维转二维 (可以套相同的思路试一试)
+    Trapping Water I/II
+    Subarray Sum/Submatrix Sum
+* 数组变成循环数组 (循环数组小技巧)
+    Continuous Subarray Sum 
+* 题目条件加强 (可能题目的解题方法会变化) 
+    Wiggle Sort I/II
+* 换马甲 (变一个描述, 本质不变)
+    Number of airplanes on the Sky/ Meeting Room
+    Backpack Problem
+* 描述完全不一样, 但是方法相同 这种题目得去分析
+    Quick Sort/ Bolts and Nuts Problem

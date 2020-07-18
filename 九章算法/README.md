@@ -5,6 +5,7 @@
 - [3. 动态规划 Dynamic Programming](#3-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-dynamic-programming)
 - [4. 位运算 Bit Manipulation](#4-%E4%BD%8D%E8%BF%90%E7%AE%97-bit-manipulation)
 - [5. Coding Questions](#5-coding-questions)
+    - [5.1. 重点/经典题型](#51-%E9%87%8D%E7%82%B9%E7%BB%8F%E5%85%B8%E9%A2%98%E5%9E%8B)
 - [6. Coding Style 代码风格](#6-coding-style-%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC)
 - [7. 算法, 永远的痛](#7-%E7%AE%97%E6%B3%95-%E6%B0%B8%E8%BF%9C%E7%9A%84%E7%97%9B)
 - [8. Debug的基本步骤](#8-debug%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%AD%A5%E9%AA%A4)
@@ -64,7 +65,6 @@ https://blog.usejournal.com/top-50-dynamic-programming-practice-problems-4208fed
 
 * Sliding Array 滚动数组
 
-
 # 4. [位运算 Bit Manipulation](https://github.com/bitterengsci/algorithm/blob/master/九章算法/Bit.md)
 
 --- 
@@ -77,6 +77,36 @@ Lintcode questions associated with .. in .. folder
     Bit.md                  位运算
 
 Note: Whose name starting with C{num}. in 基础班LintCode are archived. (2019.5一刷九章算法v4.2做的题)
+
+## 5.1. 重点/经典题型
+=== 九章算法基础班 ===
+- Search a 2D Matrix II
+
+- Median of two Sorted Arrays
+- LRU Cache
+- Copy List with Random Pointer
+
+=== 九章算法提高班 ===
+Need Redo:
+- QuickSelect
+- K-th largest element in an Array leetcode 215
+- Lintcode1396: set union
+- Accounts merge
+- Lintcode 390. Find Peak Element II
+- Find Median from Data Stream
+- Sliding Window Median
+- Trapping Rain Water II
+- Max Tree
+
+再看看:
+- LintCode 634: [Word Squares](Done) 
+- LintCode 132: [Word Search II](Done)
+- Skyline problem
+
+经典题目:
+- find peak element
+
+- Count of Smaller Number before itself
 
 
 --- 
