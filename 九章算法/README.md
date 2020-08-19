@@ -224,3 +224,34 @@ whiteboard coding, laptop coding, 有时需要编译,运行,通过测试 (实在
     - background check
 
 Reference: Draw Diagram https://support.typora.io/Draw-Diagrams-With-Markdown/
+
+
+# 考察列表
+| Data Structure & alg | big company freq | other company freq | difficulty | # QNs to master | return/cost |
+|--------|------------------|--------------------|------------|-----------------------|-------------|
+| String, Simulation   | `high` | high | low | 20~50 | medium |
+| Binary Search        | `high` | high | Medium | 10~20 | `high` |
+| Binary Tree, BST     | `high` | high | low | 20~30 | `high` |
+| Linked List          | `high` | high | low | 20~30 | `high` |
+| Recursion, DFS       | `high` | High | High | 20~40 | Medium |
+| BFS                  | `high` | High | Medium | 5~10 | Super `high` |
+| Heap (Priority Queue)| Low | Low | Medium | 5~10 | Medium |
+| Hash Table           | `high` | high | Medium | 10~30 | `high` |
+| Binary Indexed Tree  | Low | Never | Medium | 2~3 | Medium |
+| Two Pointers         | `high` | High | Medium | 10~20 | `high` |
+| Dynamic Programming  | Medium | Low | High | 40~60 | Low |
+| Trie                 | Medium | Low  | Low | 2~5 | `high` |
+| Union & Find         | Low | Never | Low | 2~5 | `high` |
+
+String, Simulation: self-learn, more practice, focus on simplifying one question gradually
+* Important Algorithms:
+  * Super High: Topological Sorting, Simulation
+  * High: Dynamic Programming
+  * Medium: Trie, Union Find, External Sorting (外排序, 多路归并), Greedy, Binary Index Tree, Heap
+  * Low: Dijkstra/Floyd/SPFA (最短路算法), Morris算法 (O(1)额外空间前序遍历), Manacher算法 (求最长回文子串), KMP算法 (strstr/indexOf), Minimum Spanning tree(最小生成树 Prim, Kruskal), Network Flow (网络流), Shell Sort, Segment Tree, BST (平衡排序二叉树 e.g. Red-Black Tree), KD Tree, B-Tree/B+ Tree
+
+* Important Data Structures:
+  * High: Binary Tree, Linked List, Array, Stack
+  * Medium: Heap (Priority Queue), Union Find, Trie
+  * Low: Binary Index Trie, Hash Map, Deque, Monotone Stack
+
