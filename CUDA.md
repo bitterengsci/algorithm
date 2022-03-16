@@ -4,6 +4,7 @@ int 4 bytes
 float 4 bytes
 
 
+# CUDA
 CPU:
 - latency device with high lock speed
 - small number of cores
@@ -38,6 +39,8 @@ cudaDeviceReset();
 // x: 2**32 - 1, y: 65536, z: 65536     why?????????
 ```
 
+
+## Grid, Block, Thread
 Grid: a collection of all the threads launch for a kernel
 Block: threads in a grid are organized as group (i.e., block)
 Thread: 
@@ -106,6 +109,114 @@ __device__ int getGlobalIdx_3D_3D(){
     return threadId;
 }
 ```
+
+## Memory Transfer
+```cpp
+int *h_A;
+h_A = (int*)malloc(sizeof(int) * N);
+
+int *d_A;
+// cudaMalloc ( void** devPtr, size_t size );
+cudaMalloc((void**) &d_A, sizeof(int) * N);
+// cudaMemcpy ( void* dst, const void* src, size_t count, cudaMemcpyKind kind/direction );
+cudaMemCpy(d_A, d_h, size, cudaMemcpyHostToDevice);  
+
+// Initializes or sets device memory to a value
+// cudaMemset ( void* devPtr, int value, size_t count );
+// cudaFree ( void* devPtr );
+```
+
+## Error Handling
+- compile time errors
+- run time errors
+```cpp
+dim3 block(block_size);
+dim3 grid( size / block.x + 1);
+
+kernel <<< grid, block >>> (args);
+cudaDeviceSynchronize();
+
+cudaError error;
+error = cuda_func(...);   // e.g., error = cudaMalloc()
+if (error != cudaSuccess)  
+    fprintf(stderr, "Error: %s \n", cudaGetErrorString(error));
+```
+[Topic]: Timing
+```cpp
+#include <time.h>
+
+clock_t start, end;  // start = clock();
+printf("time %4.6f", (double)((double)(end - start) / CLOCKS_PER_SEC));
+```
+
+## Device Properties
+- name: ASCII string identifying the device
+- major/minor: major and minor revision numbers defining the device's compute capability
+- totalGlobalMem: total amount of global memory available on the device in bytes
+- maxThreadsPerBlock: max number of threads/registers per block
+- maxThreadsDim[3]: max size of each dimension of a block
+- maxGridSize[3]: max size of each dimension of a grid
+- clockRate: clock frequency in kilohertz
+- sharedMemPerBlock: max amount of shared memory available to a thread block in bytes
+- warp size
+
+```cpp
+int deviceCount = 0;
+cudaGetDeviceCount(&deviceCount);
+
+int deviceNum = 0;
+cudaDeviceProp iProp;
+cudaGetDeviceProperties(&iProp, deviceNum);
+// iProp.name iProp.multiProcessorCount iProp.clockRate
+```
+
+# CUDA Execution Model
+Computer Architectures:
+- SISD: single instruction single data
+- SIMD: single instruction multiple data
+- MISD: multiple instruction single data
+- MIMD: multiple instruction multiple data
+
+SIMT: single instruction multiple threads --> CUDA
+
+Thread blocks is going to execute in single SM. Multiple thread block can be execute simultaneously on same SM depending on resource limitation on SM.
+
+But one thread block cannot be executing in multiple SM. If device cannot run single block in one SM, then error will return for that kernel launch.
+
+warps: 32 consecutive threads (basic unit of execution in a SM)
+
+Once a thread block is scheduled to an SM, threads in the block are further partitioned into warps. All threads in a warp are executed in SIMT fasion.
+
+Warp size is 32. Even run thread block with single thread, CUDA runtime will assign single warp (32 threads). Only 1 thread will be active and the rest 31 threads will be in inactive state. (waste of resource in SM)
+
+Warp Divergence: threads in the same warp execute different instructions
+    control flow statements (if-else, switch) gives a hint of divergent code
+```cpp
+if (tid % 2 == 0) { } else { }  // warp divergence
+if (tid / 32 < 1) { } else { }  // no warp divergence
+// condition checks may not generate divergence under some circumstances.
+```
+
+Branch Efficiency = (#branches - #divergent branches) / #branches
+
+branch is a path of execution for the threads in a warp
+
+
+
+# CUDA Memory Model
+
+
+
+# shared memory and constant memory
+
+# CUDA Streams
+
+
+
+
+
+
+---
 
 CUDA用作通用计算, Graphics API 只用于显示
 GPU架构的缺点: 精度问题; 编程模式不灵活; 
