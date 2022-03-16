@@ -130,3 +130,7 @@ BA问题, 相机投影模型的Jacobian
 
 
 Pinhole camera model
+
+
+ColMAP 怎么进行 sparse -> dense reconstruction的?
+OpenMVG 的BA怎么做的?
