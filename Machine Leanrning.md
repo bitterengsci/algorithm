@@ -575,3 +575,21 @@ p-value
   5）Regression 用什么loss? Classification 用什么loss， 多分类呢？分类的loss是convex的吗
   7）Random forest hyperparameter 怎么选
   8）Validation set 都用来干嘛
+
+
+
+MLE、MAP和贝叶斯估计
+MLE，MAP，EM 和 point estimation 之间的关系是怎样的？
+
+
+IOU、NMS
+SVM的优缺点
+随机森林的训练过程
+优化方法SGD、Batch GD、Adadelta、Momentum对超参数的敏感程度
+CNN中feature map维度计算、图中每一个特征点在原图的感受野大小
+Segmatch
+目标分割、目标检测（one stage、two stage），YOLO三代的发展，小目标检测
+模型压缩与加速 mobilenet v1、mobilenet v2、shufflenet
+
+
+MobileNet V2
