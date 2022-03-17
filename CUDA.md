@@ -201,20 +201,228 @@ Branch Efficiency = (#branches - #divergent branches) / #branches
 
 branch is a path of execution for the threads in a warp
 
+warp
+- selected warp: active warp
+- stalled warp:
+- eligible warp: 
+  - 32 CUDA cores should free for execution + all arguments to the current instruction for that warp ready
+
+Latency: number of clock cycles between instruction being issued and being completed.
+- arthimetic instruction latency
+- memory operation latency
+
+Occupancy = active warps / maximum warps per SM
+
+If a kernel is not bandwidth-bound or computation-bound, then increasing occupancy will not necessarily increase performance. Increasing occupancy can have effects, such as additional instructions, more register spills to local memory which is an off-chip memory, more divergent branches.
+
+nvprof Profile modes: summary mode; GPU and API trace mode; event metrics summary mode; event metrics trace mode
+
+```cpp
+// reduce
+// neighbored pairs approach
+for(int offset=1; offset < blockdim.x; offset *= 2){
+    if( tid % (2 * offset) == 0) {
+        input[tid] += input[tid + offset];
+    }
+    __syncthreads();
+}
+
+// interleaved pairs approach to solve warp divergence
+
+// data block unrolling
+
+// warp unrolling
+
+// complete unrolling
+
+// dynamic parallelism
+
+```
+
+unrolling
+* loop unrolling: the body of loop is written in code multiple times.
+* warp unrolling:
+* complete unrolling:
+
+
+Dynamic Parallelism:
+- postpone the decision of exactly how many blocks and grids to create on a GPU until runtime
+- make recursive algorithm more transparent and easier to understand
+- reduce the need to transfer execution control and data between host and device
 
 
 # CUDA Memory Model
+speed --->
+registers   caches    main memory   disk memory
+<--- size
+
+Streaming Multiprocessor
+- register files
+- SMEM
+- L1
+- constant
+- read only
+
+Dynamic Random Access Memory (DRAM)
+- L2
+- global memory
+- texture memory
+- constant memory cache
+
+
+Registers
+* fastest memory space in the GPU
+* hold frequently accessed thread-private variables and arrays if the indices are constant or can be determined at compile time
+* share lifetime with the kernel
+
+Local Memory
+* store variables which are eligible for registers but cannot fit into the register space
+    - local arrays with indices which cannot resolve at compile time
+    - large local structures
+* in DRAM, not an on-chip memory, high latency memory access
+
+Shared Memory
+* on chip memory which partition among thread blocks __shared__
+* L1 cache and shared memory for an SM use the same on-chip memory
+
+GPU ↔ GPU Memory 484GB/s peak bandwidth
+GPU ↔ CPU 15.75GB/s (PCIe3)
+
+
+Pinned Memory
+* allocated host memory is by default pageable
+* GPU cannot safely access data in pageable host memory
+  - when transferring data from pageable host memory to device memory, the cuda drivers first allocate temporary page-locked/pinned memory (host) and copies the host pageable data into that pinned memory. And then transfer that data from pinned memory to device memory.
+* cudaMallocHost() directly allocates the pinned memory, cudaFreeHost();
+
+Zero Copy Memory
+* pinned memory that is mapped into the device address space 
+* both host and device have direct access to that memory
+    - leverage host memory when device memory insufficient
+    - avoid explicit data transfer
+    - improve PCIe transfer rates
+* cudaHostAlloc(); cudaFreeHost();
+
+Unified Memory
+* creates a pool of managed memory, where each allocation from this memory pool is accessible on CPU and GPU with the same memory address or pointer.
+* __device__ __managed__ int y;  cudaMallocManaged();
+
+
+Memory Access
+* aligned memory access
+    - first address is an even multiple of the cache granularity
+* coalesced memory access
+    - 32 threads in a warp access a continuous chunk of memory
+
+Shared Memory
+* when memory has to be mis-aligned, non-coalesced
+* on-chip memory
+* intra-block thread communication channel
+* a fixed amount of shared memory is allocated to each thread block when it starts executing.
+* Static & Dynamic Shared Memory
+  - Static: __shared__ int tile[128];
+  - Dynamic: extern __shared__ int tile[];
+
+Bank Conflict
+- multiple addresses in a shared memory request fall into the same memory bank
+- bank index = (byte address / (4 bytes / bank)) % 32 banks
+
+
+Constant Memory
+* used for data read-only from device and accessed uniformly by threads in a warp
+* readable and writable from the host; values in constant memory must be initialized from host
+* optimal access pattern:
+    - all threads in a warp access the same location
+    - access to different addresses by threads within a warp are serialized
+* constant memory variables exist for the lifespan of the application and are accessible from all threads within a grid and from the host through runtime functions
+* __constant__ cudaMemcpyToSymbol()
+* stencil computation
+
+
+warp shuffle instruction
+* allow threads to directly read another thread's register, as long as both threads are in the same warp.
+* lower latency than shared memory, no extra memory consumption
+* lane: a single thread within a warp; each lane in a warp is uniquely identified by a lane index (0~31)
+    - laneID = threadIdx.x % 32
+* width: any power of 2 between 2 and 32
+    - when set to default warpsize (32), a shuffle instruction is performed across the entire warp and srcLane specifies the laneID of the source thread
+    - shuffleID = threadIdx.x % width
+
+[Example]: Reduce
+
+with shared memory
+
+[Example]: Matrix Transpose
+out[y * COL + x] = in[x * ROW + y]
+
+
+with shared memory
+
+with shared memory + padding + unrolling
+
+
+# CUDA Streams & Events
+Grid Level Concurrency: launching multiple kernels to same device simultaneously and overlapping memory transfers with kernel execution
+
+NVVP (NVidia visual profiler) can visualize program executions.
+
+Stream: a sequence of commands that execute in order
+- different streams may execute their commands out of order with respect to one another or concurrently
+- NULL stream: default stream that kernel launches and data transfers use if not explicitly specify a stream
+
+
+```cpp
+cudaStream_t * stream;
+cudaStreamCreate(stream);  // blocking streams
+cudaStreamCreateWithFlags();
+cudaStreamDestory(stream);
+
+cudaStreamSynchronize(stream);
+```
+
+CUDA asynchronous function: cudaMemCpyAsync()
+
+Non-NULL streams are not blocking with respect to the host; operations within a non-NULL stream can be blocked by operations in the NULL stream.
+
+
+Explicit Synchronization
+- synchronize the device cudaDeviceSynchronize();
+- synchronize the stream cudaStreamSynchronize();
+- synchronize an event in a stream using cudaEventSynchronize();
+- synchronize across streams using an event with cudaStreamWaitEvent();
+
+Implicit Synchronization
+- page-locked host memory allocation
+- device memory allocation, device memort set
+- memory copy between two addresses to the same device memory
+- any CUDA command to the NULL stream
+- switch between L1/shared memory configurations
+
+
+Event: a marker in a CUDA stream associated with a certain point in the flow of operations in that stream
+- synchronize stream execution
+- monitor device progress
+- measure the execution time of the kernel
+```cpp
+cudaEventCreate();
+cudaEventDestory();
+cudaEventRecord();  // queue the event to a CUDA stream
+cudaEventSynchronize();
+cudaEventQuery();   // check if an event has completed without blocking the host application
+cudaEventElapsedTime();
+```
 
 
 
-# shared memory and constant memory
-
-# CUDA Streams
-
-
-
+CUDA arithmetic instructions
+* single/double precision floating point operations
+* intrinsic function
+* atomic function: perform a mathematical operation, but does so in a single uninterruptable operation with no interference from other threads
 
 
+IEEE standard 754 
+- float   sign (1) + exponent (8) + fraction (23)
+- double  sign (1) + exponent (11) + fraction (52)
 
 ---
 
