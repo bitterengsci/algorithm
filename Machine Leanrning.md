@@ -1,4 +1,30 @@
 
+<!-- TOC -->
+
+- [ML基础概念类](#ml基础概念类)
+  - [Reguarlization](#reguarlization)
+  - [Metric](#metric)
+  - [Loss & Optomization](#loss--optomization)
+- [DL基础概念类](#dl基础概念类)
+- [ML模型类](#ml模型类)
+  - [Regression:](#regression)
+- [Convolution](#convolution)
+  - [Clustering and EM:](#clustering-and-em)
+  - [Decision Tree](#decision-tree)
+  - [Ensemble Learning](#ensemble-learning)
+  - [Generative Model](#generative-model)
+  - [Logistic Regression](#logistic-regression)
+  - [其他模型](#其他模型)
+- [Data Processing](#data-processing)
+- [implementation & derivation](#implementation--derivation)
+- [项目经验类](#项目经验类)
+- [NLP/RNN相关](#nlprnn相关)
+- [CNN/CV相关](#cnncv相关)
+- [VAE, GANs](#vae-gans)
+- [Loss Function](#loss-function)
+- [关于准备考ML 概念的面试的一些建议](#关于准备考ml-概念的面试的一些建议)
+
+<!-- /TOC -->
 
 # ML基础概念类
 overfitting/underfiting:
@@ -10,8 +36,8 @@ overfitting/underfiting:
 bias/variance trade off
 - A set of predictive models whereby models with a lower bias in parameter estimation have a higher variance of parameter estimates across samples, and vice versa.
 - linear/logistic regression: underfitting—high bias, overfitting—high variance
-- high bias (model miss relevant relations between features and target output—underfitting)
-- high variance (model modelled random noise in the training data—overfitting)
+- high bias, low variance (underfitting: model too simple, model miss relevant relations between features and target output)
+- high variance, low bias (overfitting: model modelled random noise in the training data)
 
 Bias Variance Decomposition: Error = Bias ** 2 + Variance + Irreducible Error
 
@@ -19,6 +45,7 @@ Bias Variance Decomposition: Error = Bias ** 2 + Variance + Irreducible Error
 How to overcome/prevent Overfitting:
 1. Regularization 
   - L1 regularization (lasso penalty) favours few non-zero coefficients   λ∑∣θ∣
+    - L1 also performs vairable selection and yield sparse models.
   - L2 regularization (ridge/Tikhonov penalty) favours small coefficients	 λ∑θ2
   - Mixed L1/L2 regularization (elastic net)  λ1∑∣θ∣+λ2∑θ2
   - L^p regularization (penalty on parameters)
@@ -62,12 +89,13 @@ Why L1 sparse: L2 penalties in some sense discourage sparsity by yielding dimini
 Confusion Matrix
 - A breakdown of predictions into a table showing correct predictions (the diagonal) and the types of incorrect predictions made (what classes incorrect predictions were assigned)
 
-Precision (Positive Predictive Value)= true positive / (true positive + false positive)
+Precision (Positive Predictive Value) = true positive / (true positive + false positive)
 - measure of exactness
 Recall (True Positive rate, sensitivity) = true positive / (true positive + false negative)
 - measure of completeness
 
 F/F1-Score: weighted average of precision and recall 2 * (P * R) / (P + R)
+- consider both FP and FN
 
 True Negative Rate/Specificity
 False Positive rate = FP / (FP + TN)
@@ -76,6 +104,7 @@ Accuracy
 ROC curve (receiver operating characteristic)
 - showing the performance of a classification model at all classification thresholds
 - x-axis: FP rate, y-axis: TP rate  (TPR vs. FPR at different classification thresholds)
+- often used as a proxy for the trade-off between the sensitivity of the model (true positives) vs the fall-out or the probability it will trigger a false alarm (false positives). --> precision and recall trade-off
 
 
 AUC (Area Under the ROC Curve)
@@ -84,7 +113,11 @@ AUC (Area Under the ROC Curve)
 - scale invariant. It measures how well predictions are ranked, rather than their absolute values.
 - classification-threshold invariant. It measures the quality of the model's predictions irrespective of what classification threshold is chosen.
 
-precision and recall, trade-off
+Type I error is a false positive, Type II error is a false negative. 
+- Type I error means claiming something has happened when it hasn’t
+- Type II error means that you claim nothing is happening when in fact something is. 
+- e.g., Type I error as telling a man he is pregnant, Type II error as you tell a pregnant woman she isn’t carrying a baby.
+
 
 label 不平衡时用什么metric
 分类问题该选用什么metric，and why
@@ -92,6 +125,11 @@ confusion matrix
 AUC的解释 (the probability of ranking a randomly selected positive sample higher blablabla....)
 Log-loss是什么，什么时候用logloss
 还有一些和场景比较相关的问题，比如ranking design的时候用什么metric，推荐的时候用什么
+
+stratified cross-validation
+- split preserves the ratio of the categories on both the training and validation datasets
+- applications: imbalanced dataset
+
 
 ## Loss & Optomization
 用MSE做loss的Logistic Rregression是convex problem吗
@@ -119,7 +157,9 @@ DNN为什么要有bias term, bias term的intuition是什么
 什么是Back Propagation
 
 Epoch
-- one pass through the whole training set
+- Epoch: one pass through the whole training set
+- Batch: examples processed together in one pass (forward and backward)
+- Iteration: number of training examples / Batch size
 - If there are N training samples and use B batch size, then it takes N/B iterations to complete on epoch
 
 Gradient Vanishing & Exploding
@@ -164,7 +204,7 @@ Softmax: e^x / sum(e^x)
 
 Different optimizers (SGD, RMSprop, Momentum, Adagrad，Adam) 的区别
 
-Batch vs  SGD
+Batch vs SGD
 - Stochastic gradient descent: approximate the gradient using current sample
 - Mini-Batch: use a small batch of b samples
 - Small batch size:
@@ -190,6 +230,7 @@ When transfer learning makes sense?
 
 
 # ML模型类
+
 ## Regression:
 four principal assumptions for Linear Regression:
 1. Linearity and additivity
@@ -206,6 +247,24 @@ How could you minimize the inter-correlation between variables with Linear Regre
 if the relationship between y and x is no linear, can linear regression solve that
 
 why use interaction variables
+
+# Convolution
+CNN on images
+- preserve, encode the spatial information
+- translation-invariant (sliding window)
+
+Receptive Field
+
+Maxpooling: reduce computations by reducing the size of featuremap after pooling
+
+Residual Network
+
+Batch Normalization
+- normalize the inputs of each layer
+
+Why small kernels are preferred?
+- several small kernels than few larger ones to get the same receptive field and capture more spatial context, but with less parameters and computations
+- more smaller kernels, more activations for more discriminative mapping being learned
 
 
 ## Clustering and EM:
@@ -252,14 +311,12 @@ will random forest help reduce bias or variance/why random forest can help reduc
 Naïve Bayes的原理，基础假设是什么
 
 
-LDA/QDA是什么，假设是什么
-- Latent Dirichlet allocation
-
 Linear/normal discriminant analysis (LDA) vs Quadratic discriminant analysis (QDA)
 - conditional probability density function P(x|y=0) and P(x|y=1) are normal distributions N(μ0, Σ0) and N(μ1, Σ1)
 - Bayes optimal solution is to predict points as being from the second class if the log of the likelihood ratios is bigger than some threshold T: (x - μ0)Σ0(x - μ0) + ln|Σ0| - (x - μ1)Σ1(x - μ1) - ln|Σ1| > T  (QDA)
 - LDA: assume Σ0=Σ1, dot(w, x) > c where w = pow(Σ, -1) * (μ1 - μ0) and c = dot(w, (μ1 + μ0) / 2)
     - the criterion of an input x being in a class y is purely a function of the linear combination of the known observations.
+- LDA is supervised, PCA is unsupervised; both are linear transformations; PCA finds the directions of maximal variance, LDA finds a feature subspace that maximizes class separability.
 
 
 ## Logistic Regression
@@ -289,6 +346,14 @@ Principal component analysis (PCA)
 - pros: no need of prior; reduce overfitting (by reduce #variables in the dataset); visualizable
 - cons: data standardization is a prerequisite; information loss
 
+t-SNE
+- t-Distributed Stochastic Neighbor Embedding is an unsupervised, non-linear technique primarily used for data exploration and visualizing high-dimensional data.
+- t-SNE gives you a feel or intuition of how the data is arranged in a high-dimensional space.
+
+UMAP
+- Uniform Manifold Approximation and Projection is a novel manifold learning technique for dimension reduction. 
+- UMAP is constructed from a theoretical framework based in Riemannian geometry and algebraic topology. The result is a practical scalable algorithm that applies to real world data.
+
 
 Kernel Method/Tricks
 - best known member is SVM
@@ -305,6 +370,10 @@ Explain KNN
 
 
 # Data Processing
+Data Augmentation
+- synthesize new data by modifying existing data
+- resize, horizontal/vertical flip, rotate, add noise, deform
+
 imbalanced data
 - change performance metric
     - Kappa/Cohen’s kappa: Classification accuracy normalized by the imbalance of the classes in the data.
@@ -315,9 +384,10 @@ imbalanced data
 - balanced bagging classifier
 
 problem with high-dim classification
-- Curse of Dimensionality: number of training examples we need to cover the space densely, exponential in the dimensionality of the problem; we will never get enough examples; also computational burden
-- N grows exponentially with D
-- solution
+* Curse of Dimensionality: number of training examples we need to cover the space densely, exponential in the dimensionality of the problem; we will never get enough examples; also computational burden
+    - manual feature selection; PCA; multidimensional scaling; locally linear embedding
+* N grows exponentially with D
+* solution
     - LDA-type methods: Naive Bayes, Nearest Shrunken Centroid, Sparse LDA, regularized LDA
     - penalized logistic regression
     - large-margin methods (SVM)
@@ -472,6 +542,11 @@ Training with limited annotation
 假设有个model要放production了但是发现online one important feature missing不能重新train model 你怎么办
 
 # NLP/RNN相关
+
+Variants of RNN
+- LSTM, GRU, end-to-end network, memory network
+
+
 LSTM的公式是什么
 why use RNN/LSTM
 
@@ -529,6 +604,17 @@ FPN RPN
 1-stage detection
 2-stage detection
 
+
+# VAE, GANs
+Auto-Encoder
+- used to learn a compressed form of given data
+- data denoising, dimensionality reduction, image reconstruction, image colorization
+  
+GAN
+- generator + discriminator
+
+
+
 # Loss Function
 
 1. regression
@@ -568,7 +654,9 @@ ArcFace loss
 
 p-value
 - probability of obtaining test results at least as extreme as the results actually observed, under the assumption that the null hypothesis is correct
-- 
+
+
+Gradient descent: an optimization algorithm used to find the values of parameters of a function that minimizes a cost function. It is to be used when the parameters cannot be found analytically.
 
   3）Gradient descent 解释原理，什么是 mini batch GD, stachastic GD, Adam
   4）NN 里面 gradient descent怎么计算，是convex的吗，能保证最优解吗，（不能保证）怎么解决
