@@ -441,7 +441,6 @@ __global__ void saxpy(int n, float a, float *x, float *y) {
 }
 ```
 
-
 ---
 
 CUDA用作通用计算, Graphics API 只用于显示

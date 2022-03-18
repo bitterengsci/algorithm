@@ -378,7 +378,7 @@ Data Augmentation
 - synthesize new data by modifying existing data
 - resize, horizontal/vertical flip, rotate, add noise, deform
 
-imbalanced data
+imbalanced data (long-tail data)
 - change performance metric
     - Kappa/Cohen’s kappa: Classification accuracy normalized by the imbalance of the classes in the data.
 - resampling to even up the class
@@ -386,6 +386,7 @@ imbalanced data
     - Synthetic Minority Oversampling Technique: SMOTE uses KNN to create new instances
 - bias the model to pay more attention to minority class by penalty
 - balanced bagging classifier
+- train the model with major classes, fine tune with minor.
 
 problem with high-dim classification
 * Curse of Dimensionality: number of training examples we need to cover the space densely, exponential in the dimensionality of the problem; we will never get enough examples; also computational burden
@@ -669,7 +670,6 @@ Gradient descent: an optimization algorithm used to find the values of parameter
   8）Validation set 都用来干嘛
 
 
-
 MLE、MAP和贝叶斯估计
 MLE，MAP，EM 和 point estimation 之间的关系是怎样的？
 
@@ -680,8 +680,10 @@ SVM的优缺点
 优化方法SGD、Batch GD、Adadelta、Momentum对超参数的敏感程度
 CNN中feature map维度计算、图中每一个特征点在原图的感受野大小
 Segmatch
-目标分割、目标检测（one stage、two stage），YOLO三代的发展，小目标检测
+
+
 模型压缩与加速 mobilenet v1、mobilenet v2、shufflenet
-
-
 MobileNet V2
+
+目标分割、目标检测（one stage、two stage），YOLO三代的发展，小目标检测
+Mask-RCNN vs YOLO
