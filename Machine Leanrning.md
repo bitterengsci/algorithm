@@ -1,32 +1,32 @@
 
 <!-- TOC -->
 
-- [ML基础概念类](#ml基础概念类)
-  - [Reguarlization](#reguarlization)
-  - [Metric](#metric)
-  - [Loss & Optomization](#loss--optomization)
-- [DL基础概念类](#dl基础概念类)
-- [ML模型类](#ml模型类)
-  - [Regression:](#regression)
-- [Convolution](#convolution)
-  - [Clustering and EM:](#clustering-and-em)
-  - [Decision Tree](#decision-tree)
-  - [Ensemble Learning](#ensemble-learning)
-  - [Generative Model](#generative-model)
-  - [Logistic Regression](#logistic-regression)
-  - [其他模型](#其他模型)
-- [Data Processing](#data-processing)
-- [implementation & derivation](#implementation--derivation)
-- [项目经验类](#项目经验类)
-- [NLP/RNN相关](#nlprnn相关)
-- [CNN/CV相关](#cnncv相关)
-- [VAE, GANs](#vae-gans)
-- [Loss Function](#loss-function)
-- [关于准备考ML 概念的面试的一些建议](#关于准备考ml-概念的面试的一些建议)
+- [1. ML基础概念类](#1-ml基础概念类)
+  - [1.1. Reguarlization](#11-reguarlization)
+  - [1.2. Metric](#12-metric)
+  - [1.3. Loss & Optomization](#13-loss--optomization)
+- [2. DL基础概念类](#2-dl基础概念类)
+- [3. ML模型类](#3-ml模型类)
+  - [3.1. Regression:](#31-regression)
+- [4. Convolution](#4-convolution)
+  - [4.1. Clustering and EM:](#41-clustering-and-em)
+  - [4.2. Decision Tree](#42-decision-tree)
+  - [4.3. Ensemble Learning](#43-ensemble-learning)
+  - [4.4. Generative Model](#44-generative-model)
+  - [4.5. Logistic Regression](#45-logistic-regression)
+  - [4.6. 其他模型](#46-其他模型)
+- [5. Data Processing](#5-data-processing)
+- [6. implementation & derivation](#6-implementation--derivation)
+- [7. 项目经验类](#7-项目经验类)
+- [8. NLP/RNN相关](#8-nlprnn相关)
+- [9. CNN/CV相关](#9-cnncv相关)
+- [10. VAE, GANs](#10-vae-gans)
+- [11. Loss Function](#11-loss-function)
+- [12. 关于准备考ML 概念的面试的一些建议](#12-关于准备考ml-概念的面试的一些建议)
 
 <!-- /TOC -->
 
-# ML基础概念类
+# 1. ML基础概念类
 overfitting/underfiting:
 - underfitting means large training error, large generalization error; overfitting means small training error, large generalization error
 - overfitting means training loss is small and testing loss is large, small regularization
@@ -66,7 +66,7 @@ Generative/Discrimitive:
 
 Give a set of ground truths and 2 models, how do you be confident that one model is better than another?
 
-## Reguarlization
+## 1.1. Reguarlization
 Occam’s Razor: among competing hypotheses, the simplest is the best. 
 
 L1 regularization (lasso penalty) 
@@ -85,7 +85,7 @@ Why L1 sparse: L2 penalties in some sense discourage sparsity by yielding dimini
 为什么regularization works
 为什么regularization用L1 L2，而不是L3, L4..
 
-## Metric
+## 1.2. Metric
 Confusion Matrix
 - A breakdown of predictions into a table showing correct predictions (the diagonal) and the types of incorrect predictions made (what classes incorrect predictions were assigned)
 
@@ -97,15 +97,19 @@ Recall (True Positive rate, sensitivity) = true positive / (true positive + fals
 F/F1-Score: weighted average of precision and recall 2 * (P * R) / (P + R)
 - consider both FP and FN
 
-True Negative Rate/Specificity
-False Positive rate = FP / (FP + TN)
+True Negative Rate/Specificity = TN / (FP + TN)
+False Positive Rate = FP / (FP + TN)
 Accuracy
 
 ROC curve (receiver operating characteristic)
 - showing the performance of a classification model at all classification thresholds
 - x-axis: FP rate, y-axis: TP rate  (TPR vs. FPR at different classification thresholds)
 - often used as a proxy for the trade-off between the sensitivity of the model (true positives) vs the fall-out or the probability it will trigger a false alarm (false positives). --> precision and recall trade-off
+- The curves of different models can be compared directly in general or for different thresholds.
+- The area under the curve (AUC) can be used as a summary of the model skill
 
+Precision-Recall Curve
+- a plot of precision (y-axis) and recall (x-axis) for different thresholds
 
 AUC (Area Under the ROC Curve)
 - an aggregate measure of performance across all possible classification thresholds
@@ -131,7 +135,7 @@ stratified cross-validation
 - applications: imbalanced dataset
 
 
-## Loss & Optomization
+## 1.3. Loss & Optomization
 用MSE做loss的Logistic Rregression是convex problem吗
 解释并写出MSE的公式, 什么时候用到MSE?
 Linear Regression最小二乘法和MLE关系
@@ -149,7 +153,7 @@ Multiclass Logistic Regression然后问了一个为什么用cross entropy做cost
 Decision Tree split node的时候优化目标是啥
 
 
-# DL基础概念类
+# 2. DL基础概念类
 
 bias term in DNN: shift the activation function
 
@@ -229,9 +233,9 @@ When transfer learning makes sense?
 - Transfer learning only works in deep learning if the model features learned from the first task are general.
 
 
-# ML模型类
+# 3. ML模型类
 
-## Regression:
+## 3.1. Regression:
 four principal assumptions for Linear Regression:
 1. Linearity and additivity
 2. statistical independence
@@ -248,7 +252,7 @@ if the relationship between y and x is no linear, can linear regression solve th
 
 why use interaction variables
 
-# Convolution
+# 4. Convolution
 CNN on images
 - preserve, encode the spatial information
 - translation-invariant (sliding window)
@@ -267,20 +271,20 @@ Why small kernels are preferred?
 - more smaller kernels, more activations for more discriminative mapping being learned
 
 
-## Clustering and EM:
+## 4.1. Clustering and EM:
 K-means clustering (explain the algorithm in detail; whether it will converge, 收敛到global or local optimums;  how to stop)
 
 EM算法是什么
 GMM是什么，和Kmeans的关系
 
 
-## Decision Tree
+## 4.2. Decision Tree
 How regression/classification DT split nodes?
 How to prevent overfitting in DT?
 How to do regularization in DT?
 
 
-## Ensemble Learning
+## 4.3. Ensemble Learning
 Bagging: (Bootstrap Aggregating): reduce model variance through averaging
 - Bootstraping (train separate weak learners on each Bootstrap sample)
 - Aggregating results: classification uses majority votes; regression used averaging.
@@ -304,7 +308,7 @@ gradient boosted decision trees (GBDT):
 will random forest help reduce bias or variance/why random forest can help reduce variance
 
 
-## Generative Model
+## 4.4. Generative Model
 和Discrimitive模型比起来，Generative 更容易overfitting还是underfitting
 
 
@@ -319,7 +323,7 @@ Linear/normal discriminant analysis (LDA) vs Quadratic discriminant analysis (QD
 - LDA is supervised, PCA is unsupervised; both are linear transformations; PCA finds the directions of maximal variance, LDA finds a feature subspace that maximizes class separability.
 
 
-## Logistic Regression
+## 4.5. Logistic Regression
 logistic regression vs svm（我想这个主要是想问两者的loss的不同以及输出的不同，一个是概率输出一个是score）
 - both solves classification; SVM can solve regression too.
 - loss
@@ -338,7 +342,7 @@ SVM
     - sigmoid-fitting
     - SVM + Logistic Regression blending
 
-## 其他模型
+## 4.6. 其他模型
 
 Principal component analysis (PCA)
 - create new uncorrelated variables that successively maximize variance by solving an eigenvalue/eigenvector problem.
@@ -369,7 +373,7 @@ Explain KNN
 !所有模型的pros and cons （最高频的一个问题）
 
 
-# Data Processing
+# 5. Data Processing
 Data Augmentation
 - synthesize new data by modifying existing data
 - resize, horizontal/vertical flip, rotate, add noise, deform
@@ -418,7 +422,7 @@ Feature Selection (~dimensionality reduction):
 how to capture feature interaction
 
 
-# implementation & derivation
+# 6. implementation & derivation
 ```python
 class FullyConnected:
     def __init__(self, inp_size, out_size):
@@ -512,7 +516,7 @@ def KMeans(data, k=3):
 给一个LSTM network的结构要你计算how many parameters
 
        
-# 项目经验类
+# 7. 项目经验类
 训练好的模型在现实中不work
 
 Loss Inf/NaN:
@@ -541,7 +545,7 @@ Training with limited annotation
 
 假设有个model要放production了但是发现online one important feature missing不能重新train model 你怎么办
 
-# NLP/RNN相关
+# 8. NLP/RNN相关
 
 Variants of RNN
 - LSTM, GRU, end-to-end network, memory network
@@ -579,7 +583,7 @@ Language Model的原理，N-Gram Model
 What’s CBOW and skip-gram?
 什么是Word2Vec， loss function是什么， negative sampling是什么
 
-# CNN/CV相关
+# 9. CNN/CV相关
 
 pooling
 - reduce the dim of featuremaps, i.e., number of parameters to learn/computations.
@@ -605,7 +609,7 @@ FPN RPN
 2-stage detection
 
 
-# VAE, GANs
+# 10. VAE, GANs
 Auto-Encoder
 - used to learn a compressed form of given data
 - data denoising, dimensionality reduction, image reconstruction, image colorization
@@ -615,7 +619,7 @@ GAN
 
 
 
-# Loss Function
+# 11. Loss Function
 
 1. regression
 MAE (L1)
@@ -638,7 +642,7 @@ IOU loss
 
 ArcFace loss
 
-# 关于准备考ML 概念的面试的一些建议
+# 12. 关于准备考ML 概念的面试的一些建议
 1. 如果你简历上提到了一个模型，请确保你对这个模型有着深入全面的了解 （比如很多人可能简历里都提到了XgBoost，但是可能了解并不全面）
 举个例子，我简历上提到了Graph Convolutional NN， 我面试的时候就被要求不用包手写一个简单的GCN。
 2. 如果job description上提到了某些模型，最好对这些模型也比较熟悉。

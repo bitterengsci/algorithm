@@ -424,6 +424,24 @@ IEEE standard 754
 - float   sign (1) + exponent (8) + fraction (23)
 - double  sign (1) + exponent (11) + fraction (52)
 
+
+monolithic kernel: a single large grid of threads to process the entire array in one pass
+
+Grid-Stride Loop
+- stride: total number of threads in the grid
+- By using a loop with stride equal to the grid size, all addressing within warps is unit-stride, so we get maximum memory coalescing.
+```cpp
+// kernel loops over the data array one grid-size at a time
+__global__ void saxpy(int n, float a, float *x, float *y) {
+    for (int i = blockIdx.x * blockDim.x + threadIdx.x; 
+        i < n; 
+        i += blockDim.x * gridDim.x ) {   
+        y[i] = a * x[i] + y[i];
+    }
+}
+```
+
+
 ---
 
 CUDA用作通用计算, Graphics API 只用于显示
