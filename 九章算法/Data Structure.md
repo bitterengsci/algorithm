@@ -5,6 +5,7 @@
   - [1.2. 二叉树的深度优先搜索 DFS in Binary Tree](#12-二叉树的深度优先搜索-dfs-in-binary-tree)
 - [2. 链表 Linked List](#2-链表-linked-list)
   - [2.1. Dummy Node](#21-dummy-node)
+  - [2.2. Double Link List](#22-double-link-list)
 - [3. 数组 Array](#3-数组-array)
   - [3.1. Sorted Array 排序数组](#31-sorted-array-排序数组)
   - [3.2. 子数组 Subarray](#32-子数组-subarray)
@@ -198,6 +199,59 @@ Related  Lintcodes
 Lintcode .[]() http://www.lintcode.com/problem/convert-sorted-list-to-balanced-bst/
 Lintcode .[]() http://www.lintcode.com/problem/delete-node-in-the-middle-of-singly-linked-list/
 Lintcode .[]() http://www.lintcode.com/problem/convert-binary-search-tree-to-doubly-linked-list/
+
+
+## 2.2. Double Link List
+
+
+XOR Linked List (memory efficient)
+- every node stores the XOR of addresses of previous and next nodes
+```python
+import ctypes
+class Node:
+    def __init__(self, val):
+        self.data = val
+         
+        # XOR of next and previous node
+        self.npx = 0 
+
+
+# A^B=B^A=C, A^C=C^A=B, B^C=C^B=A
+class XORLinkedList:
+
+    def __init__(self):
+        self.head = None
+        self.nodes = []
+
+    def prepend(self, data):
+        node = Node(data)
+
+        node.npx = id(self.head)
+
+        if self.head is not None:
+            self.head.npx = id(node) ^ self.head.npx   
+
+        self.head = node
+        self.nodes.insert(0, node)
+
+    def print(self):
+
+        if self.head != None:
+            prev_id = 0
+            curr = self.head
+            next_id = 1
+
+            while curr is not None:
+                print(curr.data, "->")
+
+                # get address of next node
+                next_id = prev_id ^ curr.npx
+
+                # update prev and next for next iteration
+                prev_id = id(curr)
+                curr = ctypes.cast(next_id, ctypes.py_object).value
+```
+
 
 # 3. 数组 Array
 
