@@ -4,7 +4,7 @@ int 4 bytes
 float 4 bytes
 
 
-# CUDA
+# 1. CUDA
 CPU:
 - latency device with high lock speed
 - small number of cores
@@ -40,7 +40,7 @@ cudaDeviceReset();
 ```
 
 
-## Grid, Block, Thread
+## 1.1. Grid, Block, Thread
 Grid: a collection of all the threads launch for a kernel
 Block: threads in a grid are organized as group (i.e., block)
 Thread: 
@@ -110,7 +110,7 @@ __device__ int getGlobalIdx_3D_3D(){
 }
 ```
 
-## Memory Transfer
+## 1.2. Memory Transfer
 ```cpp
 int *h_A;
 h_A = (int*)malloc(sizeof(int) * N);
@@ -126,7 +126,7 @@ cudaMemCpy(d_A, d_h, size, cudaMemcpyHostToDevice);
 // cudaFree ( void* devPtr );
 ```
 
-## Error Handling
+## 1.3. Error Handling
 - compile time errors
 - run time errors
 ```cpp
@@ -149,7 +149,7 @@ clock_t start, end;  // start = clock();
 printf("time %4.6f", (double)((double)(end - start) / CLOCKS_PER_SEC));
 ```
 
-## Device Properties
+## 1.4. Device Properties
 - name: ASCII string identifying the device
 - major/minor: major and minor revision numbers defining the device's compute capability
 - totalGlobalMem: total amount of global memory available on the device in bytes
@@ -170,7 +170,7 @@ cudaGetDeviceProperties(&iProp, deviceNum);
 // iProp.name iProp.multiProcessorCount iProp.clockRate
 ```
 
-# CUDA Execution Model
+# 2. CUDA Execution Model
 Computer Architectures:
 - SISD: single instruction single data
 - SIMD: single instruction multiple data
@@ -251,7 +251,7 @@ Dynamic Parallelism:
 - reduce the need to transfer execution control and data between host and device
 
 
-# CUDA Memory Model
+# 3. CUDA Memory Model
 speed --->
 registers   caches    main memory   disk memory
 <--- size
@@ -361,7 +361,7 @@ with shared memory
 with shared memory + padding + unrolling
 
 
-# CUDA Streams & Events
+# 4. CUDA Streams & Events
 Grid Level Concurrency: launching multiple kernels to same device simultaneously and overlapping memory transfers with kernel execution
 
 NVVP (NVidia visual profiler) can visualize program executions.
@@ -441,6 +441,16 @@ __global__ void saxpy(int n, float a, float *x, float *y) {
 }
 ```
 
+
+## 4.1. __restrict__
+__restrict__ 类似 volatile
+
+point aliasing
+
+By giving a pointer the restrict property, the programmer is promising the compiler that any data written to through that pointer is not read by any other pointer with the restrict property. 
+
+
+
 ---
 
 CUDA用作通用计算, Graphics API 只用于显示
@@ -451,7 +461,35 @@ CPU切换线程成本高
 CUDA的编程模型将CPU作为主机(Host)，将GPU作为设备(Device)，CPU用来控制整体调度和程序逻辑，GPU负责执行高度线程化的数据并行部分
 
 
+Latency: 硬件导致的延迟
+Thoughput: 吞吐量
 
+CPU: 低延迟, 低吞吐量
+    CPU clock: 3GHz
+    main Memory latency: ~ 100+ns
+    arithmetic instruction latency: ~1+ns
+    CPU作为传统处理器，计算核心数较少，每个计算核心有着较高的单核频率，这种结构使CPU擅长于复杂指令调度、分支、逻辑判断和通信等任务。这些任务的逻辑复杂度限制了程序执行的指令并行性
+
+GPU: 高延迟,高吞吐量
+    GPU clock: 1GHz
+    Memory latency: 300+ns
+    arithmetic latency: 10+ns
+    GPU的架构与CPU不同，GPU中所说的核，指的是一个流处理器(stream multiprocessor，SM)，每个SM根据GPU型号的不同由若干个标量流处理器(stream processor，SP)组成，SP的功能只有计算。这种架构的优势在于可以容纳上千个没有逻辑关系的数值计算线程进行大量的并行浮点运算，但这种数值运算的并行性在面对逻辑判断执行时却发挥不了优势
+GPU非常的IOlimited,所以对与IO要谨慎处理.
+
+
+
+Single Instruction, Multiple Data (SIMD)
+
+用SIMD也不是一直是好的.
+
+Streaming Multiprocessor (SM)一般每个有128个single precision CUDA cores(也就是一个线程)和对应的cache.
+
+Block会被分成Warps, Warp是32个线程的集合(都在一个block里面).所有的32线程必须都跑同一组命令集.
+
+一个SM里的Warps是同时跑的.
+
+如果你想用一个Warp做不同的事儿,会按顺序做,也叫Warp Divergence.
 
 warp divergence (1 warp = 32 threads, half warp = 16 threads)
 
@@ -483,7 +521,7 @@ int main() {
 
 
 
-Memory Hierarchy
+# 5. Memory Hierarchy/Type
 I. Global/Device Memory (on host, lifespan the whole grid, 500 cycle latency, no cache)
     memory coalesced = 地址连续 + 开始的地址是每个 thread 所存取的大小的 16 倍
     (1)force align    
@@ -531,3 +569,68 @@ int tid = threadIdx.x;   // thread是第几个thread
 int bid = blockIdx.x;    // thread属于第几个block
 
 ```
+
+
+寄存器（register）、共享内存（shared memory）、局部内存（local memory）、常数内存（constant memory）、纹理内存（texture memory）
+
+Video/Device/Global Memory (GPU RAM) 速度和容量直接影响了显卡的性能
+从Device Memory拿比从真的RAM快.
+
+- Registers: 最快的,只有线程才能用,生命周期和线程一样
+- Local Memory: 150倍慢 (比register和shared memory)
+- Shared Memory: 当没有bank conflicts或者从同一个地址读的时候, 可以和register一样快. 对于一个block里面的所有线程都可见. 和block一样的生命周期
+- Global/Device Memory: 150倍慢 (比register和shared memory)
+
+Cache
+- 每个Streaming Multiprocessor拥有自己的L1缓存 (L1-cache)， 所有的SM共同使用L2缓存
+
+
+
+
+# 6. Pytorch
+PyTorch的的代码主要由C10、ATen、torch三大部分组成的
+
+- C10，来自于Caffe Tensor Library的缩写。这里存放的都是最基础的Tensor库的代码，可以运行在服务端和移动端。PyTorch目前正在将代码从ATen/core目录下迁移到C10中。C10的代码有一些特殊性，体现在这里的代码除了服务端外还要运行在移动端，因此编译后的二进制文件大小也很关键，因此C10目前存放的都是最核心、精简的、基础的Tensor函数和接口。
+- ATen，来自于 A TENsor library for C++11的缩写；PyTorch的C++ tensor library。ATen部分有大量的代码是来声明和定义Tensor运算相关的逻辑的，除此之外，PyTorch还使用了aten/src/ATen/gen.py来动态生成一些ATen相关的代码
+- Torch，部分代码仍然在使用以前的快要进入历史博物馆的Torch开源项目
+
+
+# 7. Examples
+
+Reduction
+
+矩阵乘法
+
+
+SAXY
+
+矩阵取逆
+
+滤波
+
+
+软光栅
+
+Mesh 
+
+三角形 
+Vertex (X, Y, Z) 线性表
+Face (V1, V2, V3) 
+
+
+Viewing Cone 视锥, 确定那些
+
+Z-buffer (depth 深度)
+
+锯齿边缘(Jagged Edges)的产生和光栅器将顶点数据转化为片段的方式有关
+
+走样(Aliasing): 清楚看见形成边缘的像素
+抗锯齿/反走样 (Anti-Aliasing): 缓解这种现象，从而产生更平滑的边缘
+
+- 超采样抗锯齿(Super Sample Anti-aliasing, SSAA), 使用比正常分辨率更高的分辨率(超采样)来渲染场景，当图像输出在帧缓冲中更新时，分辨率会被下采样(Downsample)至正常的分辨率。这些额外的分辨率会被用来防止锯齿边缘的产生。虽然能够解决走样的问题，但是比平时要绘制更多的片段，会带来很大的性能开销
+- 多重采样抗锯齿(Multisample Anti-aliasing, MSAA), 借鉴了SSAA背后的理念，但却以更加高效的方式实现了抗锯齿
+
+光栅器是位于最终处理过的顶点之后到片段着色器之前所经过的所有的算法与过程的总和。光栅器会将一个图元的所有顶点作为输入，并将它转换为一系列的片段。顶点坐标理论上可以取任意值，但片段不行，因为它们受限于你窗口的分辨率。顶点坐标与片段之间几乎永远也不会有一对一的映射，所以光栅器必须以某种方式来决定每个顶点最终所在的片段/屏幕坐标。
+
+
+https://learnopengl.com/Advanced-OpenGL/Anti-Aliasing
