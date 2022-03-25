@@ -5,6 +5,7 @@
 - [3. Containers in C++ STL (Standard Template Library)](#3-containers-in-c-stl-standard-template-library)
 - [4. C++ Questions](#4-c-questions)
 - [5. Defensive Programming](#5-defensive-programming)
+- [Optimize the code](#optimize-the-code)
 
 <!-- /TOC -->
 
@@ -306,3 +307,11 @@ CPU吞吐量和时延的区别是什么？
 Defensive coding allows software to behave in a correct manner, despite incorrect input.
 - check preconditions (program only continues executing upon valid input)
 - assertion inside methods (when calling other class methods or external libraries)
+
+
+
+# Optimize the code
+When ask to optimize the code, think of:
+- binary search, O(N) --> O(logn)
+- hashing, O(N) --> O(1)
+- in-place operation 

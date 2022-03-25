@@ -641,8 +641,11 @@ LintCode 362: [Sliding Window Maximum]() 滑动窗口经典题型
 ```python
 def __init__():
     f = {}
+    rank = {}
     for n in nodes:
-        f[n] = n  # f[i]: parent/fater of i
+        f[n] = n  # f[i]: parent/father of i
+        rank[n] = 0
+
 
 def find(x: int, f: dict):
     while f[x] != x: # while不会死循环, UF中没有cycle
@@ -681,6 +684,11 @@ def union(x, y, f):
     fy = find(y, f)
     if fx != fy:
         f[fx] = fy  # OR f[fy] = fx
+
+# union by rank (always attach smaller depth tree under the root of the deeper tree)
+def union(x, y, f):
+
+
 ```
 * 时间复杂度都是O(log* n) 约等于O(1)    O(n) --路径压缩-->> ≈O(1)
     - log* n --> log2log2log2...n until log*n <=1
