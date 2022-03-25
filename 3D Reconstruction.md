@@ -132,9 +132,10 @@ BA问题, 相机投影模型的Jacobian
 Pinhole camera model
 
 
-ColMAP 怎么进行 sparse -> dense reconstruction的?
 OpenMVG 的BA怎么做的?
 
 
 Egomotion: 3D motion of a camera within an environment. 
 - estimate a camera's motion relative to a rigid scene.
+- photometric loss + geometric loss
+- depth estimation + ego motion (trajectory) estimation

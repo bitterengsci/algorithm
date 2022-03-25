@@ -1,93 +1,15 @@
+<!-- TOC -->
+
+- [1. Python Aid Sheet](#1-python-aid-sheet)
+- [2. Modern C++ features (after C++11)](#2-modern-c-features-after-c11)
+- [3. Containers in C++ STL (Standard Template Library)](#3-containers-in-c-stl-standard-template-library)
+- [4. C++ Questions](#4-c-questions)
+- [5. Defensive Programming](#5-defensive-programming)
+
+<!-- /TOC -->
 
 
-# Modern C++ features (after C++11)
-- type aliases (using)
-- uniform initialization, non-static member initialization
-    ```cpp
-    class demo {
-
-      public: demo(int var1_, bool var2_, string var3_) : var1(var1_), var2(var2_), var3(var3_) {} 
-    };  
-    ```
-- auto(typed variables are deduced by the compiler according to the type of their initializer)
-- range-based for loops      
-    ```cpp
-    std::array<int, 5> array {1, 2, 3, 4, 5};
-    for(int &x : array) { }
-    ```
-- smart pointers
-- nullptr (of type std::nullptr_t and can be implicitly converted into pointer types); NULL is not convertible to integral types except bool
-- move semantics
-- Variadic templates
-- delete, default        demo(const demo &) = delete;  demo &operator=(const demo &) = delete;
-- delegating constructors: constructors can call other constructors in the same class using an initializer list
-- lambda expression
-
-
-
-# Containers in C++ STL (Standard Template Library)
-* Sequence Container (can be accessed sequentially)
-    - array: Static contiguous array 
-    - vector: Dynamic contiguous array 
-    - deque: Double-ended queue 
-    - forward_list: Singly-linked list 
-    - list: Doubly-linked list 
-* Associative Container: (sorted data structure, quickly searched in O(logn))
-    - Set: Collection of unique keys, sorted by keys
-    - Map: Collection of key-value pairs, sorted by keys, keys are unique
-    - multiset: Collection of keys, sorted by keys (= set with duplicate keys)
-    - multimap: Collection of key-value pairs, sorted by keys 
-* Unordered Associatve Container: (unsorted (hashed) data structures, quickly searched O(1) amortized, O(n) worstcase) 
-    - unordered_set: Collection of unique keys, hashed by keys
-    - unordered_map: Collection of key-value pairs, hashed by keys, keys are unique
-    - unordered_multiset: Collection of keys, hashed by keys 
-    - unordered_multimap: Collection of key-value pairs, hashed by keys 
-* Container Adaptor: a different interface for sequential containers
-    - stack: Adapts a container to provide stack (LIFO data structure)
-    - queue: Adapts a container to provide queue (FIFO data structure)
-    - priority_queue: Adapts a container to provide priority queue
-
-
-
-template <typename T>
-
-std::vector<T>
-- stores contiguously, elements can be accessed through iterators or using offsets.
-- random access O(1)
-- insert/remove elements at the end amortized O(1)
-- insert/remove elements O(n)
-
-
-std::tuple<T1, T2...>
-- a fixed-size collection of heterogeneous values
-
-std::pair<T1, T2>
-- store two heterogeneous objects as a single unit
-- a specific case of a std::tuple with two elements
-
-std::queue<T>
-- FIFO
-
-std::deque<T>
-- indexed sequence container; automatically expanded and contracted
-  - Expansion of a deque is cheaper than std::vector because it does not involve copying of the existing elements to a new memory location.
-- random access O(1)
-- insert/remove elements at the beginning/end O(1)
-- insert/remove elements O(n)
-
-
-std::map<KeyType, ValueType>
-- a sorted associative container that contains key-value pairs with unique keys
-- implemented as red-black trees
-- search/remove/insert O(logn)
-
-std::unordered_map
-- an associative container that contains key-value pairs with unique keys
-- elements not sorted in any particular order, but organized into buckets (depending on hash of the keys)
-- search/remove/insert average O(1)
-
-
-# Python Aid Sheet
+# 1. Python Aid Sheet
 BFS     ->  Queue First In First Out  append, pop(-1)
 DFS     ->  Stack Last In First Out   append, pop()
 Deque   ->  append (insert element at right end), appendleft (insert element at right end)
@@ -169,3 +91,218 @@ while start + 1 < end:
     else:
         start = mid
 ```
+
+
+
+# 2. Modern C++ features (after C++11)
+- type aliases (using)
+- uniform initialization, non-static member initialization
+    ```cpp
+    class demo {
+
+      public: demo(int var1_, bool var2_, string var3_) : var1(var1_), var2(var2_), var3(var3_) {} 
+    };  
+    ```
+- auto(typed variables are deduced by the compiler according to the type of their initializer)
+- range-based for loops      
+    ```cpp
+    std::array<int, 5> array {1, 2, 3, 4, 5};
+    for(int &x : array) { }
+    ```
+- smart pointers
+- nullptr (of type std::nullptr_t and can be implicitly converted into pointer types); NULL is not convertible to integral types except bool
+- move semantics
+- Variadic templates
+- delete, default        demo(const demo &) = delete;  demo &operator=(const demo &) = delete;
+- delegating constructors: constructors can call other constructors in the same class using an initializer list
+- lambda expression
+
+
+
+# 3. Containers in C++ STL (Standard Template Library)
+* Sequence Container (can be accessed sequentially)
+    - array: Static contiguous array 
+    - vector: Dynamic contiguous array 
+    - deque: Double-ended queue 
+    - forward_list: Singly-linked list 
+    - list: Doubly-linked list 
+* Associative Container: (sorted data structure, quickly searched in O(logn))
+    - Set: Collection of unique keys, sorted by keys
+    - Map: Collection of key-value pairs, sorted by keys, keys are unique
+    - multiset: Collection of keys, sorted by keys (= set with duplicate keys)
+    - multimap: Collection of key-value pairs, sorted by keys 
+* Unordered Associatve Container: (unsorted (hashed) data structures, quickly searched O(1) amortized, O(n) worstcase) 
+    - unordered_set: Collection of unique keys, hashed by keys
+    - unordered_map: Collection of key-value pairs, hashed by keys, keys are unique
+    - unordered_multiset: Collection of keys, hashed by keys 
+    - unordered_multimap: Collection of key-value pairs, hashed by keys 
+* Container Adaptor: a different interface for sequential containers
+    - stack: Adapts a container to provide stack (LIFO data structure)
+    - queue: Adapts a container to provide queue (FIFO data structure)
+    - priority_queue: Adapts a container to provide priority queue
+
+
+
+template <typename T>
+
+std::vector<T>
+- stores contiguously, elements can be accessed through iterators or using offsets.
+- random access O(1)
+- insert/remove elements at the end amortized O(1)
+- insert/remove elements O(n)
+
+
+std::tuple<T1, T2...>
+- a fixed-size collection of heterogeneous values
+
+std::pair<T1, T2>
+- store two heterogeneous objects as a single unit
+- a specific case of a std::tuple with two elements
+
+std::queue<T>
+- FIFO
+
+std::deque<T>
+- indexed sequence container; automatically expanded and contracted
+  - Expansion of a deque is cheaper than std::vector because it does not involve copying of the existing elements to a new memory location.
+- random access O(1)
+- insert/remove elements at the beginning/end O(1)
+- insert/remove elements O(n)
+
+
+std::map<KeyType, ValueType>
+- a sorted associative container that contains key-value pairs with unique keys
+- implemented as red-black trees
+- search/remove/insert O(logn)
+
+std::unordered_map
+- an associative container that contains key-value pairs with unique keys
+- elements not sorted in any particular order, but organized into buckets (depending on hash of the keys)
+- search/remove/insert average O(1)
+
+
+# 4. C++ Questions
+
+pointer (* star) vs reference (& ampersand)
+* Pointer variables are used to store the address of variable.
+* When a parameter is declared as reference, it becomes an alternative name for an existing parameter.
+    - References are used to refer an existing variable in another name whereas pointers are used to store address of variable.
+    - References cannot have a null value assigned but pointer can.
+    -  A reference variable can be referenced by pass by value whereas a pointer can be referenced by pass by reference.
+    - A reference must be initialized on declaration while it is not necessary in case of pointer.
+    - A reference shares the same memory address with the original variable but also takes up some space on the stack whereas a pointer has its own memory address and size on the stack.
+
+
+
+virtual
+* virtual, pure virtual 
+* virtual destructor
+* 虚函数和纯虚函数? 构造函数和析构函数可以是虚函数嘛? 可以是纯虚函数嘛?
+* virtual virtual和多态
+- 什么是虚函数？什么是虚继承？虚函数和虚继承是如何实现的？ 
+- 父类的析构函数必须为虚函数
+- 虚基类
+
+
+const
+* 修饰成员函数?
+* constexpr 和 const constexpr为常量(表达式), 类似宏 → 编译时, 不开辟内存 const 只读变量, 依旧是变量, 只不过不可改 运行时
+
+
+smart pointer
+* shared_ptr
+    - 如何实现一个shared_ptr? (全局变量, 计数器 + 指针 + 判断何时析构) 内存引用技术, 显式拷贝 cv::Mat 实现 (opencv为引用, Eigen为赋值)
+* unique_ptr
+* weak_ptr
+
+
+Deep Copy
+- 深拷贝, 浅拷贝 指针地址的拷贝为浅拷贝
+
+
+static
+
+explicit
+
+extern
+
+violate 编译器不优化代码 set flag -o3 (优化代码, 优化等级为3) -os 以speed为目的优化代码
+
+override 重写/覆盖 overload重载 polymorphism多态
+
+
+
+左值和右值 右值引用的意义 → 为临时变量续命 int a = 3; 正确 int &a = 3; 错误 int &&a = 3; 正确 vec3d &&v = vector3d(0, 0, 1);
+
+
+6个特殊函数: 构造, 析构, 移动, 赋值 ..
+
+RAIL: 析构即释放 std::mutex → std::unique_lock lock(m);
+
+capacity (reserve), size (当前)
+
+开闭原则
+
+五大原则, 设计模式
+
+this指针 (友元)
+
+static函数无this指针传入
+
+访问类的成员变量, 若此成员变量非static类型, 则无法找到, 会报错
+
+悬空指针 (指向析构对象) 野指针 char *p; (无任何指向)
+
+
+＃include<file.h>从标准库路径寻找和引用file.h, ＃include "file.h" 从当前工作路径搜寻并引用file.h
+
+在头文件中进行类的声明，在对应的实现文件中进行类的定义, 可以提高编译效率，因为只需要编译一次生成对应的.obj文件后，再次应用该类的地方，这个类就不会被再次编译
+
+this指针指向对象的首地址, 成员函数可以通过this指针区分不同对象的成员数据
+
+C++编译器自动为类产生的四个缺省函数: 默认构造函数，析构函数，赋值函数, 拷贝构造函数
+
+抽象类不用来定义对象而只作为一种基本类型用作继承
+
+不允许重载的5个运算符:   .*（成员指针访问运算符号）, :: 域运算符, sizeof 长度运算符号,  ?:条件运算符号,    .（成员访问符）
+
+对象间是通过类的静态成员变量来实现数据的共享。静态成员变量占有自己独立的空间不为某个对象所私有
+
+类是对象的抽象，对象是类的实例
+
+
+基类指针调用子类的虚函数; 虚函数具有多态性
+
+
+STL? std::vector std::map.   链表是std::list
+
+set 和map是红黑树，unordered是哈希表
+
+vector扩充为什么是2倍
+虚函数表、纯虚函数、虚析构函数
+模板元编程，特化、偏特化(Partial Template Specialization)
+public/protected/private
+
+
+一、计算机基础 
+Intel和Arm的区别是什么？ 
+栈内存和堆内存的区别是什么？ 
+进程、线程的区别？如何在进程间、线程间同步或通信？ 
+库函数和系统调用的区别？ 动态链接库和静态链接库的区别？ 
+CPU吞吐量和时延的区别是什么？ 
+缓存的作用是什么？缓存的有效性依赖于什么？ 
+编译型语言和解释型语言的区别是什么？请举例说明。
+
+二、
+函数调用栈是什么样的？ 
+什么是拷贝构造函数、拷贝赋值运算符、移动构造函数、移动赋值运算符？ 
+如何理解面向对象编程？简述你所了解的某个开源代码是如何应用面向对象编程的。 
+什么是右值引用？右值引用存在的意义是什么？ 
+
+三、数据结构和算法 可变长数组是如何实现的？（比如C++中的std::vector，Python中的list）。 常用的容器类都有哪些？它们的特点各是什么？它们内部是如何实现的？ 常用的排序算法的原理和时间复杂度。 链表反转。 二叉树遍历，先序遍历、中序遍历、按行遍历，递归形式与非递归形式。
+
+
+# 5. Defensive Programming
+Defensive coding allows software to behave in a correct manner, despite incorrect input.
+- check preconditions (program only continues executing upon valid input)
+- assertion inside methods (when calling other class methods or external libraries)
