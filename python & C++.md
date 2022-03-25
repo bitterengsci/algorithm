@@ -1,11 +1,11 @@
 <!-- TOC -->
 
 - [1. Python Aid Sheet](#1-python-aid-sheet)
-- [2. Modern C++ features (after C++11)](#2-modern-c-features-after-c11)
-- [3. Containers in C++ STL (Standard Template Library)](#3-containers-in-c-stl-standard-template-library)
+- [2. Modern C++ features after C++11](#2-modern-c-features-after-c11)
+- [3. Containers in C++ STL Standard Template Library](#3-containers-in-c-stl-standard-template-library)
 - [4. C++ Questions](#4-c-questions)
 - [5. Defensive Programming](#5-defensive-programming)
-- [Optimize the code](#optimize-the-code)
+- [6. Optimize the code](#6-optimize-the-code)
 
 <!-- /TOC -->
 
@@ -184,6 +184,33 @@ std::unordered_map
 
 # 4. C++ Questions
 
+function call stack
+- responsible for maintaining the local variables and parameters during function execution
+- Calling a function pushes another stack frame onto the call stack which has enough space for the arguments to the function any local variables.
+- Returning pops the stack frame of function called off the call stack
+- when the main function returns, its stack frame will be popped off and control will be returned to the C runtime system.
+
+
+Stack Memory vs Heap Memory
+* Stack Memory
+  - temporary memory allocation scheme
+  - contiguous blocks of memory (linear, and never become fragmented)
+  - less storage space as compared to Heap memory
+  - allocation and de-allocation is faster as compared to Heap memory allocation
+  - safer because the data stored can only be access by owner thread
+* Heap Memory
+  - accessible or exists as long as the whole application(or java program) runs
+  - The name heap has nothing to do with the heap data structure. It is called heap because it is a pile of memory space available to programmers to allocated and de-allocate. (hierarchical)
+  - allocated during the execution of instructions written by programmers
+  - larger, as compared to stack memory
+  - not threaded-safe, data is accessible or visible to all threads
+  - If a programmer does not handle Heap memory well, a memory leak can happen.
+
+
+进程、线程的区别？如何在进程间、线程间同步或通信？
+
+开闭原则 The Open/Closed Principle(OCP): software entities should be open for extension, but closed for modification
+
 pointer (* star) vs reference (& ampersand)
 * Pointer variables are used to store the address of variable.
 * When a parameter is declared as reference, it becomes an alternative name for an existing parameter.
@@ -224,25 +251,42 @@ Deep Copy
 static
 
 explicit
+- used to mark constructors to not implicitly convert types
 
 extern
 
-violate 编译器不优化代码 set flag -o3 (优化代码, 优化等级为3) -os 以speed为目的优化代码
+violate 
+- 编译器不优化代码 set flag -o3 (优化代码, 优化等级为3) -os 以speed为目的优化代码; Debug模式不优化代码, Release模式优化
+- prevent the compiler from applying any optimizations on objects that can change in ways that cannot be determined by the compiler
 
-override 重写/覆盖 overload重载 polymorphism多态
 
+override 重写/覆盖 overload重载
+- Overriding implements Runtime Polymorphism whereas Overloading implements Compile time polymorphism.
+- The method Overriding occurs between superclass and subclass. Overloading occurs between the methods in the same class.
+- Overriding methods have the same signature i.e. same name and method arguments. Overloaded method names are the same but the parameters are different.
+- With Overloading, the method to call is determined at the compile-time. With overriding, the method call is determined at the runtime based on the object type.
 
 
 左值和右值 右值引用的意义 → 为临时变量续命 int a = 3; 正确 int &a = 3; 错误 int &&a = 3; 正确 vec3d &&v = vector3d(0, 0, 1);
 
 
-6个特殊函数: 构造, 析构, 移动, 赋值 ..
+6个特殊成员函数: 构造, 析构, 移动, 赋值 ..
+```cpp
+class Foo {
+public:
+    string s;
+    Foo();    // 默认构造函数: 默认构造函数指不需要参数就能初始化的构造函数
+    ~Foo();   //析构函数
+    Foo(const Foo& foo) s = foo.s;  // 复制构造函数 copy constructor 使用该类的对象作为参数的构造函数
+    Foo& operator=(const Foo& foo) s = foo.s; return * this;   // 复制赋值运算符 copy assignment operator; 重载等号=, 将该类的对象赋值给已定义对象
+    Foo(Foo&& foo) s = std::move(foo.s);  // 移动构造函数 move constructor
+    Foo& operator=(Foo&& foo) s = std::move(foo.s); return *this;  // 移动赋值运算符 move assignment operator
+};
+```
 
 RAIL: 析构即释放 std::mutex → std::unique_lock lock(m);
 
 capacity (reserve), size (当前)
-
-开闭原则
 
 五大原则, 设计模式
 
@@ -286,21 +330,35 @@ public/protected/private
 
 
 一、计算机基础 
-Intel和Arm的区别是什么？ 
-栈内存和堆内存的区别是什么？ 
-进程、线程的区别？如何在进程间、线程间同步或通信？ 
+Intel和Arm的区别是什么？  
 库函数和系统调用的区别？ 动态链接库和静态链接库的区别？ 
 CPU吞吐量和时延的区别是什么？ 
 缓存的作用是什么？缓存的有效性依赖于什么？ 
 编译型语言和解释型语言的区别是什么？请举例说明。
 
 二、
-函数调用栈是什么样的？ 
 什么是拷贝构造函数、拷贝赋值运算符、移动构造函数、移动赋值运算符？ 
 如何理解面向对象编程？简述你所了解的某个开源代码是如何应用面向对象编程的。 
 什么是右值引用？右值引用存在的意义是什么？ 
 
 三、数据结构和算法 可变长数组是如何实现的？（比如C++中的std::vector，Python中的list）。 常用的容器类都有哪些？它们的特点各是什么？它们内部是如何实现的？ 常用的排序算法的原理和时间复杂度。 链表反转。 二叉树遍历，先序遍历、中序遍历、按行遍历，递归形式与非递归形式。
+
+
+```cpp
+// Test the compiler is big endian or little endian
+#include <stdio.h>
+
+void show_mem_rep(char * start, int n) {
+    int i;
+    for (i=0; i<n; i++)
+        printf(" %.2x", start[i]);
+}
+
+int main(){
+    int num = 0x01234567;
+    show_mem_rep((char* ) &num, sizeof(num));
+}
+```
 
 
 # 5. Defensive Programming
