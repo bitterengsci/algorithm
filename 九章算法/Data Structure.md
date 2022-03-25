@@ -687,8 +687,16 @@ def union(x, y, f):
 
 # union by rank (always attach smaller depth tree under the root of the deeper tree)
 def union(x, y, f):
-
-
+    fx = find(x, f)
+    fy = find(y, f)
+    if fx != fy:
+        if rank[fx] > rank[fy]:
+            f[fy] = fx
+        else if rank[fx] < rank[fy]:
+            f[fx] = fy
+        else:
+            f[fy] = fx
+            rank[fx] += 1
 ```
 * 时间复杂度都是O(log* n) 约等于O(1)    O(n) --路径压缩-->> ≈O(1)
     - log* n --> log2log2log2...n until log*n <=1

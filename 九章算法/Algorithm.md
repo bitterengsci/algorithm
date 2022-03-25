@@ -1,59 +1,69 @@
 <!-- TOC -->
 
-- [1. 二分法 Binary Search](#1-%E4%BA%8C%E5%88%86%E6%B3%95-binary-search)
-    - [1.1. Binary Search](#11-binary-search)
-    - [1.2. 独孤九剑——破剑式 比On更优的时间复杂度 几乎只能是Ologn的二分法](#12-%E7%8B%AC%E5%AD%A4%E4%B9%9D%E5%89%91%E7%A0%B4%E5%89%91%E5%BC%8F-%E6%AF%94on%E6%9B%B4%E4%BC%98%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6-%E5%87%A0%E4%B9%8E%E5%8F%AA%E8%83%BD%E6%98%AFologn%E7%9A%84%E4%BA%8C%E5%88%86%E6%B3%95)
-    - [1.3. 第一境界 二分法模板](#13-%E7%AC%AC%E4%B8%80%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E6%B3%95%E6%A8%A1%E6%9D%BF)
-    - [1.4. 第二境界 二分位置 之 OOXX](#14-%E7%AC%AC%E4%BA%8C%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-ooxx)
-    - [1.5. 第三境界 二分位置 之 Half Half](#15-%E7%AC%AC%E4%B8%89%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E4%BD%8D%E7%BD%AE-%E4%B9%8B-half-half)
-    - [1.6. 第四境界至高境界: 二分答案 Binary Search on Result, 二分法难题 Hard](#16-%E7%AC%AC%E5%9B%9B%E5%A2%83%E7%95%8C%E8%87%B3%E9%AB%98%E5%A2%83%E7%95%8C-%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88-binary-search-on-result-%E4%BA%8C%E5%88%86%E6%B3%95%E9%9A%BE%E9%A2%98-hard)
-- [2. 搜索 Search](#2-%E6%90%9C%E7%B4%A2-search)
-    - [2.1. 宽度优先搜索 Breadth First Search](#21-%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-breadth-first-search)
-        - [2.1.1. 二叉树上的宽度优先搜索 BFS in Binary Tree](#211-%E4%BA%8C%E5%8F%89%E6%A0%91%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-binary-tree)
-        - [2.1.2. Serialization 序列化](#212-serialization-%E5%BA%8F%E5%88%97%E5%8C%96)
-        - [2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting必考](#213-%E5%9B%BE%E4%B8%8A%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-graph--%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F-topological-sorting%E5%BF%85%E8%80%83)
-        - [2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix 格子图](#214-%E6%A3%8B%E7%9B%98%E4%B8%8A%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%9A%84%E5%AE%BD%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-bfs-in-matrix-%E6%A0%BC%E5%AD%90%E5%9B%BE)
-    - [2.2. 深度优先搜索 Depth First Search](#22-%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2-depth-first-search)
-        - [2.2.1. 组合搜索问题 Combination 2**n](#221-%E7%BB%84%E5%90%88%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-combination-2n)
-        - [2.2.2. 排列搜索问题 Permutation](#222-%E6%8E%92%E5%88%97%E6%90%9C%E7%B4%A2%E9%97%AE%E9%A2%98-permutation)
-        - [2.2.3. Search in a Graph 图中的搜索](#223-search-in-a-graph-%E5%9B%BE%E4%B8%AD%E7%9A%84%E6%90%9C%E7%B4%A2)
-        - [2.2.4. Non Recursion](#224-non-recursion)
-        - [2.2.5. DFS时间复杂度](#225-dfs%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6)
-    - [2.3. dijkstra's algorithm](#23-dijkstras-algorithm)
-- [3. Sweep Line 扫描线算法 处理区间问题的扫描线](#3-sweep-line-%E6%89%AB%E6%8F%8F%E7%BA%BF%E7%AE%97%E6%B3%95-%E5%A4%84%E7%90%86%E5%8C%BA%E9%97%B4%E9%97%AE%E9%A2%98%E7%9A%84%E6%89%AB%E6%8F%8F%E7%BA%BF)
-- [4. 两根指针 Two Pointers](#4-%E4%B8%A4%E6%A0%B9%E6%8C%87%E9%92%88-two-pointers)
-    - [4.1. 同向双指针](#41-%E5%90%8C%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
-    - [4.2. 相向双指针](#42-%E7%9B%B8%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
-    - [4.3. Two Sum & its variation](#43-two-sum--its-variation)
-    - [4.4. Partition Array 分割数组](#44-partition-array-%E5%88%86%E5%89%B2%E6%95%B0%E7%BB%84)
-- [5. 递归 Recursion](#5-%E9%80%92%E5%BD%92-recursion)
-    - [5.1. 递归的概念](#51-%E9%80%92%E5%BD%92%E7%9A%84%E6%A6%82%E5%BF%B5)
-        - [5.1.1. 递归的三要素](#511-%E9%80%92%E5%BD%92%E7%9A%84%E4%B8%89%E8%A6%81%E7%B4%A0)
-        - [5.1.2. 递归与非递归方法的比较](#512-%E9%80%92%E5%BD%92%E4%B8%8E%E9%9D%9E%E9%80%92%E5%BD%92%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83)
-    - [5.2. 递归调用栈](#52-%E9%80%92%E5%BD%92%E8%B0%83%E7%94%A8%E6%A0%88)
-        - [5.2.1. 回溯法Backtracking](#521-%E5%9B%9E%E6%BA%AF%E6%B3%95backtracking)
-        - [5.2.2. 二分查找/搜索 Binary Search 的递归写法 二分](#522-%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE%E6%90%9C%E7%B4%A2-binary-search-%E7%9A%84%E9%80%92%E5%BD%92%E5%86%99%E6%B3%95-%E4%BA%8C%E5%88%86)
-    - [5.3. 值传递和引⽤传递](#53-%E5%80%BC%E4%BC%A0%E9%80%92%E5%92%8C%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
-        - [5.3.1. 值传递](#531-%E5%80%BC%E4%BC%A0%E9%80%92)
-        - [5.3.2. 引⽤传递](#532-%E5%BC%95%E2%BD%A4%E4%BC%A0%E9%80%92)
-    - [5.4. 递归综合训练](#54-%E9%80%92%E5%BD%92%E7%BB%BC%E5%90%88%E8%AE%AD%E7%BB%83)
-- [6. 贪心 Greedy Algorithms](#6-%E8%B4%AA%E5%BF%83-greedy-algorithms)
-- [7. 分治 Divide & Conquer](#7-%E5%88%86%E6%B2%BB-divide--conquer)
+- [1. 二分法 Binary Search](#1-二分法-binary-search)
+  - [1.1. Binary Search](#11-binary-search)
+  - [1.2. 独孤九剑——破剑式 比O(n)更优的时间复杂度 几乎只能是O(logn)的二分法](#12-独孤九剑破剑式-比on更优的时间复杂度-几乎只能是ologn的二分法)
+  - [1.3. 第一境界 二分法模板](#13-第一境界-二分法模板)
+  - [1.4. 第二境界 二分位置 之 OOXX](#14-第二境界-二分位置-之-ooxx)
+  - [1.5. 第三境界 二分位置 之 Half Half](#15-第三境界-二分位置-之-half-half)
+  - [1.6. 第四境界(至高境界): 二分答案 Binary Search on Result, 二分法难题 (Hard)](#16-第四境界至高境界-二分答案-binary-search-on-result-二分法难题-hard)
+- [2. 搜索 Search](#2-搜索-search)
+  - [2.1. 宽度优先搜索 Breadth First Search](#21-宽度优先搜索-breadth-first-search)
+    - [2.1.1. 二叉树上的宽度优先搜索 BFS in Binary Tree](#211-二叉树上的宽度优先搜索-bfs-in-binary-tree)
+      - [2.1.1.1. Soft and Deep Copy (深度拷贝)](#2111-soft-and-deep-copy-深度拷贝)
+      - [2.1.1.2. 层级遍历](#2112-层级遍历)
+    - [2.1.2. Serialization 序列化](#212-serialization-序列化)
+    - [2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)](#213-图上的宽度优先搜索-bfs-in-graph--拓扑排序-topological-sorting必考)
+    - [2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)](#214-棋盘上矩阵中的宽度优先搜索-bfs-in-matrix-格子图)
+  - [2.2. 深度优先搜索 Depth First Search](#22-深度优先搜索-depth-first-search)
+    - [2.2.1. 组合搜索问题 Combination 2**n](#221-组合搜索问题-combination-2n)
+    - [2.2.2. 排列搜索问题 Permutation](#222-排列搜索问题-permutation)
+    - [2.2.3. Search in a Graph 图中的搜索](#223-search-in-a-graph-图中的搜索)
+    - [2.2.4. Non Recursion](#224-non-recursion)
+    - [2.2.5. DFS时间复杂度](#225-dfs时间复杂度)
+  - [2.3. dijkstra's algorithm](#23-dijkstras-algorithm)
+- [3. Sweep Line 扫描线算法 处理区间问题的扫描线](#3-sweep-line-扫描线算法-处理区间问题的扫描线)
+- [4. 两根指针 Two Pointers](#4-两根指针-two-pointers)
+  - [4.1. 同向双指针](#41-同向双指针)
+  - [4.2. 相向双指针](#42-相向双指针)
+  - [4.3. Two Sum & its variation](#43-two-sum--its-variation)
+  - [4.4. Partition Array 分割数组](#44-partition-array-分割数组)
+- [5. 递归 Recursion](#5-递归-recursion)
+  - [5.1. 递归的概念](#51-递归的概念)
+    - [5.1.1. 递归的三要素](#511-递归的三要素)
+    - [5.1.2. 递归与非递归方法的比较](#512-递归与非递归方法的比较)
+  - [5.2. 递归调用栈](#52-递归调用栈)
+    - [5.2.1. 回溯法Backtracking](#521-回溯法backtracking)
+    - [5.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)](#522-二分查找搜索-binary-search-的递归写法-二分)
+  - [5.3. 值传递和引⽤传递](#53-值传递和引传递)
+    - [5.3.1. 值传递](#531-值传递)
+    - [5.3.2. 引⽤传递](#532-引传递)
+  - [5.4. 递归综合训练](#54-递归综合训练)
+- [6. 贪心 Greedy Algorithms](#6-贪心-greedy-algorithms)
+- [7. 分治 Divide & Conquer](#7-分治-divide--conquer)
 - [8. Graph](#8-graph)
-    - [8.1. BFS & DFS](#81-bfs--dfs)
-    - [8.2. Dijkstra,](#82-dijkstra)
-    - [8.3. Flloyd Warshall](#83-flloyd-warshall)
-    - [8.4. MST](#84-mst)
-    - [8.5. flow](#85-flow)
-- [9. String问题](#9-string%E9%97%AE%E9%A2%98)
-    - [9.1. Rabin Karp](#91-rabin-karp)
-    - [9.2. KMP](#92-kmp)
-    - [9.3. Aho-Crosaick](#93-aho-crosaick)
+  - [8.1. BFS & DFS](#81-bfs--dfs)
+  - [8.2. Dijkstra,](#82-dijkstra)
+  - [8.3. Flloyd Warshall](#83-flloyd-warshall)
+  - [8.4. MST](#84-mst)
+  - [8.5. flow](#85-flow)
+- [9. String问题](#9-string问题)
+  - [9.1. Rabin Karp](#91-rabin-karp)
+  - [9.2. KMP](#92-kmp)
+  - [9.3. Aho-Crosaick](#93-aho-crosaick)
 - [10. Number Theory](#10-number-theory)
-- [11. Follow Up问题](#11-follow-up%E9%97%AE%E9%A2%98)
-    - [11.1. 同向双指针](#111-%E5%90%8C%E5%90%91%E5%8F%8C%E6%8C%87%E9%92%88)
-    - [11.2. 求第K大/小元素 单个数组, 多个数组, 矩阵](#112-%E6%B1%82%E7%AC%ACk%E5%A4%A7%E5%B0%8F%E5%85%83%E7%B4%A0-%E5%8D%95%E4%B8%AA%E6%95%B0%E7%BB%84-%E5%A4%9A%E4%B8%AA%E6%95%B0%E7%BB%84-%E7%9F%A9%E9%98%B5)
-    - [11.3. Follow Up问题的出题规律](#113-follow-up%E9%97%AE%E9%A2%98%E7%9A%84%E5%87%BA%E9%A2%98%E8%A7%84%E5%BE%8B)
+- [11. Follow Up问题](#11-follow-up问题)
+  - [11.1. 同向双指针](#111-同向双指针)
+  - [11.2. 求第K大/小元素 (单个数组, 多个数组, 矩阵)](#112-求第k大小元素-单个数组-多个数组-矩阵)
+  - [11.3. Follow Up问题的出题规律](#113-follow-up问题的出题规律)
+- [12. Sorting](#12-sorting)
+  - [12.1. Merge Sort](#121-merge-sort)
+  - [12.2. Quick Sort](#122-quick-sort)
+  - [12.3. Bubble Sort](#123-bubble-sort)
+  - [12.4. Selection Sort](#124-selection-sort)
+  - [12.5. Insertion Sort](#125-insertion-sort)
+  - [12.6. Quick Select](#126-quick-select)
+  - [12.7. Integer Sort](#127-integer-sort)
 
 <!-- /TOC -->
 
@@ -404,7 +414,7 @@ no deep copy → 每次加进去的是新new出来的东西
 如果直接 for (int i = 0; i < queue.size(); i++) 会怎么样?   for上一层节点, 拓展出新的节点
 queue.size()在变化 → 所有的东西都挤在一层
 
-### 1.6.1. Serialization 序列化
+### 2.1.2. Serialization 序列化
 将内存中结构化的数据变成"字符串"的过程  (在传输中很重要)
 序列化:object to string 反序列化:string to object
 
@@ -444,7 +454,7 @@ Lintcode 70.[Binary Tree Level Order Traversal II]()
 Lintcode 71.[Binary Tree Zigzag Level Order Traversal]()
 Lintcode 242.[Convert Binary Tree to Linked Lists by Depth]()
 
-### 1.6.2. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)
+### 2.1.3. 图上的宽度优先搜索 BFS in Graph & 拓扑排序 Topological Sorting(必考)
 和树上有什么区别? 树→父子关系; 图→双向关系, 可能存在地位平等(邻居关系)   directed/undirected graph
 图是点和边组成的结构, 甚至可以不联通  G = < V, E > 
 
@@ -485,7 +495,7 @@ Lintcode 605.[Sequence Reconstruction]()
 
 能不能被拓扑排序? 判断有没有入度为0的点
 
-### 1.6.3. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)
+### 2.1.4. 棋盘上/矩阵中的宽度优先搜索 BFS in Matrix (格子图)
 图 Graph: N个点, M条边, M最大是 O(N^2) 的级别 (两两连通), 图上BFS时间复杂度 O(N + M)   (点边之和)
     说O(M)问题也不大, 因为M一般都比N大 所以最坏情况可能是 O(N^2)
 矩阵 Matrix: R行C列, R * C个点, R * C * 2 条边(每个点上下左右4条边, 每条边被2个点共享), 矩阵中BFS时间复杂度 O(R*C)
@@ -528,7 +538,7 @@ follow up: speed up?
         累加某个空格到达其他所有房子距离之和
         在所有空格中, 找到最小距离和
 
-## 1.7. 深度优先搜索 Depth First Search
+## 2.2. 深度优先搜索 Depth First Search
 什么时候用 DFS? 求所有方案时
 
 怎么解决DFS? Recursion(不特别说明的话, DFS用recursion实现; 有几道题需要掌握non-recursion的方式)
@@ -541,7 +551,7 @@ Note: DFS把结果放入results中, 一定要使用deep copy!
 找所有方案的题, 一定是DFS
 90% DFS的题, 要么是排列, 要么是组合
 
-### 1.7.1. 组合搜索问题 Combination 2**n
+### 2.2.1. 组合搜索问题 Combination 2**n
 问题模型: 求出所有满足条件的"组合"
 判断条件: 组合中的元素是顺序无关的
 时间复杂度: 与 2^n 相关, 因为 C[0][n] + C[1][n] + .. C[n][n] = 2^n, C[i][n]=n个数中取i个
@@ -566,7 +576,7 @@ Lintcode 136.[Palindrome Partitioning](Done)
     getkey不是 O(1), 是O(size of key), 取决于用作key的字符串有多长..
 - 用二维数组
 
-### 1.7.2. 排列搜索问题 Permutation
+### 2.2.2. 排列搜索问题 Permutation
 (相比组合问题少start index, 但同一个数不能重复的选, 所以多一个set放使用过的数或者使用过数的下标)
 问题模型: 求出所有满足条件的"排列"
 判断条件: 组合中的元素是顺序"相关"的
@@ -578,14 +588,14 @@ Lintcode 16.[Permutations II](Done)
 
 Lintcode 33.[N-Queens]()
 
-### 1.7.3. Search in a Graph 图中的搜索
+### 2.2.3. Search in a Graph 图中的搜索
 Lintcode 120.[Word Ladder]()
 http://www.lintcode.com/problem/word-ladder/
 
 Lintcode.[Word Ladder II]()
 http://www.lintcode.com/problem/word-ladder-ii/
 
-### 1.7.4. Non Recursion
+### 2.2.4. Non Recursion
 基本上都会用上栈(Stack)
 必“背”程序
 
@@ -598,7 +608,7 @@ Tree Iterator Lintcode .[]()  http://www.jiuzhang.com/solutions/binary-search-tr
 Combination Lintcode 17.[Subsets]
 Permutation Lintcode 15.[Permutations]()
 
-### 1.7.5. DFS时间复杂度
+### 2.2.5. DFS时间复杂度
 O(答案个数 * 构造每个答案的时间)
 * 搜索的时间复杂度: O(答案总数 * 构造每个答案的时间)
     Subsets问题, 求所有的子集。子集个数一共2^n, 每个集合的平均长度是O(n)的, 所以时间复杂度为O(n * 2^n), 同理Permutations问题的时间复杂度为O(n * n!)
@@ -608,9 +618,9 @@ O(答案个数 * 构造每个答案的时间)
     二叉树最大深度。二叉树节点个数为 N, 每个节点上的计算时间为 O(1)。总的时间复杂度为O(N)
 
 
-## 1.8. dijkstra's algorithm
+## 2.3. dijkstra's algorithm
 
-# 2. Sweep Line 扫描线算法 处理区间问题的扫描线
+# 3. Sweep Line 扫描线算法 处理区间问题的扫描线
 见到区间需要排序, 就可以考虑扫描线 (区间问题巧妙解法)
 扫描问题的特点: 1.事件往往是以区间的形式存在  2.区间两端代表事件的开始和结束  3.按照区间起点排序, 起点相同的按照终点排序
 扫描线要点: 将起点和终点打散排序 [[1, 3], [2, 4]] => [[1, start],[2, start],[3, end],[4, end]]
@@ -655,19 +665,19 @@ LintCode 919. [Meeting Rooms II]()
 LintCode 821. [Time Intersection]() F家高频题 输出两组区间的交集
 
 
-# 3. 两根指针 Two Pointers
+# 4. 两根指针 Two Pointers
 
-## 3.1. 同向双指针
+## 4.1. 同向双指针
 *** Lintcode 604-Window Sum
 *** Lintcode 521-Move Zeroes 
 *** Lintcode 521-Remove Duplicate Numbers in Array
 
-## 3.2. 相向双指针
+## 4.2. 相向双指针
 http://www.lintcode.com/problem/valid-palindrome/
 http://www.lintcode.com/problem/rotate-string/ 
 http://www.lintcode.com/en/problem/recover-rotated-sorted-array/
 
-## 3.3. Two Sum & its variation
+## 4.3. Two Sum & its variation
 *** Lintcode 56-Two Sum
 return 下标的话无论用hashmap还是sort+two pointers, 额外空间一定是O(n)
 但是如果return的是满足条件的数值, 使用sort+two pointers, 额外空间是O(1)
@@ -713,7 +723,7 @@ Related  Lintcodes
   Two Sum - difference equals to target (同向双指针)
   http://www.lintcode.com/problem/two-sum-difference-equals-to-target/
 
-## 3.4. Partition Array 分割数组
+## 4.4. Partition Array 分割数组
 Quick Select
 分成两个部分
 分成三个部分
@@ -761,17 +771,17 @@ closest to target
 difference = target
 
 
-# 4. 递归 Recursion
+# 5. 递归 Recursion
 递归是一种程序设计方式
 ①递归的概念 	前置知识—函数 (定义&调用函数)     递归的三要素 (定义, 拆解, 出口)
 ②递归调用栈 内存的堆栈 (内存空间=堆 or 栈)  回溯
 ③值传递和引⽤传递 (参数传递方式) 
 ④递归综合训练   e.g. 汉诺塔, 排列组合
 
-## 4.1. 递归的概念
+## 5.1. 递归的概念
 我们生活过程中处理事情主要运用的是什么思想? 我们生活中主要运用迭代思想, 从已知推向未知
 
-### 4.1.1. 递归的三要素
+### 5.1.1. 递归的三要素
 (递归, 函数的一种调用形式; 与普通函数类似)
 * ①递归的定义: 接受什么参数(参数列表), 返回什么值, 代表什么意思 
     - 当函数直接或者间接调用⾃己时, 则发⽣了递归(函数内部出现对自己的调用)
@@ -902,7 +912,7 @@ Reverse bits of a given 32 bits unsigned integer
     // return 1(第31-pos位)111..0
     ```
 
-### 4.1.2. 递归与非递归方法的比较
+### 5.1.2. 递归与非递归方法的比较
 递归能做的很多, 不一定要像前⾯两个问题一样有严格的公式 —> 递归思路: 进行问题的拆解, 将问题的规模变小, 一步步趋近于直接可以得到答案的问题
 
 LintCode 822.[Reverse Order Storage]() 
@@ -913,7 +923,7 @@ Give a linked list, and store the values of linked list in reverse order into an
 递归⽅法的另⼀种写法 (使用一个重载的辅助函数)
 
 
-## 4.2. 递归调用栈
+## 5.2. 递归调用栈
 内存中的堆和栈
 * 递归深度太⼤容易 “爆栈” Stack Overflow, Segment Fault (桶满了..)
 * 堆空间: heap
@@ -929,7 +939,7 @@ Java的数组存在堆空间, 访问数组通过数组的引用, 在栈空间; C
 每发生一次新的函数调用, 就会有一个新函数进入“桶”
 正在执行的就是最上面的函数; 一个函数执行完毕, 就会被拿出来(一个函数占用“桶”的空间与参数、局部变量的数量有关)
 
-### 4.2.1. 回溯法Backtracking
+### 5.2.1. 回溯法Backtracking
 * 暴力搜索法的⼀种
 * 试探着找问题的解, 如果到某一步发现上一次的选择不优或者达不到目标, 则退⼀步重新选择 
 * 回溯是递归函数中经常发生的现象
@@ -941,7 +951,7 @@ LintCode 97.[Maximum Depth of Binary Tree]() 二叉树最⼤深度
 F[i] = max(F[i].left, F[i].right) + 1    F[null] = 0
 递归层数与深度有关  
 
-### 4.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)
+### 5.2.2. 二分查找/搜索 Binary Search 的递归写法 (二分)
 在有序数组(假定升序) 中查找某一特定元素 X. 若有重复, 返回任意⼀个下标
 1.若数组为空, 查找失败, 不存在 (边界判断)
 2.若中间元素恰好是 X, 查找结束
@@ -953,20 +963,20 @@ LintCode 457.[Classical Binary Search]()
 LintCode 14.[First Position of Target]()
 LintCode 458.[Last Position of Target]()
 
-## 4.3. 值传递和引⽤传递
+## 5.3. 值传递和引⽤传递
 函数调用的参数传递 (和返回值返回方式)
 - Java 值传递, 引用传递
 - C++ 值传递, 引用传递, 地址传递   
 - Python 值传递, 引用传递
 
-### 4.3.1. 值传递
+### 5.3.1. 值传递
 "盗梦空间" 中, 下层梦境中的人的生死与上层梦境⽆关. 函数内部创建⼀个新的变量, 把值拷贝, 相当于⼀个副本
 - Java基本数据类型 (byte, short, int, long, float, double, char, boolean)
 - C++ 默认值传递
 - Python 值类型 (类似于 Java)
 - Java类成员中, 若有 final 修饰, 可以认为具有值传递的特性
 
-### 4.3.2. 引⽤传递
+### 5.3.2. 引⽤传递
 引用, 可以理解为别名, 代号
 ⽐如我们可以用称号代指某个人 —— 李白: 诗仙, 青莲居士
 传引用相当于起了一个新的称号, 代指原本的内容, 本质上是地址
@@ -1015,7 +1025,7 @@ LintCode 72.[Construct Binary Tree from Inorder and Postorder Traversal]() 确�
 递归的拆解: root.left = buildTree(leftInorder, leftPostorder)    	root.right = buildTree(rightInorder, rightPostorder) 
 递归的出口: inorder == postorder == ""
 
-## 4.4. 递归综合训练
+## 5.4. 递归综合训练
 LintCode 551.[Nested List Weight Sum]() 嵌套列表加权和
 在 22. Flatten List 中提到了嵌套列表 (平化嵌套列表)
 现在我们要求这样⼀一个列列表的元素的加权和, 每个元素的权重就是这个元素的深度  (元素×权重)
@@ -1097,25 +1107,25 @@ LintCode 169.[Tower of Hanoi]() 汉诺塔
     hanoi(n - 1, c2, c1, c3) 
 - 递归的出口: n == 1 
 
-# 5. 贪心 Greedy Algorithms
+# 6. 贪心 Greedy Algorithms
 https://www.geeksforgeeks.org/activity-selection-problem-greedy-algo-1/
 
-# 6. 分治 Divide & Conquer
+# 7. 分治 Divide & Conquer
 
-# 7. Graph
+# 8. Graph
 
-## BFS & DFS
+## 8.1. BFS & DFS
 
 
-## Dijkstra, 
+## 8.2. Dijkstra, 
 
-## Flloyd Warshall
+## 8.3. Flloyd Warshall
 
-## MST 
+## 8.4. MST 
 
-## flow
+## 8.5. flow
 
-# 8. String问题
+# 9. String问题
 ACM带刷班 
 * Question 54-String to Integer (atoi)
 * Question 1510-Buddy Strings
@@ -1129,22 +1139,22 @@ ACM带刷班
 * Question 1542-Next Time No Repeat
 * Question 92-Wildcard Matching
 
-## Rabin Karp
+## 9.1. Rabin Karp
 
-## KMP
+## 9.2. KMP
 
-## Aho-Crosaick
-
-
-# [Number Theory](https://www.geeksforgeeks.org/tag/number-theory/)
+## 9.3. Aho-Crosaick
 
 
+# 10. [Number Theory](https://www.geeksforgeeks.org/tag/number-theory/)
 
 
-# Follow Up问题
+
+
+# 11. Follow Up问题
 Follow Up问题: 从原题出发, 加/减/改条件 (1D -> 2D)
 
-## 1.1. 同向双指针
+## 11.1. 同向双指针
 LintCode 406: [Minimum Size Subarray Sum](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Minimum%20Size%20Subarray%20Sum.py)
 Given an array of n positive integers and a positive integer s, 
 find the minimal length of a contiguous subarray of which the sum ≥ s. 最短的连续一段
@@ -1196,7 +1206,7 @@ Given a string, find the length of the longest substring T that contains at most
 
 [Middle of the Linked List](https://github.com/bitterengsci/algorithm/blob/master/九章算法/强化班LintCode/Middle%20of%20the%20Linked%20List.py) 快指针走两步, 慢指针走一步
 
-## 1.2. 求第K大/小元素 (单个数组, 多个数组, 矩阵)
+## 11.2. 求第K大/小元素 (单个数组, 多个数组, 矩阵)
 LintCode 461: [Kth Largest Element in an Array]()
 * Soln 1: 排序O(nlogn) --> 取k-th
 * Soln 2: QuickSelect, 每次用当前区间中间的数字P作为pivot; 小于P的放左边, 大于P的放右边
@@ -1244,7 +1254,7 @@ LintCode 465: [kth smallest sum in two sorted arrays]() no corresponding leetcod
 M[i, j] = A[i]+ B[j] --> 不需要开一个n*m的数组, 每次计算即可
 时间复杂度O(klogk)
 
-## 1.3. Follow Up问题的出题规律
+## 11.3. Follow Up问题的出题规律
 如果我是面试官:
 a) 两个包含正整数的数组, 求两两之积的第K小  (两数组排序 -> 递增矩阵)
 b) BST上求从小到大第K个 (先求各node子树大小, 递归一遍)
@@ -1269,3 +1279,146 @@ Follow Up 常见方式
     Backpack Problem
 * 描述完全不一样, 但是方法相同 这种题目得去分析
     Quick Sort/ Bolts and Nuts Problem
+
+
+# 12. Sorting
+Array Sorting Algorithms Complexity   O(1) > O (logn) > O (n) > O (nlogn)
+
+|                | Best Time Complexity | Average Time Complexity | Worst Time Complexity | Worst Space Complexity |
+|----------------|:--------------------:|:-----------------------:|:---------------------:|:----------------------:|
+|   Merge Sort   |      Ω(n log n)      |        Θ(n log n)       |       O(n log n)      |          O(n)          |
+|   Quick Sort   |      Ω(n log n)      |        Θ(n log n)       |         O(n2)         |        O(log n)        |
+|    Heap Sort   |      Ω(n log n)      |        Θ(n log n)       |       O(n log n)      |          O(n)          |
+|   Bucket Sort  |       O(n + k)       |         Θ(n + k)        |         O(n^2)        |          O(n)          |
+| Selection Sort |        O(n^2)        |          Θ(n^2)         |         O(n^2)        |          O(1)          |
+| Insertion Sort |         O(n)         |          Θ(n^2)         |         O(n^2)        |          O(1)          |
+|  Linear Search |         O(1)         |           Θ(n)          |          O(n)         |          O(1)          |
+|  Binary Search |         O(1)         |         Θ(log n)        |        O(log n)       |          O(1)          |
+|   Bubble Sort  |         O(n)         |          Θ(n^2)         |         O(n^2)        |          O(1)          |
+|   Radix Sort   |         O(nk)        |          Θ(nk)          |         O(nk)         |        O(n + k)        |
+|    Tim Sort    |         O(n)         |        O(n log n)       |       O(n log n)      |          O(n)          |
+|   Shell Sort   |         O(n)         |      O((n log n)^2)     |     O((n log n)^2)    |          O(1)          |
+|    Tree Sort   |                      |                         |                       |                        |
+|  Counting Sort |                      |                         |                       |                        |
+|    Cubesort    |                      |                         |                       |                        |
+
+
+
+## 12.1. Merge Sort
+Merge Sort is a Divide and Conquer algorithm.
+
+## 12.2. Quick Sort
+QuickSort is a Divide and Conquer algorithm. It picks an element as pivot and partitions the given array around the picked pivot.
+There are many different versions of quickSort that pick pivot in different ways.
+- Always pick first element as pivot.
+- Always pick last element as pivot (implemented below)
+- Pick a random element as pivot.
+- Pick median as pivot.
+
+**Analysis of QuickSort**
+- Time taken by QuickSort in general can be written as 𝑇(𝑛)=𝑇(𝑘)+𝑇(𝑛−𝑘−1)+𝜃(𝑛)
+    where the first two terms are for two recursive calls, the last term is for the partition process. k is the number of elements which are smaller than pivot.
+- The time taken by QuickSort depends upon the input array and partition strategy.
+
+
+* Worst Case: The worst case occurs when the partition process always picks greatest or smallest element as pivot. 
+    - If we consider above partition strategy where last element is always picked as pivot, the worst case would occur when the array is already sorted in increasing or decreasing order. 
+    - Recurrence for worst case: 𝑇(𝑛)=𝑇(0)+𝑇(𝑛−1)+𝜃(𝑛), equivalent to 𝑇(𝑛)=𝑇(𝑛−1)+𝜃(𝑛). The solution is 𝜃(𝑛^2)
+* Best Case: The best case occurs when the partition process always picks the middle element as pivot.
+    - Recurrence for best case: 𝑇(𝑛)=2𝑇(𝑛/2)+𝜃(𝑛). The solution is 𝜃(nLogn). It can be solved using case 2 of Master Theorem.
+* Average Case: To do average case analysis, we need to consider all possible permutation of array and calculate time taken by every permutation which doesn’t look easy. 
+    - We can get an idea of average case by considering the case when partition puts O(n/9) elements in one set and O(9n/10) elements in other set. Following is recurrence for this case: 𝑇(𝑛)=𝑇(𝑛/9)+𝑇(9𝑛/10)+𝜃(𝑛). Solution of above recurrence is also O(nLogn).
+
+Although the worst case time complexity of QuickSort is O(n2) which is more than many other sorting algorithms like Merge Sort and Heap Sort, QuickSort is faster in practice, because its inner loop can be efficiently implemented on most architectures, and in most real-world data. QuickSort can be implemented in different ways by changing the choice of pivot, so that the worst case rarely occurs for a given type of data. 
+
+However, merge sort is generally considered better when data is huge and stored in external storage.
+
+## 12.3. Bubble Sort
+Bubble sort is the simplest sorting algorithm that works by repeatedly swapping the adjacent elements if they are in wrong order.
+The algorithm needs one whole pass without any swap to know it is sorted.
+
+* Worst Time Complexity: O(n^2) when array is reverse sorted
+* Best Case Time Complexity: O(n) when array is already sorted
+* Auxiliary Space: O(1)
+
+## 12.4. Selection Sort
+The selection sort algorithm sorts an array by repeatedly finding the minimum element (considering ascending order) from unsorted part and putting it at the beginning. The algorithm maintains two subarrays in a given array:
+(1) The subarray which is already sorted
+(2) Remaining subarray which is unsorted
+
+* Worst Time Complexity: O(n^2) as there are two nested loops
+* Auxiliary Space: O(1) useful when memory write is a costly operation
+
+## 12.5. Insertion Sort
+Insertion sort works the way like we sort playing cards in hands.
+* Worst Time Complexity: O(n*2) when elements are sorted in reverse order
+* Best Time Complexity: O(n) when elements are already sorted
+* Auxiliary Space: O(1)
+
+
+## 12.6. Quick Select
+
+
+## 12.7. Integer Sort
+Integer Sort: pigeonhole sort, counting sort, radix sort.
+
+The lower bound for Comparison-based sorting algorithm (MergeSort, HeapSort, QuickSort..) is Ω(nLogn), i.e., they cannot do better than nLogn. 
+
+Counting sort is a linear time sorting algorithm that sort in O(n+k) time when elements are in the range from 1 to k.
+
+Radix Sort is to do digit by digit sort starting from least significant digit to most significant digit, using counting sort as a subroutine to sort.
+```python
+def countingSort(arr, exp):
+    # The output array elements that will have sorted arr
+    output = [0] * (len(arr))
+
+    # initialize count array as 0
+    count = [0] * (10)
+
+    # Store count of occurrences in count[]
+    for i in range(0, len(arr)):
+        index = arr[i] // exp
+        count[index % 10] += 1
+
+    # Presum: count[i] now contains actual position of the digit in output array
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+
+    # Build the output array
+    i = len(arr) - 1
+    while i >= 0:  # = for i in range(len(arr) - 1, -1, -1)
+        index = arr[i] // exp
+        output[count[index % 10] - 1] = arr[i]
+        count[index % 10] -= 1
+        i -= 1
+
+    # Copying the output array to arr[], so that arr now contains sorted numbers
+    i = 0
+    for i in range(0, len(arr)):
+        arr[i] = output[i]
+
+
+def radixSort(arr):
+    # Find the maximum number to know number of digits
+    max1 = max(arr)
+
+    # Counting sort for every digit.
+    # Instead of passing digit number, exp is passed. exp is 10^i, where i is current digit number
+    exp = 1
+    while max1 / exp > 1:
+        countingSort(arr, exp)
+        break
+        exp *= 10
+
+
+arr = [170, 45, 75, 90, 802, 24, 2, 66]
+radixSort(arr)
+for i in range(len(arr)):
+	print(arr[i],end=" ")
+```
+
+
+Radix Sort using bucket sort technique
+```python
+
+```
