@@ -1,11 +1,11 @@
 <!-- TOC -->
 
 - [1. Python Aid Sheet](#1-python-aid-sheet)
-- [2. Modern C++ features after C++11](#2-modern-c-features-after-c11)
-- [3. Containers in C++ STL Standard Template Library](#3-containers-in-c-stl-standard-template-library)
+- [2. Modern C++ features (after C++11)](#2-modern-c-features-after-c11)
+- [3. Containers in C++ STL (Standard Template Library)](#3-containers-in-c-stl-standard-template-library)
 - [4. C++ Questions](#4-c-questions)
 - [5. Defensive Programming](#5-defensive-programming)
-- [6. Optimize the code](#6-optimize-the-code)
+- [Optimize the code](#optimize-the-code)
 
 <!-- /TOC -->
 
@@ -78,7 +78,14 @@ float('inf')
 print(-2**31, 2**31-1)    # -2147483648 2147483647 [-sys.maxsize-1, sys.maxsize]
 print(-2**63, 2**63-1)    # [-9223372036854775808, 9223372036854775807] 
 
-R, C = len(matrix), len(matrix[0])
+import sys
+print(sys.maxsize, - sys.maxsize - 1)  # MAX, MIN
+print((1 << 63) - 1)
+# 32 Byte INT_MAX (2147483647) INT_MIN (-2147483648)
+# 64 Byte INT_MAX (9223372036854775807) INT_MIN (-9223372036854775808)
+
+
+R, C = len(matrix), len(matrix[0])  # assert len(matrix) != 0
 mat = [[0] * C for _ in range(R)] 
 
 range(len(T) - 1, -1, -1) = reversed(range(T))   # reversely

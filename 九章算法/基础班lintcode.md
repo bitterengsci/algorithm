@@ -510,15 +510,3 @@ def product_1_to_n(n):
 Some compilers and interpreters will tail call optimization (TCO), where it can optimize some recursive functions to avoid building up a tall call stack. Python and Java decidedly do not use TCO. Some Ruby implementations do, but most don't. Some C implementations do, and the JavaScript spec recently allowed TCO. Scheme is one of the few languages that guarantee TCO in all implementations. In general, best not to assume your compiler/interpreter will do this work for you.
 
 Going bottom-up is a common strategy for dynamic programming problems, which are problems where the solution is composed of solutions to the same problem with smaller inputs. The other common strategy for dynamic programming problems is memoization.
-
-
-
-## max & min
-```python
-import sys
-print(sys.maxsize)  # MAX
-print((1 << 63) - 1)
-print(- sys.maxsize - 1)   # MIN
-# 32 Byte INT_MAX (2147483647) INT_MIN (-2147483648)
-# 64 Byte INT_MAX (9223372036854775807) INT_MIN (-9223372036854775808)
-```

@@ -1,3 +1,21 @@
+<!-- TOC -->
+
+- [1. CUDA](#1-cuda)
+  - [1.1. Grid, Block, Thread](#11-grid-block-thread)
+  - [1.2. Memory Transfer](#12-memory-transfer)
+  - [1.3. Error Handling](#13-error-handling)
+  - [1.4. Device Properties](#14-device-properties)
+- [2. CUDA Execution Model](#2-cuda-execution-model)
+- [3. CUDA Memory Model](#3-cuda-memory-model)
+- [4. CUDA Streams & Events](#4-cuda-streams--events)
+  - [4.1. __restrict__](#41-restrict)
+- [5. Memory Hierarchy/Type](#5-memory-hierarchytype)
+- [6. Pytorch](#6-pytorch)
+- [7. TensorRT](#7-tensorrt)
+- [8. Examples](#8-examples)
+
+<!-- /TOC -->
+
 
 char 1 byte = 8 bits
 int 4 bytes
@@ -595,7 +613,31 @@ PyTorch的的代码主要由C10、ATen、torch三大部分组成的
 - Torch，部分代码仍然在使用以前的快要进入历史博物馆的Torch开源项目
 
 
-# 7. Examples
+
+# 7. TensorRT
+
+TensorRT Optimization:
+- precision calibration
+- kernel auto-tuning
+- layer & tensor fusion (Conv + Bias + Relu → CBR)
+- multi-stream execution
+- dynamic tensor memory
+
+
+Procedure:
+- builder
+- network
+- API or parser network
+
+Dynamic Shape (since TensorRT6.0)
+
+TensorRT Plugin
+
+Quantization
+FP16 和 INT8能加速的本质: 通过指令 或 硬件技术, 在单位时钟周期内, FP16 和 INT8 类型的运算次数 大于 FP32 类型的运算次数
+
+
+# 8. Examples
 
 Reduction
 
