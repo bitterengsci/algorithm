@@ -1,28 +1,29 @@
 
 <!-- TOC -->
 
-- [1. ML基础概念类](#1-ml基础概念类)
-  - [1.1. Reguarlization](#11-reguarlization)
-  - [1.2. Metric](#12-metric)
-  - [1.3. Loss & Optomization](#13-loss--optomization)
-- [2. DL基础概念类](#2-dl基础概念类)
-- [3. ML模型类](#3-ml模型类)
-  - [3.1. Regression:](#31-regression)
+- [1. ML基础概念类](#1-ml%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E7%B1%BB)
+    - [1.1. Reguarlization](#11-reguarlization)
+    - [1.2. Metric](#12-metric)
+    - [1.3. Loss & Optomization](#13-loss--optomization)
+- [2. DL基础概念类](#2-dl%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E7%B1%BB)
+- [3. ML模型类](#3-ml%E6%A8%A1%E5%9E%8B%E7%B1%BB)
+    - [3.1. Regression:](#31-regression)
 - [4. Convolution](#4-convolution)
-  - [4.1. Clustering and EM:](#41-clustering-and-em)
-  - [4.2. Decision Tree](#42-decision-tree)
-  - [4.3. Ensemble Learning](#43-ensemble-learning)
-  - [4.4. Generative Model](#44-generative-model)
-  - [4.5. Logistic Regression](#45-logistic-regression)
-  - [4.6. 其他模型](#46-其他模型)
+    - [4.1. Clustering and EM:](#41-clustering-and-em)
+    - [4.2. Decision Tree](#42-decision-tree)
+    - [4.3. Ensemble Learning](#43-ensemble-learning)
+    - [4.4. Generative Model](#44-generative-model)
+    - [4.5. Logistic Regression](#45-logistic-regression)
+    - [4.6. 其他模型](#46-%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9E%8B)
 - [5. Data Processing](#5-data-processing)
 - [6. implementation & derivation](#6-implementation--derivation)
-- [7. 项目经验类](#7-项目经验类)
-- [8. NLP/RNN相关](#8-nlprnn相关)
-- [9. CNN/CV相关](#9-cnncv相关)
+- [7. 项目经验类](#7-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C%E7%B1%BB)
+- [8. NLP/RNN相关](#8-nlprnn%E7%9B%B8%E5%85%B3)
+- [9. CNN/CV相关](#9-cnncv%E7%9B%B8%E5%85%B3)
 - [10. VAE, GANs](#10-vae-gans)
 - [11. Loss Function](#11-loss-function)
-- [12. 关于准备考ML 概念的面试的一些建议](#12-关于准备考ml-概念的面试的一些建议)
+- [12. 关于准备考ML 概念的面试的一些建议](#12-%E5%85%B3%E4%BA%8E%E5%87%86%E5%A4%87%E8%80%83ml-%E6%A6%82%E5%BF%B5%E7%9A%84%E9%9D%A2%E8%AF%95%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BB%BA%E8%AE%AE)
+- [13. Pytorch Example](#13-pytorch-example)
 
 <!-- /TOC -->
 
@@ -687,3 +688,63 @@ MobileNet V2
 
 目标分割、目标检测（one stage、two stage），YOLO三代的发展，小目标检测
 Mask-RCNN vs YOLO
+
+
+# Pytorch Example
+```python
+import torch
+import math
+
+# Create Tensors to hold input and outputs.
+x = torch.linspace(-math.pi, math.pi, 2000)
+y = torch.sin(x)
+
+# Prepare the input tensor (x, x^2, x^3).
+p = torch.tensor([1, 2, 3])
+xx = x.unsqueeze(-1).pow(p)
+
+# Use the nn package to define our model and loss function.
+model = torch.nn.Sequential(
+    torch.nn.Linear(3, 1),
+    torch.nn.Flatten(0, 1)
+)
+loss_fn = torch.nn.MSELoss(reduction='sum')
+
+# Use the optim package to define an Optimizer that will update the weights of
+# the model for us. Here we will use RMSprop; the optim package contains many other
+# optimization algorithms. The first argument to the RMSprop constructor tells the
+# optimizer which Tensors it should update.
+learning_rate = 1e-3
+optimizer = torch.optim.RMSprop(model.parameters(), lr=learning_rate)
+for t in range(2000):
+    # Forward pass: compute predicted y by passing x to the model.
+    y_pred = model(xx)
+
+    # Compute and print loss.
+    loss = loss_fn(y_pred, y)
+    if t % 100 == 99:
+        print(t, loss.item())
+
+    # Before the backward pass, use the optimizer object to zero all of the
+    # gradients for the variables it will update (which are the learnable
+    # weights of the model). This is because by default, gradients are
+    # accumulated in buffers (i.e, not overwritten) whenever .backward()
+    # is called. Checkout docs of torch.autograd.backward for more details.
+    optimizer.zero_grad()
+
+    # Backward pass: compute gradient of the loss with respect to model parameters
+    loss.backward()
+
+    # Calling the step function on an Optimizer makes an update to its parameters
+    optimizer.step()
+```
+
+Pytorch Inference
+```python
+torch.set_grad_enabled(False)
+
+model.eval()
+
+with torch.no_grad():
+    ...
+```
