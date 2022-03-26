@@ -226,41 +226,59 @@ pointer (* star) vs reference (& ampersand)
     -  A reference variable can be referenced by pass by value whereas a pointer can be referenced by pass by reference.
     - A reference must be initialized on declaration while it is not necessary in case of pointer.
     - A reference shares the same memory address with the original variable but also takes up some space on the stack whereas a pointer has its own memory address and size on the stack.
-
-
+* dangling pointer: point to an object destructed already 
+    - 为了避免出现“悬空指针”引发不可预知的错误，在释放内存(free(p); )之后，常常会将指针p赋值为 NULL
+* wild pointer: 未初始化的指针 char *p; (无任何指向/不确定其具体指向的指针)
+* this pointer
+    - this pointer is passed as a hidden/implicit argument to all nonstatic member function calls and is available as a local variable within the body of all nonstatic functions
+    - this pointer is not available in static member functions as static member functions can be called without any object (with class name)
+    - this指针 (友元)
+  
 
 virtual
-* virtual, pure virtual 
+* virtual, pure virtual function
 * virtual destructor
-* 虚函数和纯虚函数? 构造函数和析构函数可以是虚函数嘛? 可以是纯虚函数嘛?
+    - 父类的析构函数必须为虚函数
+* virtual base class
+* virtual inheritance
+* 构造函数和析构函数可以是虚函数嘛? 可以是纯虚函数嘛?
 * virtual virtual和多态
-- 什么是虚函数？什么是虚继承？虚函数和虚继承是如何实现的？ 
-- 父类的析构函数必须为虚函数
-- 虚基类
+- 什么是虚函数？什么是虚继承？虚函数和虚继承是如何实现的？ 虚函数表
 
 
 const
-* 修饰成员函数?
+* const function
+    - const void foo();    (void foo() const; Not valid)
+* const member function of a class
+    - class A { void foo() const; };
+* const function parameters
+    - void foo(const int x);
+    - x cannot be changed inside this function
+* const return type
+    - const int foo(int y);
 * constexpr 和 const constexpr为常量(表达式), 类似宏 → 编译时, 不开辟内存 const 只读变量, 依旧是变量, 只不过不可改 运行时
 
 
 smart pointer
 * shared_ptr
-    - 如何实现一个shared_ptr? (全局变量, 计数器 + 指针 + 判断何时析构) 内存引用技术, 显式拷贝 cv::Mat 实现 (opencv为引用, Eigen为赋值)
+    - 如何实现一个shared_ptr? (全局变量, 计数器 + 指针 + 判断何时析构)
 * unique_ptr
 * weak_ptr
 
 
+内存引用技术, 显式拷贝 cv::Mat 实现 (opencv为引用, Eigen为赋值)
+
 Deep Copy
 - 深拷贝, 浅拷贝 指针地址的拷贝为浅拷贝
-
 
 static
 
 explicit
 - used to mark constructors to not implicitly convert types
 
+
 extern
+
 
 violate 
 - 编译器不优化代码 set flag -o3 (优化代码, 优化等级为3) -os 以speed为目的优化代码; Debug模式不优化代码, Release模式优化
@@ -297,13 +315,9 @@ capacity (reserve), size (当前)
 
 五大原则, 设计模式
 
-this指针 (友元)
-
 static函数无this指针传入
 
 访问类的成员变量, 若此成员变量非static类型, 则无法找到, 会报错
-
-悬空指针 (指向析构对象) 野指针 char *p; (无任何指向)
 
 
 ＃include<file.h>从标准库路径寻找和引用file.h, ＃include "file.h" 从当前工作路径搜寻并引用file.h
