@@ -1,6 +1,24 @@
 
 # A chasm called TLE between Medium and Hard
 
+Notes: 
+- 九章算法/Algorithm.md
+- 九章算法/Data Structure.md
+- 九章算法/动态规划.md
+- 九章算法/Bit.md
+- 九章算法/Geometric.md (代数/几何问题)
+
+LeetCode Questions Organized by Type
+- leetcode/
+
+面试八股文
+- royal algorithm/python & C++.md (python aid sheet)
+- royal algorithm/Machine Leanrning.md
+- royal algorithm/CUDA.md
+- royal algorithm/3D Reconstruction.md
+- royal algorithm/ML Design.md	
+
+
 --- 
 
 九章算法 v4.2
