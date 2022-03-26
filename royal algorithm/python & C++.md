@@ -1,11 +1,12 @@
 <!-- TOC -->
 
 - [1. Python Aid Sheet](#1-python-aid-sheet)
-- [2. Modern C++ features (after C++11)](#2-modern-c-features-after-c11)
-- [3. Containers in C++ STL (Standard Template Library)](#3-containers-in-c-stl-standard-template-library)
-- [4. C++ Questions](#4-c-questions)
-- [5. Defensive Programming](#5-defensive-programming)
-- [Optimize the code](#optimize-the-code)
+- [2. Modern C++ features after C++11](#2-modern-c-features-after-c11)
+- [3. Containers in C++ STL Standard Template Library](#3-containers-in-c-stl-standard-template-library)
+- [4. Object-Oriented Programming](#4-object-oriented-programming)
+- [5. C++ Questions](#5-c-questions)
+- [6. Defensive Programming](#6-defensive-programming)
+- [7. Optimize the code](#7-optimize-the-code)
 
 <!-- /TOC -->
 
@@ -189,6 +190,43 @@ std::unordered_map
 - search/remove/insert average O(1)
 
 
+# Object-Oriented Programming
+Inheritance
+* the capability of a class to derive properties and characteristics from another class
+* Modes of Inheritance
+    - Public: If we derive a sub class from a public base class. Then the public member of the base class will become public in the derived class and protected members of the base class will become protected in derived class.
+    - Protected: If we derive a sub class from a Protected base class. Then both public member and protected members of the base class will become protected in derived class.
+    - Private: If we derive a sub class from a Private base class. Then both public member and protected members of the base class will become Private in derived class. 
+* Types of Inheritance
+    - Single Inheritance: a class is allowed to inherit from only one class. i.e. one sub class is inherited by one base class only.
+    - Multiple Inheritance: a class can inherit from more than one classes. i.e one sub class is inherited from more than one base classes.
+    - Multilevel Inheritance: a derived class is created from another derived class.
+    - Hierarchical Inheritance: more than one sub class is inherited from a single base class. i.e. more than one derived class is created from a single base class.
+    - Hybrid (Virtual) Inheritance: implemented by combining more than one type of inheritance. 
+    - A special case of hybrid inheritance - Multipath inheritance: A derived class with two base classes and these two base classes have one common base class. An ambiguity can arrise in this type of inheritance. 
+
+
+Polymorphism
+* the ability of a message to be displayed in more than one form
+* Compile-time Polymorphism
+  - Function Overloading: two or more functions have the same name but different parameters
+  - Operator Overloading: make operators to work for user defined classes
+    - operators cannot be overloaded: ., ::, ?:, sizeof
+* Run-time Polymorphism
+  - Function overriding & virtual function
+
+
+Encapsulation
+* binding together the data and the functions that manipulates them
+* In C++ encapsulation can be implemented using Class and access modifiers (public, protected, private).
+
+
+Abstraction
+* Data abstraction refers to providing only essential information about the data to the outside world, hiding the background details or implementation.
+* Abstraction using Classes: Class helps to group data members and member functions using available access specifiers. A Class can decide which data member will be visible to outside world.
+* Abstraction in Header files
+
+
 # 4. C++ Questions
 
 function call stack
@@ -212,6 +250,9 @@ Stack Memory vs Heap Memory
   - larger, as compared to stack memory
   - not threaded-safe, data is accessible or visible to all threads
   - If a programmer does not handle Heap memory well, a memory leak can happen.
+
+
+Stack Unwinding
 
 
 进程、线程的区别？如何在进程间、线程间同步或通信？
