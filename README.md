@@ -18,6 +18,9 @@ LeetCode Questions Organized by Type
 - royal algorithm/3D Reconstruction.md
 - royal algorithm/ML Design.md	
 
+3D Questions
+- 3D/
+
 
 --- 
 

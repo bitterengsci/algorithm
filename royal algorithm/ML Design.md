@@ -16,17 +16,29 @@
     - preprocessing:
         - feature engineering/extraction (importance of feature)
         - normalization
-        - missing data, imbalance data
+        - missing data, imbalance data(undersampling/oversampling), unexpected value/typo?
         - Is trainset and testset the same distribution?
         - How to combine data of different types? (texts vs numbers vs images)
         - bias: What biases might represent in the data? How would you correct the biases?
+        - Data Ingestion: Data ingestion services/storage
+        - Data Preparation
+            - (1)continuous data: normalization
+            - (2)discrete data: one-hot encoding, embedding
+        - Data Segregation: Data split - train set, validation set, test set
 * modelling
     - model selection 
         - Occam's razor
         - 
-    - loss function & metrics
-    - train/evaluate models (hyperparameter tuning, scaling)
+    - loss function
+    - metrics: AUC, F1, MSE, Accuracy,
+    - train/evaluate models (hyperparameter tuning)
+    - model debug
+        - choose the simplest model and data
+        - overfit a single batch and reproduce known results
+        - apply bias-variance decomposition to decide what to do next
+        - coarse-to-fine random search for hyperparameters
     - model testing, deploying, serving, monitoring, maintaining
+    - model scaling
 
 
 
