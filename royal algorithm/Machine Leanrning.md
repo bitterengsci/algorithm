@@ -1,28 +1,28 @@
 
 <!-- TOC -->
 
-- [1. ML基础概念类](#1-ml%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E7%B1%BB)
-    - [1.1. Reguarlization](#11-reguarlization)
-    - [1.2. Metric](#12-metric)
-    - [1.3. Loss & Optomization](#13-loss--optomization)
-- [2. DL基础概念类](#2-dl%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E7%B1%BB)
-- [3. ML模型类](#3-ml%E6%A8%A1%E5%9E%8B%E7%B1%BB)
-    - [3.1. Regression:](#31-regression)
+- [1. ML基础概念类](#1-ml基础概念类)
+  - [1.1. Reguarlization](#11-reguarlization)
+  - [1.2. Metric](#12-metric)
+  - [1.3. Loss & Optomization](#13-loss--optomization)
+- [2. DL基础概念类](#2-dl基础概念类)
+- [3. ML模型类](#3-ml模型类)
+  - [3.1. Regression:](#31-regression)
 - [4. Convolution](#4-convolution)
-    - [4.1. Clustering and EM:](#41-clustering-and-em)
-    - [4.2. Decision Tree](#42-decision-tree)
-    - [4.3. Ensemble Learning](#43-ensemble-learning)
-    - [4.4. Generative Model](#44-generative-model)
-    - [4.5. Logistic Regression](#45-logistic-regression)
-    - [4.6. 其他模型](#46-%E5%85%B6%E4%BB%96%E6%A8%A1%E5%9E%8B)
+  - [4.1. Clustering and EM:](#41-clustering-and-em)
+  - [4.2. Decision Tree](#42-decision-tree)
+  - [4.3. Ensemble Learning](#43-ensemble-learning)
+  - [4.4. Generative Model](#44-generative-model)
+  - [4.5. Logistic Regression](#45-logistic-regression)
+  - [4.6. 其他模型](#46-其他模型)
 - [5. Data Processing](#5-data-processing)
 - [6. implementation & derivation](#6-implementation--derivation)
-- [7. 项目经验类](#7-%E9%A1%B9%E7%9B%AE%E7%BB%8F%E9%AA%8C%E7%B1%BB)
-- [8. NLP/RNN相关](#8-nlprnn%E7%9B%B8%E5%85%B3)
-- [9. CNN/CV相关](#9-cnncv%E7%9B%B8%E5%85%B3)
+- [7. 项目经验类](#7-项目经验类)
+- [8. NLP/RNN相关](#8-nlprnn相关)
+- [9. CNN/CV相关](#9-cnncv相关)
 - [10. VAE, GANs](#10-vae-gans)
 - [11. Loss Function](#11-loss-function)
-- [12. 关于准备考ML 概念的面试的一些建议](#12-%E5%85%B3%E4%BA%8E%E5%87%86%E5%A4%87%E8%80%83ml-%E6%A6%82%E5%BF%B5%E7%9A%84%E9%9D%A2%E8%AF%95%E7%9A%84%E4%B8%80%E4%BA%9B%E5%BB%BA%E8%AE%AE)
+- [12. 关于准备考ML 概念的面试的一些建议](#12-关于准备考ml-概念的面试的一些建议)
 - [13. Pytorch Example](#13-pytorch-example)
 
 <!-- /TOC -->
@@ -176,6 +176,7 @@ Gradient Vanishing & Exploding
     - use more complex RNN
 - Exploding: gradient becomes very large, preventing the algorithm from converging
     - gradient clipping (clip by value, clip by norm)
+    - use LSTM
 
 Initialize all weights to be 0?
 - constant initialization leads to same gradient propagated back everywhere (symmetric)
@@ -192,20 +193,38 @@ prevent overfitting in DL: dropout, early stopping, data augumentation
 Activation Functions
 1. Logistic/Sigmoid: 1 / (1 + exp(-x))
     - 0.0 ~ 1.0, f(z) saturates at 0 or 1, i.e., derivative becomes almost 0/megligible.
+    - gradient vanish problem, time-consuming to compute exponentials, not symmetric w.r.t. the origin
 2. Hyperbolic Tangent tanh: (e^x – e^-x) / (e^x + e^-x)
     - -1.0 ~ +1.0, f(z) saturates at -1 or 1
-    - 
-3. Rectified Linear Unit 
+    - gradient vanish problem
+    - faster than sigmoid, symmetric w.r.t. the origin
+3. Rectified Linear Unit ReLU
     - discontinuity at 0 but has sub-gradient
     - outperform the sigmoid function
-    - gradient will not vanish when z is very large, but gradient becomes 0 when z becomes negative, which may still lead to vanishing gradient problem
+    - gradient will not vanish when z is very large, but gradient becomes 0 when z becomes negative, which may still lead to vanishing gradient problem (partially solve vanishing problem); neuron dies in negative
     - leaky relu: f(z)=0.01z, z<0; z, z>0
     - Parametric ReLU    f(z)=az, z<0; z, z>0    (learning parameter a in training)
     - Exponential Linear unit  f(z)=a(e^z﹣1), z<0; z, z≥0
+4. maxout: max(w1x+b1, w2x+b2)   a piecewise-linear function
 
 Softmax: e^x / sum(e^x)
 
-为什么需要non-linear activation functions
+
+为什么需要non-linear activation functions?
+- 对于神经网络来说，网络的每一层相当于f(wx+b)=f(w'x)，对于线性函数，其实相当于f(x)=x，那么在线性激活函数下，每一层相当于用一个矩阵去乘以x，那么多层就是反复的用矩阵去乘以输入。根据矩阵的乘法法则，多个矩阵相乘得到一个大矩阵。所以线性激励函数下，多层网络与一层网络相当。比如，两层的网络f(W1*f(W2x))=W1W2x=Wx。
+- 非线性变换是深度学习有效的原因之一。原因在于非线性相当于对空间进行变换，变换完成后相当于对问题空间进行简化，原来线性不可解的问题现在变得可以解了。
+
+神经网络中激活函数的真正意义？一个激活函数需要具有哪些必要的属性？还有哪些属性是好的属性但不必要的？
+- (1) 非线性：即导数不是常数。这个条件是多层神经网络的基础，保证多层网络不退化成单层线性网络。这也是激活函数的意义所在。
+- (2) 几乎处处可微：可微性保证了在优化中梯度的可计算性。传统的激活函数如sigmoid等满足处处可微。对于分段线性函数比如ReLU，只满足几乎处处可微（即仅在有限个点处不可微）。对于SGD算法来说，由于几乎不可能收敛到梯度接近零的位置，有限的不可微点对于优化结果不会有很大影响[1]。
+- (3) 计算简单：非线性函数有很多。极端的说，一个多层神经网络也可以作为一个非线性函数，类似于Network In Network[2]中把它当做卷积操作的做法。但激活函数在神经网络前向的计算次数与神经元的个数成正比，因此简单的非线性函数自然更适合用作激活函数。这也是ReLU之流比其它使用Exp等操作的激活函数更受欢迎的其中一个原因。
+- (4) 非饱和性（saturation）：饱和指的是在某些区间梯度接近于零（即梯度消失），使得参数无法继续更新的问题。最经典的例子是Sigmoid，它的导数在x为比较大的正值和比较小的负值时都会接近于0。更极端的例子是阶跃函数，由于它在几乎所有位置的梯度都为0，因此处处饱和，无法作为激活函数。ReLU在x>0时导数恒为1，因此对于再大的正值也不会饱和。但同时对于x<0，其梯度恒为0，这时候它也会出现饱和的现象（在这种情况下通常称为dying ReLU）。Leaky ReLU和PReLU的提出正是为了解决这一问题。
+- (5) 单调性（monotonic）：即导数符号不变。这个性质大部分激活函数都有，除了诸如sin、cos等。个人理解，单调性使得在激活函数处的梯度方向不会经常改变，从而让训练更容易收敛。
+- (6) 输出范围有限：有限的输出范围使得网络对于一些比较大的输入也会比较稳定，这也是为什么早期的激活函数都以此类函数为主，如Sigmoid、TanH。但这导致了前面提到的梯度消失问题，而且强行让每一层的输出限制到固定范围会限制其表达能力。因此现在这类函数仅用于某些需要特定输出范围的场合，比如概率输出（此时loss函数中的log操作能够抵消其梯度消失的影响）、LSTM里的gate函数。
+- (7) 接近恒等变换（identity）：即约等于x。这样的好处是使得输出的幅值不会随着深度的增加而发生显著的增加，从而使网络更为稳定，同时梯度也能够更容易地回传。这个与非线性是有点矛盾的，因此激活函数基本只是部分满足这个条件，比如TanH只在原点附近有线性区（在原点为0且在原点的导数为1），而ReLU只在x>0时为线性。这个性质也让初始化参数范围的推导更为简单。额外提一句，这种恒等变换的性质也被其他一些网络结构设计所借鉴，比如CNN中的ResNet和RNN中的LSTM。
+- (8) 参数少：大部分激活函数都是没有参数的。像PReLU带单个参数会略微增加网络的大小。还有一个例外是Maxout，尽管本身没有参数，但在同样输出通道数下k路Maxout需要的输入通道数是其它函数的k倍，这意味着神经元数目也需要变为k倍；但如果不考虑维持输出通道数的情况下，该激活函数又能将参数个数减少为原来的k倍。
+- (9) 归一化（normalization）：这个是最近才出来的概念，对应的激活函数是SELU，主要思想是使样本分布自动归一化到零均值、单位方差的分布，从而稳定训练。在这之前，这种归一化的思想也被用于网络结构的设计，比如Batch Normalization。
+
 
 Different optimizers (SGD, RMSprop, Momentum, Adagrad，Adam) 的区别
 
@@ -254,6 +273,9 @@ if the relationship between y and x is no linear, can linear regression solve th
 why use interaction variables
 
 # 4. Convolution
+Convolutional Block
+- convolute (inner product) a filter on image in sliding window
+
 CNN on images
 - preserve, encode the spatial information
 - translation-invariant (sliding window)
@@ -287,8 +309,10 @@ How to do regularization in DT?
 
 ## 4.3. Ensemble Learning
 Bagging: (Bootstrap Aggregating): reduce model variance through averaging
+- build weak learners in parallel
 - Bootstraping (train separate weak learners on each Bootstrap sample)
 - Aggregating results: classification uses majority votes; regression used averaging.
+- 和神经网络中dropout效果类似
 
 Boosting:
 - build weak learners in serial/sequential
@@ -690,7 +714,7 @@ MobileNet V2
 Mask-RCNN vs YOLO
 
 
-# Pytorch Example
+# 13. Pytorch Example
 ```python
 import torch
 import math

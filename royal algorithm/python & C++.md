@@ -1,12 +1,13 @@
 <!-- TOC -->
 
 - [1. Python Aid Sheet](#1-python-aid-sheet)
-- [2. Modern C++ features after C++11](#2-modern-c-features-after-c11)
-- [3. Containers in C++ STL Standard Template Library](#3-containers-in-c-stl-standard-template-library)
+- [2. Modern C++ features (after C++11)](#2-modern-c-features-after-c11)
+- [3. Containers in C++ STL (Standard Template Library)](#3-containers-in-c-stl-standard-template-library)
 - [4. Object-Oriented Programming](#4-object-oriented-programming)
 - [5. C++ Questions](#5-c-questions)
 - [6. Defensive Programming](#6-defensive-programming)
 - [7. Optimize the code](#7-optimize-the-code)
+- [8. Design Pattern 设计模式](#8-design-pattern-设计模式)
 
 <!-- /TOC -->
 
@@ -190,7 +191,7 @@ std::unordered_map
 - search/remove/insert average O(1)
 
 
-# Object-Oriented Programming
+# 4. Object-Oriented Programming
 Inheritance
 * the capability of a class to derive properties and characteristics from another class
 * Modes of Inheritance
@@ -211,7 +212,7 @@ Polymorphism
 * Compile-time Polymorphism
   - Function Overloading: two or more functions have the same name but different parameters
   - Operator Overloading: make operators to work for user defined classes
-    - operators cannot be overloaded: ., ::, ?:, sizeof
+    - operators cannot be overloaded: .(成员访问符), :: 域运算符, ?:条件运算符号, sizeof 长度运算符号, .* (成员指针访问运算符号)
 * Run-time Polymorphism
   - Function overriding & virtual function
 
@@ -227,7 +228,7 @@ Abstraction
 * Abstraction in Header files
 
 
-# 4. C++ Questions
+# 5. C++ Questions
 
 function call stack
 - responsible for maintaining the local variables and parameters during function execution
@@ -273,18 +274,20 @@ pointer (* star) vs reference (& ampersand)
 * this pointer
     - this pointer is passed as a hidden/implicit argument to all nonstatic member function calls and is available as a local variable within the body of all nonstatic functions
     - this pointer is not available in static member functions as static member functions can be called without any object (with class name)
+    - this指针指向对象的首地址, 成员函数可以通过this指针区分不同对象的成员数据
     - this指针 (友元)
-  
+
 
 virtual
 * virtual, pure virtual function
 * virtual destructor
     - 父类的析构函数必须为虚函数
+    - Deleting a derived class object using a pointer of base class type that has a non-virtual destructor results in undefined behavior. Thus the base class should be defined with a virtual destructor.
 * virtual base class
 * virtual inheritance
 * 构造函数和析构函数可以是虚函数嘛? 可以是纯虚函数嘛?
 * virtual virtual和多态
-- 什么是虚函数？什么是虚继承？虚函数和虚继承是如何实现的？ 虚函数表
+- 什么是虚函数？什么是虚继承？虚函数和虚继承是如何实现的？ 虚函数表? 纯虚函数、虚析构函数
 
 
 const
@@ -309,10 +312,15 @@ smart pointer
 
 内存引用技术, 显式拷贝 cv::Mat 实现 (opencv为引用, Eigen为赋值)
 
+
 Deep Copy
 - 深拷贝, 浅拷贝 指针地址的拷贝为浅拷贝
 
+
 static
+- static函数无this指针传入
+- 访问类的成员变量, 若此成员变量非static类型, 则无法找到, 会报错
+
 
 explicit
 - used to mark constructors to not implicitly convert types
@@ -321,7 +329,7 @@ explicit
 extern
 
 
-violate 
+violate
 - 编译器不优化代码 set flag -o3 (优化代码, 优化等级为3) -os 以speed为目的优化代码; Debug模式不优化代码, Release模式优化
 - prevent the compiler from applying any optimizations on objects that can change in ways that cannot be determined by the compiler
 
@@ -350,28 +358,22 @@ public:
 };
 ```
 
+C++编译器自动为类产生的四个缺省函数: 默认构造函数，析构函数，赋值函数, 拷贝构造函数
+
+
 RAIL: 析构即释放 std::mutex → std::unique_lock lock(m);
 
 capacity (reserve), size (当前)
 
-五大原则, 设计模式
-
-static函数无this指针传入
-
-访问类的成员变量, 若此成员变量非static类型, 则无法找到, 会报错
+五大原则
 
 
-＃include<file.h>从标准库路径寻找和引用file.h, ＃include "file.h" 从当前工作路径搜寻并引用file.h
+#include<file.h>从标准库路径寻找和引用file.h, #include "file.h" 从当前工作路径搜寻并引用file.h
 
 在头文件中进行类的声明，在对应的实现文件中进行类的定义, 可以提高编译效率，因为只需要编译一次生成对应的.obj文件后，再次应用该类的地方，这个类就不会被再次编译
 
-this指针指向对象的首地址, 成员函数可以通过this指针区分不同对象的成员数据
-
-C++编译器自动为类产生的四个缺省函数: 默认构造函数，析构函数，赋值函数, 拷贝构造函数
 
 抽象类不用来定义对象而只作为一种基本类型用作继承
-
-不允许重载的5个运算符:   .*（成员指针访问运算符号）, :: 域运算符, sizeof 长度运算符号,  ?:条件运算符号,    .（成员访问符）
 
 对象间是通过类的静态成员变量来实现数据的共享。静态成员变量占有自己独立的空间不为某个对象所私有
 
@@ -386,7 +388,6 @@ STL? std::vector std::map.   链表是std::list
 set 和map是红黑树，unordered是哈希表
 
 vector扩充为什么是2倍
-虚函数表、纯虚函数、虚析构函数
 模板元编程，特化、偏特化(Partial Template Specialization)
 public/protected/private
 
@@ -423,15 +424,19 @@ int main(){
 ```
 
 
-# 5. Defensive Programming
+# 6. Defensive Programming
 Defensive coding allows software to behave in a correct manner, despite incorrect input.
 - check preconditions (program only continues executing upon valid input)
 - assertion inside methods (when calling other class methods or external libraries)
 
 
 
-# Optimize the code
+# 7. Optimize the code
 When ask to optimize the code, think of:
 - binary search, O(N) --> O(logn)
 - hashing, O(N) --> O(1)
 - in-place operation 
+
+
+
+# 8. Design Pattern 设计模式
