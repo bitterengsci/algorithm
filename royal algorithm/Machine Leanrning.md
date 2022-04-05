@@ -25,6 +25,7 @@
 - [12. 项目经验类](#12-项目经验类)
 - [13. 关于准备考ML 概念的面试的一些建议](#13-关于准备考ml-概念的面试的一些建议)
 - [14. Pytorch Example](#14-pytorch-example)
+- [ToDo List](#todo-list)
 
 <!-- /TOC -->
 
@@ -361,9 +362,9 @@ logistic regression vs svm（我想这个主要是想问两者的loss的不同�
 - loss
 - output
 
-LR大部分面经集中在logloss和regularization，
+LR大部分面经集中在logloss和regularization
 
-SVM
+Support Vector Machine (SVM)
 - a classifier defined by a separating hyperplane(decision boundary), where same distance from the boundary point of both classes
 - kernel tricks: a method of using a linear classifier to solve a non-linear problem; kernel transforms linearly inseparable data to linearly separable ones by mapping them into higher-dimensional space.
 
@@ -859,3 +860,12 @@ with torch.no_grad():
 ```
 
 
+# ToDo List
+SVM 
+- hyperplane dimension NxM?
+- computational trick
+
+
+Faster RCNN vs MaskRCNN
+
+Transformer (QKV)

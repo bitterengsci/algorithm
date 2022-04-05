@@ -209,11 +209,11 @@ Inheritance
 
 Polymorphism
 * the ability of a message to be displayed in more than one form
-* Compile-time Polymorphism
+* Compile-time Polymorphism (Early binding)
   - Function Overloading: two or more functions have the same name but different parameters
   - Operator Overloading: make operators to work for user defined classes
     - operators cannot be overloaded: .(成员访问符), :: 域运算符, ?:条件运算符号, sizeof 长度运算符号, .* (成员指针访问运算符号)
-* Run-time Polymorphism
+* Run-time Polymorphism (Late binding)
   - Function overriding & virtual function
 
 
@@ -269,7 +269,7 @@ pointer (* star) vs reference (& ampersand)
     - A reference must be initialized on declaration while it is not necessary in case of pointer.
     - A reference shares the same memory address with the original variable but also takes up some space on the stack whereas a pointer has its own memory address and size on the stack.
 * dangling pointer: point to an object destructed already 
-    - 为了避免出现“悬空指针”引发不可预知的错误，在释放内存(free(p); )之后，常常会将指针p赋值为 NULL
+    - 为了避免出现"悬空指针"引发不可预知的错误，在释放内存(free(p);)之后，常常会将指针p赋值为 NULL
 * wild pointer: 未初始化的指针 char *p; (无任何指向/不确定其具体指向的指针)
 * this pointer
     - this pointer is passed as a hidden/implicit argument to all nonstatic member function calls and is available as a local variable within the body of all nonstatic functions
@@ -279,15 +279,27 @@ pointer (* star) vs reference (& ampersand)
 
 
 virtual
-* virtual, pure virtual function
+* A virtual function is a member function which is declared within a base class and is re-defined (overridden) by a derived class.
+    - Runtime Polymorphism
+- Virtual functions cannot be static.
+- A virtual function can be a friend function of another class.
+* A pure virtual function is declared by assigning 0 in declaration.  `virtual void show() = 0;`
+    - A class is abstract if it has at least one pure virtual function. 
+    - If we do not override the pure virtual function in derived class, then derived class also becomes abstract class.
+    - We cannot create objects of abstract classes. 
+    - An **interface** does not have implementation of any of its methods, it can be considered as a collection of method declarations. In C++, an interface can be simulated by making all methods as pure virtual.
+* cannot have virtual constructor
 * virtual destructor
     - 父类的析构函数必须为虚函数
     - Deleting a derived class object using a pointer of base class type that has a non-virtual destructor results in undefined behavior. Thus the base class should be defined with a virtual destructor.
-* virtual base class
-* virtual inheritance
-* 构造函数和析构函数可以是虚函数嘛? 可以是纯虚函数嘛?
-* virtual virtual和多态
-- 什么是虚函数？什么是虚继承？虚函数和虚继承是如何实现的？ 虚函数表? 纯虚函数
+    - A pure virtual destructor can be declared. 
+        - Because destructors will not be overridden in derived classes, but will instead be called in reverse order. As a result, for a pure virtual destructor, you must specify a destructor body before creating an object.
+* if a class contains a virtual function then compiler does two things:
+    - (1)If object of that class is created then a virtual pointer (VPTR) is inserted as a data member of the class to point to VTABLE of that class. For each new object created, a new virtual pointer is inserted as a data member of that class.
+    - (2)Irrespective of object is created or not, class contains as a member a static array of function pointers called VTABLE. Cells of this table store the address of each virtual function contained in that class.
+
+virtual base class, virtual inheritance 
+什么是虚函数？什么是虚继承？虚函数和虚继承是如何实现的？ 虚函数表? 
 
 
 const
@@ -314,7 +326,8 @@ smart pointer
 
 
 Deep Copy
-- 深拷贝, 浅拷贝 指针地址的拷贝为浅拷贝
+- 深拷贝, 浅拷贝 
+- 指针地址的拷贝为浅拷贝
 
 
 static
