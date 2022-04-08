@@ -4,7 +4,7 @@
 - [1. ML基础概念类](#1-ml基础概念类)
   - [1.1. Reguarlization](#11-reguarlization)
   - [1.2. Metric](#12-metric)
-  - [1.3. Loss & Optomization](#13-loss--optomization)
+  - [1.3. Loss & Optimization](#13-loss--optimization)
 - [2. DL基础概念类](#2-dl基础概念类)
 - [3. ML模型类](#3-ml模型类)
   - [3.1. Regression:](#31-regression)
@@ -20,7 +20,7 @@
 - [7. NLP/RNN相关](#7-nlprnn相关)
 - [8. CNN/CV相关](#8-cnncv相关)
 - [9. VAE, GANs](#9-vae-gans)
-- [10. Loss Function](#10-loss-function)
+- [10. Loss Function & Optimization](#10-loss-function--optimization)
 - [11. Detection](#11-detection)
 - [12. 项目经验类](#12-项目经验类)
 - [13. 关于准备考ML 概念的面试的一些建议](#13-关于准备考ml-概念的面试的一些建议)
@@ -50,6 +50,7 @@ How to overcome/prevent Overfitting:
   - L1 regularization (lasso penalty) favours few non-zero coefficients   λ∑∣θ∣
     - L1 also performs vairable selection and yield sparse models.
   - L2 regularization (ridge/Tikhonov penalty) favours small coefficients	 λ∑θ2
+    - L2 more sensitive to outliers; gradient exploding issue
   - Mixed L1/L2 regularization (elastic net)  λ1∑∣θ∣+λ2∑θ2
   - L^p regularization (penalty on parameters)
 2. early stopping: interrupt training when its performance on the validation set starts dropping
@@ -139,7 +140,7 @@ stratified cross-validation
 - applications: imbalanced dataset
 
 
-## 1.3. Loss & Optomization
+## 1.3. Loss & Optimization
 用MSE做loss的Logistic Rregression是convex problem吗
 解释并写出MSE的公式, 什么时候用到MSE?
 Linear Regression最小二乘法和MLE关系
@@ -175,7 +176,9 @@ Gradient Vanishing & Exploding
     - activation function squishes a large input space into a small one (e.g., sigmoid 0 to 1); large change in the input results in small change in the output --> derivative small
     - use other activations, like ReLU (not cause a small derivative)
     - residual network
-    - batch normalization (normalize the input)
+    - batch normalization (normalize the input) 
+        - if batchsize = 1?
+        - multiple publications have shown BN performance degrade for batch_size under 32, and severely for <= 8.
     - use more complex RNN
 - Exploding: gradient becomes very large, preventing the algorithm from converging
     - gradient clipping (clip by value, clip by norm)
@@ -254,6 +257,12 @@ Problem of Plateau, saddle point
 
 When transfer learning makes sense?
 - Transfer learning only works in deep learning if the model features learned from the first task are general.
+
+Normalization
+- batch normalization
+- layer normalization
+- instance normalization
+- group normalization
 
 
 # 3. ML模型类
@@ -589,6 +598,11 @@ output = weighted_values.sum(dim=0)
 - cross attention
 - attention to Transformer
 
+
+Multi-Head?
+encoder/decoder part?
+
+
 Language Model的原理，N-Gram Model
 What’s CBOW and skip-gram?
 什么是Word2Vec， loss function是什么， negative sampling是什么
@@ -642,7 +656,7 @@ GAN
 
 
 
-# 10. Loss Function
+# 10. Loss Function & Optimization
 
 1. regression
 MAE (L1)
@@ -665,6 +679,14 @@ IOU loss
 
 ArcFace loss
 
+
+optimizer
+1. Stochastic Gradient Descent (SGD)
+2. SGD with Momentum (= mass × velocity, cannot instantaneously change direction)
+3. SGD with Nesterov momentum
+4. AdaGrad
+5. RMSProp
+6. Adam(adaptive moments)
 
 
 # 11. Detection
@@ -714,6 +736,64 @@ Selective Search
 anchor
 - 使用一个3*3的卷积核，在最后一个feature map上滑动，当滑动到特征图的某一个位置时，以当前滑动窗口中心为中心映射回原图的一个区域(注意 feature map 上的一个点是可以映射到原图的一个区域的，相当于感受野起的作用)，以原图上这个区域的中心对应一个尺度和长宽比，就是一个anchor了
 - fast rcnn 使用3种尺度和3种长宽比（1:1；1:2；2:1），则在每一个滑动位置就有 3*3 = 9 个anchor
+
+
+
+IOU:
+2 points : x1 = 1 and x2 = 3, the distance is x2 - x1 = 2
+2 pixels of index : i1 = 1 and i2 = 3, the segment from pixel i1 to i2 contains 3 pixels, l = i2 - i1 + 1
+
+```python
+def IOU(box1, box2): #[x1, y1, x2, y2], [x3, y3, x4, y4]
+
+    # check if intersect
+    if box1[2] < box2[0] or box1[0] > box2[2]: # check x, x2 < x3 | x1 > x4
+        return 0
+    if box1[3] < box2[1] or box1[1] > box2[3]: # check y
+        return 0
+
+    # find intersection
+    x1, y1 = max(box1[0], box2[0]), max(box1[1], box2[1])
+    x2, y2 = min(box1[2], box2[2]), min(box1[3], box2[3])
+    i_area = (x2 - x1) * (y2 - y1)
+
+    # find sum of areas
+    b1_area = (box1[2] - box1[0]) * (box1[3] - box1[1])
+    b2_area = (box2[2] - box2[0]) * (box2[3] - box2[1])
+
+    # iou = intersection / (sum_of_areas - intersection)
+    return i_area / (b1_area + b2_area - i_area) 
+
+
+import torch
+import torchvision.ops.boxes as bops
+
+box1 = torch.tensor([box1], dtype=torch.float)
+box2 = torch.tensor([box2], dtype=torch.float)
+iou = bops.box_iou(box1, box2)
+
+
+# Vectorized IOU
+def vec_IOU(boxes1, boxes2): # both [N, 4]
+    assert(boxes1[:, 2:] > boxes1[:, :2]).all()
+    assert(boxes2[:, 2:] > boxes2[:, :2]).all()
+
+    area1 = (boxes1[:, 2] - boxes1[:, 0]) * (boxes1[:, 3] - boxes1[:, 1])
+    area2 = (boxes2[:, 2] - boxes2[:, 0]) * (boxes2[:, 3] - boxes2[:, 1])
+
+    # Intersection
+    top_left = np.maximum(boxes1[:, :2], boxes2[:, :2])      # [[x, y]]
+    bottom_right = np.minimum(boxes1[:, 2:], boxes2[:, 2:])  # [[x, y]]
+    wh = bottom_right - top_left
+    
+    # clip: if boxes not overlap then make it zero
+    intersection = wh[:, 0].clip(0) * wh[:, 1].clip(0)
+
+    # Union 
+    union = area1 + area2 - intersection
+
+    return intersection / union
+```
 
        
 # 12. 项目经验类
