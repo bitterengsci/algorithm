@@ -347,6 +347,11 @@ gradient boosted decision trees (GBDT):
 - As a result, the overall accuracy and robustness of the model gradually increase.
 - pros: do not need bootstrapping, no correlated trees; no need to create subsamples from the dataset
 
+AdaBoost
+
+
+XGBoost
+
 will random forest help reduce bias or variance/why random forest can help reduce variance
 
 
@@ -420,7 +425,7 @@ Data Augmentation
 - synthesize new data by modifying existing data
 - resize, horizontal/vertical flip, rotate, add noise, deform
 
-imbalanced data (long-tail data)
+imbalanced data (long-tail data, skewed class data)
 - change performance metric
     - Kappa/Cohen’s kappa: Classification accuracy normalized by the imbalance of the classes in the data.
 - resampling to even up the class
