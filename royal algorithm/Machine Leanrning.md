@@ -587,25 +587,29 @@ GRU
 - GRU只有两个门（update和reset），LSTM有三个门（forget，input，output），GRU直接将hidden state传给下一个单元，而LSTM用memory cell把hidden state包装起来
 
 
-attention
-- self attention mechanism allows the inputs to interact with each other, find out who they should pay more attention to; outputs are aggregates of interactions and attention scores
-- why attention
+Attention
+* self attention mechanism allows the inputs to interact with each other, find out who they should pay more attention to; outputs are aggregates of interactions and attention scores
+    - why attention
 
 ```python
+# x is an embedding vector of inputs
 querys = x @ w_query
 keys = x @ w_key
 values = x @ w_value
 
-attention_scores = softmax(querys @ keys.T, dim=-1)
+attention_scores = softmax(querys @ keys.T, dim=-1)  # softmax for normalization
+# scaled attention_scores for back-propagation gradient stability
+# attention_scores = softmax(querys @ keys.T / sqrt(d), dim=-1)        
+# where d is the dimension of query vector
 weighted_values = values * attention_scores
 output = weighted_values.sum(dim=0)
 ```
-- cross attention
+* cross attention
+
+Transformer
 - attention to Transformer
-
-
-Multi-Head?
-encoder/decoder part?
+* Multi-Head?
+* encoder/decoder part?
 
 
 Language Model的原理，N-Gram Model
@@ -745,8 +749,9 @@ anchor
 
 
 IOU:
-2 points : x1 = 1 and x2 = 3, the distance is x2 - x1 = 2
-2 pixels of index : i1 = 1 and i2 = 3, the segment from pixel i1 to i2 contains 3 pixels, l = i2 - i1 + 1
+2 cases:
+- 2 points: x1 = 1 and x2 = 3, the distance is x2 - x1 = 2
+- 2 pixels of index: i1 = 1 and i2 = 3, the segment from pixel i1 to i2 contains 3 pixels, l = i2 - i1 + 1
 
 ```python
 def IOU(box1, box2): #[x1, y1, x2, y2], [x3, y3, x4, y4]
@@ -805,8 +810,8 @@ def vec_IOU(boxes1, boxes2): # both [N, 4]
 训练好的模型在现实中不work
 
 深度学习中有什么加快收敛/降低训练难度的方法?
-- 瓶颈结构
-- 残差
+- 瓶颈结构 bottleneck
+- 残差 residual block
 - 学习率、步长、动量
 - 优化方法
 - 预训练
@@ -952,5 +957,3 @@ SVM
 
 
 Faster RCNN vs MaskRCNN
-
-Transformer (QKV)
