@@ -326,33 +326,98 @@ How to do regularization in DT?
 
 ## 4.3. Ensemble Learning
 Bagging: (Bootstrap Aggregating): reduce model variance through averaging
-- build weak learners in parallel
-- Bootstraping (train separate weak learners on each Bootstrap sample)
-- Aggregating results: classification uses majority votes; regression used averaging.
+* build weak learners in parallel
+  - Bootstraping (train separate weak learners on each Bootstrap sample)
+  - Aggregating results: classification uses majority votes; regression used averaging.
 - 和神经网络中dropout效果类似
 
-Boosting:
-- build weak learners in serial/sequential
-- but adaptively re-weight training data prior training each new weak learner, in order to get a higher weight to previously misclassified examples
+
+Decision Stump
+* Trees that only contain one decision for classification
+
 
 Random Forest: homogenous ensemble learning of decision trees
-- bult using Bagging (each decision tree as a parallel estimator)
+* built using Bagging (each decision tree as a parallel estimator)
 - pros: a whitebox model (easy to understand, interpretable, visualizable); not require normalization; 
 - cons: need uncorrelated decision trees (Bootstrapping plays a key role in creating uncorrelated decision trees.)
+will random forest help reduce bias or variance/why random forest can help reduce variance?
 
-gradient boosted decision trees (GBDT):
-- built using Boosting (decision trees connected in series)
-- to minimize the error of previous tree
-- Decision trees in GBDT are not fit to the entire dataset. Each tree fits to the residuals from the previous one. 
-- As a result, the overall accuracy and robustness of the model gradually increase.
+
+Boosting:
+* build weak learners in serial/sequential to create a strong learner
+- but adaptively re-weight training data prior training each new weak learner, in order to get a higher weight to previously misclassified examples
+
+
+(discrete) Adaptive Boosting (AdaBoost)
+* boosting the performance of decision trees for binary classification
+* Algorithm:
+    - (1) Each instance in the training dataset is weighted initially as w(i) = 1/N
+    - (2) For m = 1 to M
+        - Fit a classfier Gm(x) to the training data using weights w(i)
+        - Compute error errorm = Σ w(i) * I(yi ≠ Gm(xi)) / Σ w(i) 
+        - Compute αm = log((1 - errorm) / errorm)
+        - Update w(i) = w(i) * exp(αm * I(yi ≠ Gm(xi)))
+    - (3) Final prediction sign(Σ αm * Gm(x))
+- pros: fast, simple; robust to overfit; can be used with text or numeric data
+- cons: sensitive to noise and outlier; weak classifiers being too weak may lead to low margins and overfitting
+```python
+def compute_error(y, y_pred, w_i):
+    '''
+    Calculate the error rate of a weak classifier m. Arguments:
+    y: actual target value
+    y_pred: predicted value by weak classifier
+    w_i: individual weights for each observation
+    '''
+    return (sum(w_i * (np.not_equal(y, y_pred)).astype(int))) / sum(w_i)
+
+def compute_alpha(error):
+    '''
+    Calculate the weight of a weak classifier m in the majority vote of the final classifier. This is called
+    alpha in chapter 10.1 of The Elements of Statistical Learning. Arguments:
+    error: error rate from weak classifier m
+    '''
+    return np.log((1 - error) / error)
+
+def update_weights(w_i, alpha, y, y_pred):
+    ''' 
+    Update individual weights w_i after a boosting iteration. Arguments:
+    w_i: individual weights for each observation
+    y: actual target value
+    y_pred: predicted value by weak classifier  
+    alpha: weight of weak classifier used to estimate y_pred
+    '''  
+    return w_i * np.exp(alpha * (np.not_equal(y, y_pred)).astype(int))
+```
+
+
+Gradient Boosted Decision Trees (GBDT):
+  - Also known as gradient boosting, multiple additive regression trees, stochastic gradient boosting, gradient boosting machines
+* New models are created to predict the residuals or errors of prior models and then added together to make the final prediction
+- Built using Boosting (decision trees connected in series) to minimize the error of previous tree
+- Decision trees in GBDT are not fit to the entire dataset. Each tree fits to the residuals from the previous one. As a result, the overall accuracy and robustness of the model gradually increase.
+- Support both regression and classification predictive modeling problems
 - pros: do not need bootstrapping, no correlated trees; no need to create subsamples from the dataset
-
-AdaBoost
 
 
 XGBoost
+* a library implemented GBDT and engineered for efficiency of compute time and memory resources
+    - Execution Speed + Model Performance
+* Three main forms of gradient boosting are supported:
+    - (1) Gradient Boosting algorithm also called gradient boosting machine including the learning rate
+    - (2) Stochastic Gradient Boosting with sub-sampling at the row, column and column per split levels
+    - (3) Regularized Gradient Boosting with both L1 and L2 regularization
+* system feature
+    - Parallelization of tree construction using all of your CPU cores during training
+    - Distributed Computing for training very large models using a cluster of machines
+    - Out-of-Core Computing for very large datasets that don’t fit into memory
+    - Cache Optimization of data structures and algorithm to make best use of hardware
+* Algorithm Features
+    - Sparse Aware implementation with automatic handling of missing data values
+    - Block Structure to support the parallelization of tree construction
+    - Continued Training so that you can further boost an already fitted model on new data
 
-will random forest help reduce bias or variance/why random forest can help reduce variance
+
+Light GBM
 
 
 ## 4.4. Generative Model
