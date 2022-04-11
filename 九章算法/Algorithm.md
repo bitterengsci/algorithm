@@ -62,7 +62,7 @@
   - [12.3. Bubble Sort](#123-bubble-sort)
   - [12.4. Selection Sort](#124-selection-sort)
   - [12.5. Insertion Sort](#125-insertion-sort)
-  - [12.6. Quick Select](#126-quick-select)
+  - [12.6. Quick Select, Hoare's selection](#126-quick-select-hoares-selection)
   - [12.7. Integer Sort](#127-integer-sort)
 
 <!-- /TOC -->
@@ -1356,7 +1356,58 @@ Insertion sort works the way like we sort playing cards in hands.
 * Auxiliary Space: O(1)
 
 
-## 12.6. Quick Select
+## 12.6. Quick Select, Hoare's selection 
+* average time complexity O(N), like quicksort
+* worst time complexity O(N^2), space O(1)
+
+- Choose a pivot
+- Partition: define its position pos in a sorted array O(N)
+- Select: compare pos and k to decide which subarray to proceed recursively
+
+```python
+def findKthLargest(nums: List[int], k: int) -> int:
+        
+        def partition(left, right, pivot_index):
+            pivot = nums[pivot_index]
+            # 1. move pivot to end
+            nums[pivot_index], nums[right] = nums[right], nums[pivot_index]  
+            
+            # 2. move all smaller elements to the left
+            store_index = left
+            for i in range(left, right):
+                if nums[i] < pivot:
+                    nums[store_index], nums[i] = nums[i], nums[store_index]
+                    store_index += 1
+
+            # 3. move pivot to its final place
+            nums[right], nums[store_index] = nums[store_index], nums[right]  
+            
+            return store_index
+        
+        # Returns the k-th smallest element of list within left..right
+        def select(left, right, k_smallest):
+            if left == right:       # If the list contains only one element,
+                return nums[left]   # return that element
+            
+            # select a random pivot_index between 
+            pivot_index = random.randint(left, right)     
+                            
+            # find the pivot position in a sorted list   
+            pivot_index = partition(left, right, pivot_index)
+            
+            # the pivot is in its final sorted position
+            if k_smallest == pivot_index:
+                 return nums[k_smallest]
+            # go left
+            elif k_smallest < pivot_index:
+                return select(left, pivot_index - 1, k_smallest)
+            # go right
+            else:
+                return select(pivot_index + 1, right, k_smallest)
+
+        # kth largest is (n - k)th smallest 
+        return select(0, len(nums) - 1, len(nums) - k)
+```
 
 
 ## 12.7. Integer Sort
