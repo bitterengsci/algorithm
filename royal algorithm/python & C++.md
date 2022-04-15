@@ -1,13 +1,13 @@
 <!-- TOC -->
 
 - [1. Python Aid Sheet](#1-python-aid-sheet)
-- [2. Modern C++ features (after C++11)](#2-modern-c-features-after-c11)
-- [3. Containers in C++ STL (Standard Template Library)](#3-containers-in-c-stl-standard-template-library)
+- [2. Modern C++ features after C++11](#2-modern-c-features-after-c11)
+- [3. Containers in C++ STL Standard Template Library](#3-containers-in-c-stl-standard-template-library)
 - [4. Object-Oriented Programming](#4-object-oriented-programming)
 - [5. C++ Questions](#5-c-questions)
 - [6. Defensive Programming](#6-defensive-programming)
 - [7. Optimize the code](#7-optimize-the-code)
-- [8. Design Pattern 设计模式](#8-design-pattern-设计模式)
+- [8. Design Pattern 设计模式](#8-design-pattern-%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F)
 
 <!-- /TOC -->
 
@@ -373,6 +373,10 @@ public:
 
 C++编译器自动为类产生的四个缺省函数: 默认构造函数，析构函数，赋值函数, 拷贝构造函数
 
+
+Release vs Debug mode
+- gcc code Optimization -o1 -o2 -o3 (o3 optimizes more than o2, o2 more than o1) -os optimizes for size
+- https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
 
 RAIL: 析构即释放 std::mutex → std::unique_lock lock(m);
 
