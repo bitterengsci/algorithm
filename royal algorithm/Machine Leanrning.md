@@ -1023,3 +1023,20 @@ SVM
 
 Faster RCNN vs MaskRCNN
 learning by demonstration
+
+fundamental issue of 1 stage object detection struction
+
+hard (negative) mining
+focal loss
+
+spatial pyramid pooling
+
+BN 作用
+
+receptive field 和哪些parameters有关
+
+bayserian-based detection
+
+in detection, negative examples more frequent than positive examples, how to balance.
+
+

@@ -139,3 +139,26 @@ Egomotion: 3D motion of a camera within an environment.
 - estimate a camera's motion relative to a rigid scene.
 - photometric loss + geometric loss
 - depth estimation + ego motion (trajectory) estimation
+
+
+
+camera calibration (哪些parameters involved? 具体怎么做的)
+
+planar-based calibration
+
+vanishing point
+
+vanishing plane
+
+
+fundamental matrix (in geometry sense?? )
+
+epipolar line in geometry sense?
+
+
+homogeneous coordinate system point at infinity [x, y, z, 0]
+
+monocular depth estimation
+
+
+trust-region based optimization
