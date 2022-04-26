@@ -342,7 +342,7 @@ explicit
 extern
 
 
-violate
+volatile
 - 编译器不优化代码 set flag -o3 (优化代码, 优化等级为3) -os 以speed为目的优化代码; Debug模式不优化代码, Release模式优化
 - prevent the compiler from applying any optimizations on objects that can change in ways that cannot be determined by the compiler
 
