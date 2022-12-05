@@ -1,7 +1,6 @@
 
 
 
-
 AWS Certified Cloud Practitioner
 
 AWS certified Solutions Architect - Associate 
@@ -31,7 +30,31 @@ AWS Certified SAP on AWS - Specialty
 * https://www.youtube.com/watch?v=lDEFXtpEhLY
 * https://d1.awsstatic.com/training-and-certification/docs-cloud-practitioner/AWS-Certified-Cloud-Practitioner_Exam-Guide.pdf
 
+<!-- TOC -->
 
+- [1. Intro](#1-intro)
+- [2. Compute](#2-compute)
+- [3. Global Infrastrcture & Reliability](#3-global-infrastrcture--reliability)
+- [4. Networking](#4-networking)
+- [5. Storage & Databases](#5-storage--databases)
+    - [5.1. Storage](#51-storage)
+    - [5.2. Database](#52-database)
+- [6. Security](#6-security)
+    - [6.1. User Permissions and Access](#61-user-permissions-and-access)
+    - [6.2. AWS Organizations](#62-aws-organizations)
+    - [6.3. Compliance](#63-compliance)
+- [7. Monitoring & Analytics](#7-monitoring--analytics)
+- [8. Pricing & Support](#8-pricing--support)
+- [9. Migration & Innovation](#9-migration--innovation)
+- [10. The Cloud Journey](#10-the-cloud-journey)
+- [11. Whizlabs Practice Test](#11-whizlabs-practice-test)
+- [12. AWS Services Whitepaper](#12-aws-services-whitepaper)
+- [13. Resilient Architectures](#13-resilient-architectures)
+- [14. High-Performing Architectures](#14-high-performing-architectures)
+- [15. Secure Applications and Architectures](#15-secure-applications-and-architectures)
+- [16. Cost-Optimized Architectures](#16-cost-optimized-architectures)
+
+<!-- /TOC -->
 
 # 1. Intro
 
